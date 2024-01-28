@@ -21,6 +21,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/").permitAll()
                         .anyRequest().authenticated())
+
+                //FIXME
                 .formLogin(form -> form.loginPage("/login").permitAll())
         ;
         return http.build();
