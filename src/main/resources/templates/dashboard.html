@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://startbootstrap.github.io/startbootstrap-sb-admin-2/css/styles.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f8f9fc;
+        }
+        .navbar-custom {
+            background-color: #4e73df;
+            color: white;
+        }
+        .navbar-custom .navbar-brand, .navbar-custom .nav-link {
+            color: white;
+        }
+        .sidebar {
+            background-color: #3a3b45;
+            min-height: 100vh;
+            color: white;
+        }
+        .sidebar a {
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+        .sidebar a:hover {
+            background-color: #5a5c69;
+            color: white;
+        }
+        .content {
+            padding: 20px;
+            background-color: #f8f9fc;
+        }
+        .footer {
+            background-color: #4e73df;
+            color: white;
+            padding: 10px 0;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div th:replace="layout/header :: header"></div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2 sidebar">
+            <div th:replace="layout/sidebar :: sidebar"></div>
+        </div>
+        <div class="col-md-10 content">
+            <div th:include="content/content"></div>
+        </div>
+    </div>
+</div>
+<div class="footer" th:replace="layout/footer :: footer"></div>
+</body>
+</html>
