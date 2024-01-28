@@ -4,40 +4,58 @@
     <title>Dashboard</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://startbootstrap.github.io/startbootstrap-sb-admin-2/css/styles.css">
     <style>
         body {
             font-family: 'Roboto', sans-serif;
-            background-color: #f8f9fc;
+            background-color: #1e1e2f; /* 어두운 배경색 */
+            color: #abb2bf; /* 부드러운 글자색 */
         }
         .navbar-custom {
-            background-color: #4e73df;
-            color: white;
+            background-color: #212338; /* 어두운 네이비 */
+            color: #fff;
+            margin-bottom: 0;
+        }
+        .container-fluid {
+            padding: 0; /* container의 패딩 제거 */
         }
         .navbar-custom .navbar-brand, .navbar-custom .nav-link {
-            color: white;
+            color: #fff;
         }
         .sidebar {
-            background-color: #3a3b45;
+            background-color: #212338; /* 어두운 네이비 */
             min-height: 100vh;
-            color: white;
+            color: #fff;
         }
         .sidebar a {
-            color: white;
-            transition: background-color 0.3s ease;
+            color: #fff;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
         .sidebar a:hover {
-            background-color: #5a5c69;
-            color: white;
+            background-color: #4e73df; /* 밝은 푸른색 */
+            color: #fff;
         }
         .content {
             padding: 20px;
-            background-color: #f8f9fc;
+            background-color: #282a36; /* 어두운 그레이 */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            margin-top: 0;
         }
         .footer {
-            background-color: #4e73df;
-            color: white;
+            background-color: #212338; /* 어두운 네이비 */
+            color: #fff;
             padding: 10px 0;
+            border-top: 1px solid #282a36;
+        }
+        .sidebar .list-group-item {
+            color: white; /* 기본 글자색 */
+            background-color: transparent; /* 기본 배경색 */
+            transition: background-color 0.3s ease, color 0.3s ease; /* 부드러운 색상 전환 효과 */
+        }
+
+        .sidebar .list-group-item:hover {
+            background-color: #4e73df; /* 마우스 오버시 배경색 */
+            color: #fff; /* 마우스 오버시 글자색 */
         }
     </style>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
@@ -45,17 +63,17 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div th:replace="layout/header :: header"></div>
+<div th:replace="layout/header::header"></div>
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-2 sidebar">
-            <div th:replace="layout/sidebar :: sidebar"></div>
+            <div th:replace="layout/sidebar::sidebar"></div>
         </div>
         <div class="col-md-10 content">
             <div th:include="content/content"></div>
         </div>
     </div>
 </div>
-<div class="footer" th:replace="layout/footer :: footer"></div>
+<div class="footer" th:replace="layout/footer::footer"></div>
 </body>
 </html>
