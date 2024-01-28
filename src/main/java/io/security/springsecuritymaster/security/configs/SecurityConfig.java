@@ -21,7 +21,8 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(auth -> auth
                         //FIXME
-                        .requestMatchers("/","/css/**", "/images/**", "/js/**", "/favicon.*", "/*/icon-*").permitAll()
+                        .requestMatchers("/css/**", "/images/**", "/js/**", "/favicon.*", "/*/icon-*").permitAll()
+                        .requestMatchers("/","/signup").permitAll()
                         .anyRequest().authenticated())
 
                 //FIXME
