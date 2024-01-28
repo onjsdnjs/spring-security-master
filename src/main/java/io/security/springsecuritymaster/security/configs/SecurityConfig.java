@@ -21,7 +21,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/").permitAll()
                         .anyRequest().authenticated())
-                .formLogin(form -> form.loginPage("/login"))
+                .formLogin(form -> form.loginPage("/login").permitAll())
         ;
         return http.build();
     }
