@@ -18,7 +18,7 @@ import org.springframework.security.web.SecurityFilterChain;
 @RequiredArgsConstructor
 public class SecurityConfig {
 
-    private final FormAuthenticationProvider formAuthenticationProvider;
+    private final AuthenticationProvider authenticationProvider;
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
@@ -29,7 +29,7 @@ public class SecurityConfig {
 
                 .formLogin(form -> form.loginPage("/login").permitAll())
                 .csrf(AbstractHttpConfigurer::disable)
-                .authenticationProvider(formAuthenticationProvider)
+                .authenticationProvider(authenticationProvider)
         ;
         return http.build();
     }
