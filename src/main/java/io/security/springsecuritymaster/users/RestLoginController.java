@@ -8,6 +8,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class RestLoginController {
     @PostMapping(value="/api/login")
     public String restLogin(){
-        return "rest/login";
+        return "restLogin";
     }
 }
