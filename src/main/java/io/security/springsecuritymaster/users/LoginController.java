@@ -43,13 +43,11 @@ public class LoginController {
     }
 
     @GetMapping(value="/denied")
-    public String accessDenied(@RequestParam(value = "exception", required = false) String exception, @AuthenticationPrincipal AccountContext accountContext, Model model) {
-
-        Account account = accountContext.getAccount();
+    public String accessDenied(@RequestParam(value = "exception", required = false) String exception, @AuthenticationPrincipal Account account, Model model) {
 
         model.addAttribute("username", account.getUsername());
         model.addAttribute("exception", exception);
 
-        return "/user/login/denied";
+        return "login/denied";
     }
 }
