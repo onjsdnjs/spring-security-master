@@ -1,4 +1,4 @@
-package io.security.springsecuritymaster.controller;
+package io.security.springsecuritymaster.users;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
