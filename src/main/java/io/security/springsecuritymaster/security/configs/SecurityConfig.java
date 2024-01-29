@@ -10,7 +10,6 @@ import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.WebAuthenticationDetails;
@@ -46,6 +45,17 @@ public class SecurityConfig {
                 .exceptionHandling(exception -> exception
                         .accessDeniedHandler(new FormAccessDeniedHandler("/denied"))
                 )
+        ;
+        return http.build();
+    }
+
+    @Bean
+    public SecurityFilterChain restSecurityFilterChain(HttpSecurity http) throws Exception {
+
+        http
+                .securityMatcher("/api/**")
+                .authorizeHttpRequests(auth -> auth
+                        .anyRequest().permitAll())
         ;
         return http.build();
     }
