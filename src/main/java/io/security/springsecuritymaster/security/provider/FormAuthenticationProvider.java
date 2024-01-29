@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class FormAuthenticationProvider implements AuthenticationProvider {
 
-    private final UserDetailsService userDetailsService
+    private final UserDetailsService userDetailsService;
     private final PasswordEncoder passwordEncoder;
 
     @Override
@@ -36,6 +36,6 @@ public class FormAuthenticationProvider implements AuthenticationProvider {
 
     @Override
     public boolean supports(Class<?> authentication) {
-        return authentication.isAssignableFrom(UsernamePasswordAuthenticationToken.class);;
+        return authentication.isAssignableFrom(UsernamePasswordAuthenticationToken.class);
     }
 }
