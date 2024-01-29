@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #1e1e2f; /* 어두운 배경색 */
+            color: #abb2bf; /* 부드러운 글자색 */
+        }
+        .navbar-custom {
+            background-color: #212338; /* 어두운 네이비 */
+            color: #fff;
+            margin-bottom: 0;
+        }
+        .container-fluid {
+            padding: 0; /* container의 패딩 제거 */
+        }
+        .navbar-custom .navbar-brand, .navbar-custom .nav-link {
+            color: #fff;
+        }
+        .sidebar {
+            background-color: #212338; /* 어두운 네이비 */
+            min-height: 100vh;
+            color: #fff;
+        }
+        .sidebar a {
+            color: #fff;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .sidebar a:hover {
+            background-color: #4e73df; /* 밝은 푸른색 */
+            color: #fff;
+        }
+        .content {
+            padding: 20px;
+            background-color: #282a36; /* 어두운 그레이 */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            margin-top: 0;
+        }
+        .footer {
+            background-color: #212338; /* 어두운 네이비 */
+            color: #fff;
+            padding: 10px 0;
+            border-top: 1px solid #282a36;
+        }
+        .sidebar .list-group-item {
+            color: white; /* 기본 글자색 */
+            background-color: transparent; /* 기본 배경색 */
+            transition: background-color 0.3s ease, color 0.3s ease; /* 부드러운 색상 전환 효과 */
+        }
+
+        .sidebar .list-group-item:hover {
+            background-color: #4e73df; /* 마우스 오버시 배경색 */
+            color: #fff; /* 마우스 오버시 글자색 */
+        }
+        /* 중앙 로그인 폼 스타일 */
+        .login-form {
+            max-width: 400px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: #2e2e2e; /* 어두운 폼 배경색 */
+            border-radius: 5px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        }
+        .login-form h2 {
+            color: #fff; /* 밝은 글자색 */
+            margin-bottom: 20px;
+        }
+        .login-form .form-control {
+            background-color: #3a3b45; /* 어두운 입력 필드 배경색 */
+            color: #fff; /* 밝은 입력 필드 글자색 */
+            border: none;
+        }
+        .login-form .btn-primary {
+            background-color: #4e73df; /* 밝은 버튼 색상 */
+            border: none;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div th:replace="~{layout/header::header}"></div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2 sidebar">
+            <div th:replace="~{layout/sidebar::sidebar}"></div>
+        </div>
+        <div class="col-md-10 content">
+            <div class="login-form">
+                <h2>Login</h2>
+                <div th:if="${param.error}" class="form-group">
+                    <span th:text="${exception}?: '잘못된 아이디나 암호입니다'" class="alert alert-danger"></span>
+                </div>
+                <form th:action="@{/login}" method="post">
+                    <input type="hidden" th:value="secret" name="secret_key" />
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" class="form-control" id="username" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" name="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="footer" th:replace="~{layout/footer::footer}"></div>
+</body>
+</html>
