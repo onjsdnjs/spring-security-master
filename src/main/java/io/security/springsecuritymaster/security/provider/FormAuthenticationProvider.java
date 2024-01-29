@@ -2,7 +2,6 @@ package io.security.springsecuritymaster.security.provider;
 
 import io.security.springsecuritymaster.domain.dto.AccountContext;
 import lombok.RequiredArgsConstructor;
-import org.apache.catalina.User;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
