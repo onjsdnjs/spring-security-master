@@ -19,7 +19,7 @@ import java.security.Principal;
 
 @Controller
 public class LoginController {
-    @RequestMapping(value="/login")
+    @GetMapping(value="/login")
     public String login(@RequestParam(value = "error", required = false) String error,
                         @RequestParam(value = "exception", required = false) String exception, Model model){
         model.addAttribute("error",error);
