@@ -97,7 +97,7 @@
                 <div th:if="${param.error}" class="form-group">
                     <span th:text="${exception}?: '잘못된 아이디나 암호입니다'" class="alert alert-danger"></span>
                 </div>
-                <form action="/login" method="post">
+                <form th:action="@{/login}" method="post">
                     <div class="form-group">
                         <label for="username">Username</label>
                         <input type="text" class="form-control" id="username" name="username" required>
