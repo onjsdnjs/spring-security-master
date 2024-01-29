@@ -3,7 +3,6 @@ package io.security.springsecuritymaster.domain.dto;
 import io.security.springsecuritymaster.domain.entity.Account;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
@@ -24,7 +23,7 @@ public class AccountContext implements UserDetails {
     }
     @Override
     public String getPassword() {
-        return null;
+        return account.getPassword();
     }
     @Override
     public String getUsername() {
