@@ -84,34 +84,32 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script>
-        document.getElementById('loginForm').addEventListener('submit', async (event) => {
-            event.preventDefault(); // 기본 폼 제출 막기
+        function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
 
-            const formData = new FormData(event.target);
-            const data = Object.fromEntries(formData.entries());
-
-            try {
-                const response = await fetch(event.target.action, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(data)
+            fetch('http://localhost:8080/api/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ username, password }),
+            })
+                .then(response => {
+                    if (response.ok) {
+                        window.location.replace('/');
+                    } else {
+                        throw new Error('Login failed');
+                    }
+                })
+                .then(data => {
+                    console.log('Login successful:', data);
+                    // 로그인 성공 후 처리
+                })
+                .catch(error => {
+                    console.error('Error during login:', error);
                 });
-
-                if (response.ok) {
-                    const jsonResponse = await response.json();
-                    // 성공적인 로그인 처리
-                    console.log('Login success:', jsonResponse);
-                } else {
-                    // 에러 처리
-                    console.error('Login failed:', response.status, response.statusText);
-                }
-            } catch (error) {
-                // 네트워크 오류 처리
-                console.error('Network error:', error);
-            }
-        });
+        }
     </script>
 </head>
 <body>
@@ -124,18 +122,18 @@
         <div class="col-md-10 content">
             <div class="login-form">
                 <h2>Login</h2>
-                <form th:action="@{/api/login}" method="post">
-                    <input type="hidden" th:value="secret" name="secret_key" />
-                    <div class="form-group">
-                        <label for="username">Username</label>
-                        <input type="text" class="form-control" id="username" name="username" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" class="form-control" id="password" name="password" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Login</button>
-                </form>
+                <div th:if="${param.error}" class="form-group">
+                    <span th:text="${exception} ?: '잘못된 아이디나 암호입니다'" class="alert alert-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control" id="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password" required>
+                </div>
+                <button onclick="login()" class="btn btn-primary">Login</button>
             </div>
         </div>
     </div>
