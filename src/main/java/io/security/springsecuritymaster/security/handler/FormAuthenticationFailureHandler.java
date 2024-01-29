@@ -9,6 +9,7 @@ import org.springframework.security.authentication.CredentialsExpiredException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.DefaultRedirectStrategy;
 import org.springframework.security.web.RedirectStrategy;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
@@ -32,8 +33,8 @@ public class FormAuthenticationFailureHandler extends SimpleUrlAuthenticationFai
         if(exception instanceof BadCredentialsException) {
             errorMessage = "Invalid Username or Password";
         }
-        else if(exception instanceof DisabledException) {
-            errorMessage = "Locked";
+        else if(exception instanceof UsernameNotFoundException) {
+            errorMessage = "User not exists";
         }
         else if(exception instanceof CredentialsExpiredException) {
             errorMessage = "Expired password";
