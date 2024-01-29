@@ -24,7 +24,8 @@ public class SecurityConfig {
                         .anyRequest().authenticated())
 
                 .formLogin(form -> form.loginPage("/login").permitAll())
-                .csrf(AbstractHttpConfigurer::disable)
+                .logout(logout -> logout.logoutUrl("/logout").permitAll())
+//                .csrf(AbstractHttpConfigurer::disable)
                 .authenticationProvider(authenticationProvider)
         ;
         return http.build();
