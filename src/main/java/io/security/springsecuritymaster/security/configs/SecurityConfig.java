@@ -20,12 +20,10 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(auth -> auth
-                        //FIXME
                         .requestMatchers("/css/**", "/images/**", "/js/**", "/favicon.*", "/*/icon-*").permitAll()
                         .requestMatchers("/").permitAll()
                         .anyRequest().authenticated())
 
-                //FIXME
                 .formLogin(form -> form.loginPage("/login").permitAll())
                 .csrf(AbstractHttpConfigurer::disable)
         ;
