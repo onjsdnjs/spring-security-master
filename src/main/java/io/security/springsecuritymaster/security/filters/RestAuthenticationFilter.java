@@ -4,11 +4,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import io.security.springsecuritymaster.domain.dto.AccountDto;
 import io.security.springsecuritymaster.security.token.RestAuthenticationToken;
 import io.security.springsecuritymaster.util.WebUtil;
-import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.HttpMethod;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -19,11 +17,7 @@ import org.springframework.util.StringUtils;
 import java.io.IOException;
 
 public class RestAuthenticationFilter extends AbstractAuthenticationProcessingFilter {
-    private static final String XML_HTTP_REQUEST = "XMLHttpRequest";
-    private static final String X_REQUESTED_WITH = "X-Requested-With";
-
     private final ObjectMapper objectMapper = new ObjectMapper();
-
     public RestAuthenticationFilter() {
         super(new AntPathRequestMatcher("/api/login", "POST"));
     }
