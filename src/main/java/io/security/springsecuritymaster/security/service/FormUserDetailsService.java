@@ -33,7 +33,6 @@ public class FormUserDetailsService implements UserDetailsService {
         List<GrantedAuthority> authorities = List.of(new SimpleGrantedAuthority(account.getRoles()));
         ModelMapper mapper = new ModelMapper();
         AccountDto accountDto = mapper.map(account, AccountDto.class);
-        accountDto.setPassword(null);
 
         return new AccountContext(accountDto, authorities);
     }
