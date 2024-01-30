@@ -66,7 +66,6 @@ public class SecurityConfig {
         AuthenticationManagerBuilder authenticationManagerBuilder = http.getSharedObject(AuthenticationManagerBuilder.class);
         AuthenticationManager authenticationManager = authenticationManagerBuilder.build();            // build() 는 최초 한번 만 호출해야 한다
 
-
         http
                 .securityMatcher("/api/**")
                 .authorizeHttpRequests(auth -> auth
