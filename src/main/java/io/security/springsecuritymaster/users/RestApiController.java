@@ -35,6 +35,6 @@ public class RestApiController {
             new SecurityContextLogoutHandler().logout(request, response, authentication);
         }
 
-        return "redirect:/login";
+        return "logout";
     }
 }

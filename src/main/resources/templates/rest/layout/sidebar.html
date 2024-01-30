@@ -2,8 +2,8 @@
 <aside th:fragment="sidebar">
     <div class="list-group list-group-flush">
         <a href="/api" class="list-group-item list-group-item-action">대시보드</a>
-        <button id="user" onclick="restCall('http://localhost:8080/api/user')" class="list-group-item list-group-item-action">회원 전용</button>
-        <button id="manager" onclick="restCall('http://localhost:8080/api/manager')" class="list-group-item list-group-item-action">매니저 전용</button>
-        <button id="admin" onclick="restCall('http://localhost:8080/api/admin')" class="list-group-item list-group-item-action">관리자 전용</button>
+        <button id="user" onclick="restCall('/api/user')" class="list-group-item list-group-item-action">회원 전용</button>
+        <button id="manager" onclick="restCall('/api/manager')" class="list-group-item list-group-item-action">매니저 전용</button>
+        <button id="admin" onclick="restCall('/api/admin')" class="list-group-item list-group-item-action">관리자 전용</button>
     </div>
 </aside>
