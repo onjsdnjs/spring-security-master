@@ -88,7 +88,7 @@
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
 
-            fetch('http://localhost:8080/api/user', {
+            fetch('http://localhost:8080/api/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -105,22 +105,26 @@
                     console.error('Error during login:', error);
                 });
         }
-        function restCall() {
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
+        function restCall(url) {
 
-            fetch('http://localhost:8080/api/login', {
+            fetch(url, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     'X-Requested-With': 'XMLHttpRequest'
-                },
-                body: JSON.stringify({ username, password }),
+                }
             })
                 .then(response => {
-                    response.json().then(function (data) {
-                        console.log(data);
-                    })
+                    if(response.ok){
+                        response.json().then(function (data) {
+                            console.log(data);
+                            window.location.replace('/api')
+                        })
+                    }else if(response.status === 401){
+                        console.log(response.statusText)
+                    }else if(response.status === 403){
+                        console.log(response.statusText)
+                    }
                 })
                 .catch(error => {
                     console.error('Error during login:', error);
