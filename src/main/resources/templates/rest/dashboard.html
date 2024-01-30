@@ -65,7 +65,7 @@
         function restCall(url) {
 
             fetch(url, {
-                method: 'POST',
+                method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
                     'X-Requested-With': 'XMLHttpRequest'
@@ -75,7 +75,8 @@
                     if(response.ok){
                         response.json().then(function (data) {
                             console.log(data);
-                            window.location.replace('/api')
+                            document.querySelector("#content").textContent=data;
+                            // window.location.replace('/api')
                         })
                     }else if(response.status === 401){
                         console.log(response.statusText)
@@ -97,7 +98,10 @@
             <div th:replace="~{rest/layout/sidebar::sidebar}"></div>
         </div>
         <div class="col-md-10 content">
-            <div th:insert="~{content/content}"></div>
+            <div>
+                <h2>대시보드</h2>
+                <p id="content">환영합니다! 여기에 대시보드 관련 정보와 분석 데이터가 표시됩니다.</p>
+            </div>
         </div>
     </div>
 </div>
