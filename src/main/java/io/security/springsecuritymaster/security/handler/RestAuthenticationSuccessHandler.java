@@ -1,7 +1,9 @@
 package io.security.springsecuritymaster.security.handler;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.security.springsecuritymaster.domain.dto.AccountContext;
 import io.security.springsecuritymaster.domain.dto.AccountDto;
+import io.security.springsecuritymaster.domain.entity.Account;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
@@ -20,10 +22,10 @@ public class RestAuthenticationSuccessHandler implements AuthenticationSuccessHa
 
         ObjectMapper mapper = new ObjectMapper();
 
-        AccountDto accountDto = (AccountDto) authentication.getPrincipal();
+        Account account = (Account) authentication.getPrincipal();
         response.setStatus(HttpStatus.OK.value());
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
-        mapper.writeValue(response.getWriter(), accountDto);
+        mapper.writeValue(response.getWriter(), account);
 
         clearAuthenticationAttributes(request);
     }
