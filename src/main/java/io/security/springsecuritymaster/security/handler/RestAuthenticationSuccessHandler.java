@@ -25,6 +25,7 @@ public class RestAuthenticationSuccessHandler implements AuthenticationSuccessHa
         AccountDto accountDto = (AccountDto) authentication.getPrincipal();
         response.setStatus(HttpStatus.OK.value());
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
+        accountDto.setPassword(null);
         mapper.writeValue(response.getWriter(), accountDto);
 
         clearAuthenticationAttributes(request);
