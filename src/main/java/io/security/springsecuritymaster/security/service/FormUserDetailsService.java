@@ -1,9 +1,11 @@
 package io.security.springsecuritymaster.security.service;
 
 import io.security.springsecuritymaster.domain.dto.AccountContext;
+import io.security.springsecuritymaster.domain.dto.AccountDto;
 import io.security.springsecuritymaster.domain.entity.Account;
 import io.security.springsecuritymaster.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -29,6 +31,9 @@ public class FormUserDetailsService implements UserDetailsService {
             }
         }
         List<GrantedAuthority> authorities = List.of(new SimpleGrantedAuthority(account.getRoles()));
-        return new AccountContext(account, authorities);
+        ModelMapper mapper = new ModelMapper();
+        AccountDto accountDto = mapper.map(account, AccountDto.class);
+
+        return new AccountContext(accountDto, authorities);
     }
 }
