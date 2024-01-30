@@ -33,11 +33,6 @@ public class RestAuthenticationProvider implements AuthenticationProvider {
             throw new BadCredentialsException("Invalid password");
         }
 
-        String secretKey = ((FormWebAuthenticationDetails) authentication.getDetails()).getSecretKey();
-        if (secretKey == null || !secretKey.equals("secret")) {
-            throw new SecretException("Invalid Secret");
-        }
-
         return new RestAuthenticationToken(accountContext.getAccount(), null, accountContext.getAuthorities());
     }
 
