@@ -1,7 +1,8 @@
+
 <aside th:fragment="sidebar">
     <div class="list-group list-group-flush">
         <a href="/api" class="list-group-item list-group-item-action">대시보드</a>
-        <a href="/api/user" class="list-group-item list-group-item-action">회원 전용</a>
+        <button id="user" onclick="restCall('http://localhost:8080/api/user')" class="list-group-item list-group-item-action">회원 전용</button>
         <a href="/api/manager" class="list-group-item list-group-item-action">매니저 전용</a>
         <a href="/api/admin" class="list-group-item list-group-item-action">관리자 전용</a>
     </div>

@@ -88,6 +88,27 @@
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
 
+            fetch('http://localhost:8080/api/user', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-Requested-With': 'XMLHttpRequest'
+                },
+                body: JSON.stringify({ username, password }),
+            })
+                .then(response => {
+                    response.json().then(function (data) {
+                        console.log(data);
+                    })
+                })
+                .catch(error => {
+                    console.error('Error during login:', error);
+                });
+        }
+        function restCall() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
             fetch('http://localhost:8080/api/login', {
                 method: 'POST',
                 headers: {
