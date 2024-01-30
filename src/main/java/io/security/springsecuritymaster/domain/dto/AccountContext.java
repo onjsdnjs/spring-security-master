@@ -1,6 +1,5 @@
 package io.security.springsecuritymaster.domain.dto;
 
-import io.security.springsecuritymaster.domain.entity.Account;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -10,11 +9,11 @@ import java.util.List;
 
 @Data
 public class AccountContext implements UserDetails {
-    private Account account;
+    private AccountDto accountDto;
     private final List<GrantedAuthority> roles;
 
-    public AccountContext(Account account, List<GrantedAuthority> roles) {
-      this.account = account;
+    public AccountContext(AccountDto accountDto, List<GrantedAuthority> roles) {
+      this.accountDto = accountDto;
       this.roles = roles;
     }
     @Override
@@ -23,11 +22,11 @@ public class AccountContext implements UserDetails {
     }
     @Override
     public String getPassword() {
-        return account.getPassword();
+        return accountDto.getPassword();
     }
     @Override
     public String getUsername() {
-        return account.getUsername();
+        return accountDto.getUsername();
     }
     @Override
     public boolean isAccountNonExpired() {
