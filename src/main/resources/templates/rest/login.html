@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<meta id="_csrf" name="_csrf" th:content="${_csrf.token}"/>
-<meta id="_csrf_header" name="_csrf_header" th:content="${_csrf.headerName}"/>
+<meta name="_csrf" th:content="${_csrf.token}"/>
+<meta name="_csrf_header" th:content="${_csrf.headerName}"/>
 <head>
     <title>Dashboard</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -88,7 +88,7 @@
     <script>
         function login() {
 
-            const csrfHeader = $('meta[name="_csrf_header"]').attr('content')
+            const csrfHeader = $('meta[name="_csrf_header"]').attr('content');
             const csrfToken = $('meta[name="_csrf"]').attr('content')
 
             const username = document.getElementById('username').value;
@@ -99,7 +99,7 @@
                 headers: {
                     'Content-Type': 'application/json',
                     'X-Requested-With': 'XMLHttpRequest',
-                    csrfHeader: csrfToken
+                    [csrfHeader]: csrfToken
                 },
                 body: JSON.stringify({ username, password }),
             })
