@@ -75,13 +75,14 @@
                     if(response.ok){
                         response.json().then(function (data) {
                             console.log(data);
-                            document.querySelector("#content").textContent=data;
-                            // window.location.replace('/api')
+                            document.querySelector("#content").textContent=data.toString();
                         })
                     }else if(response.status === 401){
                         console.log(response.statusText)
+                        document.querySelector("#content").textContent=response.status;
                     }else if(response.status === 403){
                         console.log(response.statusText)
+                        document.querySelector("#content").textContent=response.status;
                     }
                 })
                 .catch(error => {
