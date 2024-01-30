@@ -69,7 +69,7 @@ public class SecurityConfig {
                 .securityMatcher("/api/**")
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/css/**", "/images/**", "/js/**", "/favicon.*", "/*/icon-*").permitAll()
-                        .requestMatchers("/api").permitAll()
+                        .requestMatchers("/api","/api/login").permitAll()
                         .requestMatchers("/api/user").hasAuthority("ROLE_USER")
                         .requestMatchers("/api/manager").hasAuthority("ROLE_MANAGER")
                         .requestMatchers("/api/admin").hasAuthority("ROLE_ADMIN")
