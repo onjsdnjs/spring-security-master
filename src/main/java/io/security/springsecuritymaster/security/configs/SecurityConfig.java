@@ -90,14 +90,4 @@ public class SecurityConfig {
 
         return http.build();
     }
-
-    /*private RestAuthenticationFilter restAuthenticationFilter(HttpSecurity http, AuthenticationManager authenticationManager) {
-
-        RestAuthenticationFilter restAuthenticationFilter = new RestAuthenticationFilter(http);
-        restAuthenticationFilter.setAuthenticationManager(authenticationManager);
-        restAuthenticationFilter.setAuthenticationSuccessHandler(restSuccessHandler);
-        restAuthenticationFilter.setAuthenticationFailureHandler(restFailureHandler);
-
-        return restAuthenticationFilter;
-    }*/
 }
