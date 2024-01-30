@@ -2,7 +2,6 @@ package io.security.springsecuritymaster.security.configs;
 
 import io.security.springsecuritymaster.security.dsl.RestApiDsl;
 import io.security.springsecuritymaster.security.entrypoint.RestAuthenticationEntryPoint;
-import io.security.springsecuritymaster.security.filters.RestAuthenticationFilter;
 import io.security.springsecuritymaster.security.handler.*;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
@@ -81,8 +80,8 @@ public class SecurityConfig {
                         .authenticationEntryPoint(new RestAuthenticationEntryPoint())
                         .accessDeniedHandler(new RestAccessDeniedHandler()))
                 .with(new RestApiDsl<>(), restDsl -> restDsl
-                                            .successHandler(restSuccessHandler)
-                                            .failureHandler(restFailureHandler)
+                                            .restSuccessHandler(restSuccessHandler)
+                                            .restFailureHandler(restFailureHandler)
                                             .loginPage("/api/login")
                                             .loginProcessingUrl("/api/login"))
         ;
