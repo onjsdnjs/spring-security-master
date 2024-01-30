@@ -75,7 +75,7 @@
                     if(response.ok){
                         response.json().then(function (data) {
                             console.log(data);
-                            document.querySelector("#content").textContent=data.toString();
+                            document.querySelector("#content").textContent=JSON.stringify(data, null, 2);
                         })
                     }else if(response.status === 401){
                         console.log(response.statusText)
