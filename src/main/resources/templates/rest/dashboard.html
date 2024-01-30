@@ -91,7 +91,7 @@
         }
         function logout() {
 
-            fetch('http://localhost:8080/api/logout', {
+            fetch('/api/logout', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -100,16 +100,7 @@
             })
                 .then(response => {
                     if(response.ok){
-                        response.json().then(function (data) {
-                            console.log(data);
-                            document.querySelector("#content").textContent=JSON.stringify(data, null, 2);
-                        })
-                    }else if(response.status === 401){
-                        console.log(response.statusText)
-                        document.querySelector("#content").textContent=response.status;
-                    }else if(response.status === 403){
-                        console.log(response.statusText)
-                        document.querySelector("#content").textContent=response.status;
+                        window.location.replace('/api')
                     }
                 })
                 .catch(error => {
