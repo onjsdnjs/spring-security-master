@@ -74,6 +74,7 @@
                 .then(response => {
                     response.then(function (data) {
                         console.log(data);
+                        window.location.replace('/api')
                     })
                 })
                 .catch(error => {
