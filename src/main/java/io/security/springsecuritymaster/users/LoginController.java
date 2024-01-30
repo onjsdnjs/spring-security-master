@@ -1,5 +1,6 @@
 package io.security.springsecuritymaster.users;
 
+import io.security.springsecuritymaster.domain.dto.AccountDto;
 import io.security.springsecuritymaster.domain.entity.Account;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -43,9 +44,9 @@ public class LoginController {
     }
 
     @GetMapping(value="/denied")
-    public String accessDenied(@RequestParam(value = "exception", required = false) String exception, @AuthenticationPrincipal Account account, Model model) {
+    public String accessDenied(@RequestParam(value = "exception", required = false) String exception, @AuthenticationPrincipal AccountDto accountDto, Model model) {
 
-        model.addAttribute("username", account.getUsername());
+        model.addAttribute("username", accountDto.getUsername());
         model.addAttribute("exception", exception);
 
         return "login/denied";
