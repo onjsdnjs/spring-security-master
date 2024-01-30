@@ -22,10 +22,10 @@ public class RestAuthenticationSuccessHandler implements AuthenticationSuccessHa
 
         ObjectMapper mapper = new ObjectMapper();
 
-        Account account = (Account) authentication.getPrincipal();
+        AccountDto accountDto = (AccountDto) authentication.getPrincipal();
         response.setStatus(HttpStatus.OK.value());
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
-        mapper.writeValue(response.getWriter(), account);
+        mapper.writeValue(response.getWriter(), accountDto);
 
         clearAuthenticationAttributes(request);
     }
