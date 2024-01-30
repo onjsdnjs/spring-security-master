@@ -119,12 +119,14 @@
                     if(response.ok){
                         response.json().then(function (data) {
                             console.log(data);
-                            window.location.replace('/api')
+                            document.querySelector("#content").textContent=JSON.stringify(data, null, 2);
                         })
                     }else if(response.status === 401){
                         console.log(response.statusText)
+                        document.querySelector("#content").textContent=response.status;
                     }else if(response.status === 403){
                         console.log(response.statusText)
+                        document.querySelector("#content").textContent=response.status;
                     }
                 })
                 .catch(error => {
@@ -141,7 +143,7 @@
             <div th:replace="~{rest/layout/sidebar::sidebar}"></div>
         </div>
         <div class="col-md-10 content">
-            <div class="login-form">
+            <div class="login-form" id="content">
                 <h2>Login</h2>
                 <div th:if="${param.error}" class="form-group">
                     <span th:text="${exception} ?: '잘못된 아이디나 암호입니다'" class="alert alert-danger"></span>
