@@ -25,4 +25,24 @@ public class HomeController {
 	public String admin() {
 		return "/admin";
 	}
+
+	@GetMapping(value="/api")
+	public String restDashboard() {
+		return "rest/dashboard";
+	}
+
+	@GetMapping(value="/api/user")
+	public String restUser() {
+		return "rest/user";
+	}
+
+	@GetMapping(value="/api/manager")
+	public String restManager() {
+		return "rest/manager";
+	}
+
+	@GetMapping(value="/api/admin")
+	public String restAdmin() {
+		return "rest/admin";
+	}
 }
