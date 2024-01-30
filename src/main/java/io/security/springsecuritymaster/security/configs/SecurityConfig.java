@@ -1,5 +1,6 @@
 package io.security.springsecuritymaster.security.configs;
 
+import io.security.springsecuritymaster.security.entrypoint.RestAuthenticationEntryPoint;
 import io.security.springsecuritymaster.security.filters.RestAuthenticationFilter;
 import io.security.springsecuritymaster.security.handler.*;
 import jakarta.servlet.http.HttpServletRequest;
@@ -77,6 +78,10 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .addFilterBefore(restAuthenticationFilter(http, authenticationManager), UsernamePasswordAuthenticationFilter.class)
                 .authenticationManager(authenticationManager)
+                .exceptionHandling(exception -> exception
+                        .authenticationEntryPoint(new RestAuthenticationEntryPoint())
+                        .accessDeniedHandler(new RestAccessDeniedHandler())
+                )
         ;
         return http.build();
     }
