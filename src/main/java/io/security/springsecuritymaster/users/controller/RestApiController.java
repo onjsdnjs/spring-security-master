@@ -1,4 +1,4 @@
-package io.security.springsecuritymaster.users;
+package io.security.springsecuritymaster.users.controller;
 
 import io.security.springsecuritymaster.domain.dto.AccountDto;
 import jakarta.servlet.http.HttpServletRequest;
