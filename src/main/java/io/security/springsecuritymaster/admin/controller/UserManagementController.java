@@ -33,7 +33,7 @@ public class UserManagementController {
 
 		userManagementService.modifyUser(accountDto);
 
-		return "redirect:/admin/accounts";
+		return "redirect:/admin/users";
 	}
 
 	@GetMapping(value = "/admin/users/{id}")
@@ -45,7 +45,7 @@ public class UserManagementController {
 		model.addAttribute("user", accountDto);
 		model.addAttribute("roleList", roleList);
 
-		return "admin/user/detail";
+		return "admin/userdetails";
 	}
 
 	@GetMapping(value = "/admin/users/delete/{id}")

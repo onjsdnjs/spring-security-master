@@ -4,6 +4,7 @@
         border-spacing: 0;
         border-radius: 10px; /* 전체 테이블의 모서리 */
         overflow: hidden; /* 둥근 모서리를 위해 필요 */
+        background-color: #060C1C;
     }
 
     .rounded-table thead tr:first-child th:first-child {
@@ -21,8 +22,9 @@
     .rounded-table tbody tr:last-child td:last-child {
         border-bottom-right-radius: 10px; /* 마지막 셀의 오른쪽 하단 모서리 */
     }
+
 </style>
-<div th:fragment="usercontent" class="usercontent">
+<div th:fragment="userscontent" class="usercontent">
     <div class="tbl_wrp">
         <table class="table rounded-table">
             <thead>
@@ -36,13 +38,15 @@
             <tr class="link_btn hover" th:each="user:${users}">
                 <td style="text-align: left;">
                     <a th:href="@{'/admin/users/' + ${user.id}}" class="text-white">
-                        <span th:text="${user.username}">회원</span>
+                        <h6 th:text="${user.username}">회원</h6>
                     </a>
                 </td>
-                <td style="text-align: left;" th:text="${user.age}"></td>
+                <td style="text-align: left;">
+                    <h6 style="color:#ffffff" th:text="${user.age}">나이</h6>
+                </td>
                 <td style="text-align: left;">
                         <span th:each="role,iter:${user.userRoles}">
-                            <h6 th:text="${role.roleName}"></h6>
+                            <h6 style="color:#ffffff" th:text="${role.roleName}"></h6>
                         </span>
                 </td>
             </tr>

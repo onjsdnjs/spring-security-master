@@ -31,7 +31,7 @@ public class ResourcesController {
 		List<Resources> resources = resourcesService.getResources();
 		model.addAttribute("resources", resources);
 
-		return "admin/resource/list";
+		return "admin/resources";
 	}
 
 	@PostMapping(value="/admin/resources")
@@ -49,7 +49,7 @@ public class ResourcesController {
 	}
 
 	@GetMapping(value="/admin/resources/register")
-	public String viewRoles(Model model) {
+	public String resourceDetails(Model model) {
 
 		List<Role> roleList = roleService.getRoles();
 		model.addAttribute("roleList", roleList);
@@ -60,11 +60,11 @@ public class ResourcesController {
 		resources.setRoleSet(roleSet);
 		model.addAttribute("resources", resources);
 
-		return "admin/resource/detail";
+		return "admin/resourcedetails";
 	}
 
 	@GetMapping(value="/admin/resources/{id}")
-	public String getResources(@PathVariable String id, Model model) {
+	public String resourceDetails(@PathVariable String id, Model model) {
 
 		List<Role> roleList = roleService.getRoles();
 		model.addAttribute("roleList", roleList);
@@ -74,13 +74,12 @@ public class ResourcesController {
 		ResourcesDto resourcesDto = modelMapper.map(resources, ResourcesDto.class);
 		model.addAttribute("resources", resourcesDto);
 
-		return "admin/resource/detail";
+		return "admin/resourcedetails";
 	}
 
-	@GetMapping(value="/admin/resources/delete/{id}")
+	@GetMapping(value="/admin/resources/{id}")
 	public String removeResources(@PathVariable String id) throws Exception {
 
-		Resources resources = resourcesService.getResources(Long.parseLong(id));
 		resourcesService.deleteResources(Long.parseLong(id));
 
 		return "redirect:/admin/resources";

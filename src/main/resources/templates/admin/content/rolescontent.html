@@ -1,3 +1,27 @@
-<div th:fragment="managercontent">
-    <h2>매니저 전용공간 입니다.</h2>
+<div th:fragment="rolecontent">
+    <div class="tbl_wrp form-custom">
+        <table class="table">
+            <thead>
+            <tr class="table-info">
+                <th scope="col">리소스명</th>
+                <th scope="col">리소스타입</th>
+                <th scope="col">HttpMethod</th>
+                <th scope="col">순서</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="link_btn hover" th:each="resource:${resources}">
+                <td style="text-align: left;">
+                    <a th:href="@{'/admin/resources/' + ${resource.id}}" th:text="${resource.resourceName}">리소스명</a>
+                </td>
+                <td style="text-align: left;" th:text="${resource.resourceType}">리소스타입</td>
+                <td style="text-align: left;" th:text="${resource.httpMethod}">HttpMethod</td>
+                <td style="text-align: left;" th:text="${resource.orderNum}">순서</td>
+            </tr>
+            </tbody>
+        </table>
+        <div style="text-align:right;">
+            <a class="btn btn-dark btn-lg" th:href="@{/admin/resources/register}">리소스 등록</a>
+        </div>
+    </div>
 </div>

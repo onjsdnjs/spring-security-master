@@ -25,7 +25,7 @@ public class RoleController {
 		List<Role> roles = roleService.getRoles();
 		model.addAttribute("roles", roles);
 
-		return "admin/role/list";
+		return "admin/roles";
 	}
 
 	@GetMapping(value="/admin/roles/register")
@@ -34,7 +34,7 @@ public class RoleController {
 		RoleDto role = new RoleDto();
 		model.addAttribute("role", role);
 
-		return "admin/role/detail";
+		return "admin/roledetails";
 	}
 
 	@PostMapping(value="/admin/roles")
@@ -54,7 +54,7 @@ public class RoleController {
 		RoleDto roleDto = modelMapper.map(role, RoleDto.class);
 		model.addAttribute("role", roleDto);
 
-		return "admin/role/detail";
+		return "admin/roledetails";
 	}
 
 	@GetMapping(value="/admin/roles/delete/{id}")
@@ -62,6 +62,6 @@ public class RoleController {
 
 		roleService.deleteRole(Long.parseLong(id));
 
-		return "redirect:/admin/resources";
+		return "redirect:/admin/roles";
 	}
 }
