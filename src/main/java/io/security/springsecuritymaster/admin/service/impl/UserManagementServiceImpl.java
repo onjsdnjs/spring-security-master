@@ -1,7 +1,7 @@
 package io.security.springsecuritymaster.admin.service.impl;
 
 import io.security.springsecuritymaster.admin.repository.RoleRepository;
-import io.security.springsecuritymaster.admin.repository.UserRepository;
+import io.security.springsecuritymaster.admin.repository.UserManagementRepository;
 import io.security.springsecuritymaster.admin.service.UserManagementService;
 import io.security.springsecuritymaster.domain.dto.AccountDto;
 import io.security.springsecuritymaster.domain.entity.Account;
@@ -9,8 +9,6 @@ import io.security.springsecuritymaster.domain.entity.Role;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,11 +19,11 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Slf4j
-@Service("userService")
+@Service("userManagementService")
 @RequiredArgsConstructor
 public class UserManagementServiceImpl implements UserManagementService {
 
-    private final UserRepository userRepository;
+    private final UserManagementRepository userManagementRepository;
     private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
 
@@ -44,12 +42,12 @@ public class UserManagementServiceImpl implements UserManagementService {
             account.setUserRoles(roles);
         }
         account.setPassword(passwordEncoder.encode(accountDto.getPassword()));
-        userRepository.save(account);
+        userManagementRepository.save(account);
     }
 
     @Transactional
     public AccountDto getUser(Long id) {
-        Account account = userRepository.findById(id).orElse(new Account());
+        Account account = userManagementRepository.findById(id).orElse(new Account());
         ModelMapper modelMapper = new ModelMapper();
         AccountDto accountDto = modelMapper.map(account, AccountDto.class);
 
@@ -64,12 +62,12 @@ public class UserManagementServiceImpl implements UserManagementService {
 
     @Transactional
     public List<Account> getUsers() {
-        return userRepository.findAll();
+        return userManagementRepository.findAll();
     }
 
     @Override
     public void deleteUser(Long id) {
-        userRepository.deleteById(id);
+        userManagementRepository.deleteById(id);
     }
 
 }
