@@ -1,27 +1,21 @@
-<div th:fragment="rolecontent">
     <div class="tbl_wrp form-custom">
         <table class="table">
             <thead>
             <tr class="table-info">
-                <th scope="col">리소스명</th>
-                <th scope="col">리소스타입</th>
-                <th scope="col">HttpMethod</th>
-                <th scope="col">순서</th>
+                <th scope="col">권한명</th>
+                <th scope="col">권한설명</th>
             </tr>
             </thead>
             <tbody>
-            <tr class="link_btn hover" th:each="resource:${resources}">
+            <tr class="link_btn hover" th:each="role:${roles}">
                 <td style="text-align: left;">
-                    <a th:href="@{'/admin/resources/' + ${resource.id}}" th:text="${resource.resourceName}">리소스명</a>
+                    <a th:href="@{'/admin/roles/' + ${role.id}}" th:text="${role.roleName}">회원></a>
                 </td>
-                <td style="text-align: left;" th:text="${resource.resourceType}">리소스타입</td>
-                <td style="text-align: left;" th:text="${resource.httpMethod}">HttpMethod</td>
-                <td style="text-align: left;" th:text="${resource.orderNum}">순서</td>
+                <td style="text-align: left;" th:text="${role.roleDesc}"></td>
             </tr>
             </tbody>
         </table>
         <div style="text-align:right;">
-            <a class="btn btn-dark btn-lg" th:href="@{/admin/resources/register}">리소스 등록</a>
+            <a class="btn btn-dark btn-lg" th:href="@{/admin/roles/register}">권한 등록</a>
         </div>
     </div>
-</div>

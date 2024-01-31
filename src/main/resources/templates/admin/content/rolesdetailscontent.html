@@ -1,0 +1,32 @@
+    <div class="tbl_wrp">
+        <form class="form-horizontal form-custom" th:action="@{/admin/roles}" method="post" th:object="${roles}">
+            <input type="hidden" th:field="*{id}" />
+
+            <div class="form-group">
+                <label for="roleName" class="col-sm-2 control-label">권한명</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control input-large" th:field="*{roleName}" placeholder="권한명">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="roledesc" class="col-sm-2 control-label">권한설명</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control input-large" th:field="*{roledesc}" placeholder="권한설명">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-1 col-sm-10">
+                    <button type="Submit" class="btn btn-dark btn-lg">등록</button>
+                    <a class="btn btn-dark btn-lg" style="margin:10px;" th:href="@{/admin/resources}">목록</a>
+<!--                    <a class="btn btn-dark btn-lg" style="margin:10px;" th:href="@{'/admin/resources/' + *{id}}">삭제</a>-->
+                </div>
+                <form id="deleteForm" th:action="@{'/admin/resources/' + *{id}}" method="post">
+                    <input type="hidden" name="_method" value="delete" />
+                </form>
+
+                <a href="#" class="btn btn-dark btn-lg" style="margin:10px;" onclick="document.getElementById('deleteForm').submit();">삭제</a>
+            </div>
+        </form>
+    </div>

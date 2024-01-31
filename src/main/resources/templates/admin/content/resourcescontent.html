@@ -1,52 +1,25 @@
-<div th:fragment="rolecontent">
-    <div class="tbl_wrp">
-        <form class="form-horizontal form-custom" th:action="@{/admin/resources}" method="post" th:object="${resources}">
-            <input type="hidden" th:field="*{id}" />
-
-            <div class="form-group">
-                <label for="resourceName" class="col-sm-2 control-label">리소스명</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control input-large" th:field="*{resourceName}" placeholder="리소스명">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="resourceType" class="col-sm-2 control-label">리소스타입</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control input-large" th:field="*{resourceType}" placeholder="리소스타입">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="httpMethod" class="col-sm-2 control-label">HttpMethod</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control input-large" th:field="*{httpMethod}" placeholder="HttpMethod">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="orderNum" class="col-sm-2 control-label">순서</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control input-large" th:field="*{orderNum}" placeholder="순서">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="roleName" class="col-sm-2 control-label">권한</label>
-                <div class="col-sm-10">
-                    <select class="custom-select" th:field="*{roleName}">
-                        <option th:each="role : ${roleList}" th:value="${role.roleName}" th:text="${role.roleName}"></option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-sm-offset-1 col-sm-10">
-                    <button type="Submit" class="btn btn-dark btn-lg">등록</button>
-                    <a class="btn btn-dark btn-lg" style="margin:10px;" th:href="@{/admin/resources}">목록</a>
-                    <a class="btn btn-dark btn-lg" style="margin:10px;" th:href="@{'/admin/resources/' + *{id}}">삭제</a>
-                </div>
-            </div>
-        </form>
+    <div class="tbl_wrp form-custom">
+        <table class="table">
+            <thead>
+            <tr class="table-info">
+                <th scope="col">리소스명</th>
+                <th scope="col">리소스타입</th>
+                <th scope="col">HttpMethod</th>
+                <th scope="col">순서</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="link_btn hover" th:each="resource:${resources}">
+                <td style="text-align: left;">
+                    <a th:href="@{'/admin/resources/' + ${resource.id}}" th:text="${resource.resourceName}">리소스명</a>
+                </td>
+                <td style="text-align: left;" th:text="${resource.resourceType}">리소스타입</td>
+                <td style="text-align: left;" th:text="${resource.httpMethod}">HttpMethod</td>
+                <td style="text-align: left;" th:text="${resource.orderNum}">순서</td>
+            </tr>
+            </tbody>
+        </table>
+        <div style="text-align:right;">
+            <a class="btn btn-dark btn-lg" th:href="@{/admin/resources/register}">리소스 등록</a>
+        </div>
     </div>
-</div>

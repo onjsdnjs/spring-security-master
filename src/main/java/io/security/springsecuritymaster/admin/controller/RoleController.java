@@ -29,12 +29,12 @@ public class RoleController {
 	}
 
 	@GetMapping(value="/admin/roles/register")
-	public String viewRoles(Model model) {
+	public String rolesRegister(Model model) {
 
 		RoleDto role = new RoleDto();
 		model.addAttribute("role", role);
 
-		return "admin/roledetails";
+		return "admin/rolesdetails";
 	}
 
 	@PostMapping(value="/admin/roles")
