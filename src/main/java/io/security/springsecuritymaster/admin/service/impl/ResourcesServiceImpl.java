@@ -1,9 +1,10 @@
 package io.security.springsecuritymaster.admin.service.impl;
 
+import io.security.springsecuritymaster.admin.repository.ResourcesRepository;
 import io.security.springsecuritymaster.admin.service.ResourcesService;
 import io.security.springsecuritymaster.domain.entity.Resources;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,31 +13,28 @@ import java.util.List;
 
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class ResourcesServiceImpl implements ResourcesService {
-    private ResourcesRepository ResourcesRepository;
 
-    @Autowired
-    private void setResourcesServiceImpl(ResourcesRepository ResourcesRepository) {
-        this.ResourcesRepository = ResourcesRepository;
-    }
+    private final ResourcesRepository resourcesRepository;
 
     @Transactional
     public Resources getResources(long id) {
-        return ResourcesRepository.findById(id).orElse(new Resources());
+        return resourcesRepository.findById(id).orElse(new Resources());
     }
 
     @Transactional
     public List<Resources> getResources() {
-        return ResourcesRepository.findAll(Sort.by(Sort.Order.asc("orderNum")));
+        return resourcesRepository.findAll(Sort.by(Sort.Order.asc("orderNum")));
     }
 
     @Transactional
     public void createResources(Resources resources){
-        ResourcesRepository.save(resources);
+        resourcesRepository.save(resources);
     }
 
     @Transactional
     public void deleteResources(long id) {
-        ResourcesRepository.deleteById(id);
+        resourcesRepository.deleteById(id);
     }
 }

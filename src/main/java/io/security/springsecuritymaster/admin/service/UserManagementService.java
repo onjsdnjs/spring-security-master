@@ -6,7 +6,6 @@ import io.security.springsecuritymaster.domain.entity.Account;
 import java.util.List;
 
 public interface UserManagementService {
-    void createUser(Account account);
 
     void modifyUser(AccountDto accountDto);
 
@@ -15,5 +14,4 @@ public interface UserManagementService {
 
     void deleteUser(Long idx);
 
-    void order();
 }
