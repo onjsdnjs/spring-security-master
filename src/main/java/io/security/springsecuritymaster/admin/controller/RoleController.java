@@ -52,9 +52,9 @@ public class RoleController {
 
 		ModelMapper modelMapper = new ModelMapper();
 		RoleDto roleDto = modelMapper.map(role, RoleDto.class);
-		model.addAttribute("role", roleDto);
+		model.addAttribute("roles", roleDto);
 
-		return "admin/roledetails";
+		return "admin/rolesdetails";
 	}
 
 	@GetMapping(value="/admin/roles/delete/{id}")
