@@ -2,7 +2,7 @@ package io.security.springsecuritymaster.users.controller;
 
 import io.security.springsecuritymaster.domain.dto.AccountDto;
 import io.security.springsecuritymaster.domain.entity.Account;
-import io.security.springsecuritymaster.service.UserService;
+import io.security.springsecuritymaster.users.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
