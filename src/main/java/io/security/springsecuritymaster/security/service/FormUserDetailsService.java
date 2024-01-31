@@ -3,7 +3,7 @@ package io.security.springsecuritymaster.security.service;
 import io.security.springsecuritymaster.domain.dto.AccountContext;
 import io.security.springsecuritymaster.domain.dto.AccountDto;
 import io.security.springsecuritymaster.domain.entity.Account;
-import io.security.springsecuritymaster.repository.UserRepository;
+import io.security.springsecuritymaster.users.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.core.GrantedAuthority;
