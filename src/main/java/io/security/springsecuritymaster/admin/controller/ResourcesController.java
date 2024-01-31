@@ -75,7 +75,7 @@ public class ResourcesController {
 		ResourcesDto resourcesDto = modelMapper.map(resources, ResourcesDto.class);
 		model.addAttribute("resources", resourcesDto);
 
-		return "admin/resourcedetails";
+		return "admin/resourcesdetails";
 	}
 
 	@GetMapping(value="/admin/resources/delete/{id}")

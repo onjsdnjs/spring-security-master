@@ -35,11 +35,11 @@
             <tbody>
             <tr class="link_btn hover" th:each="resource:${resources}">
                 <td style="text-align: left;">
-                    <a th:href="@{'/admin/resources/' + ${resource.id}}" th:text="${resource.resourceName}">리소스명</a>
+                    <a th:href="@{'/admin/resources/' + ${resource.id}}" class="text-white" th:text="${resource.resourceName}">리소스명</a>
                 </td>
-                <td style="text-align: left;" th:text="${resource.resourceType}">리소스타입</td>
-                <td style="text-align: left;" th:text="${resource.httpMethod}">HttpMethod</td>
-                <td style="text-align: left;" th:text="${resource.orderNum}">순서</td>
+                <td style="color:#ffffff" th:text="${resource.resourceType}">리소스타입</td>
+                <td style="color:#ffffff" th:text="${resource.httpMethod}">HttpMethod</td>
+                <td style="color:#ffffff" th:text="${resource.orderNum}">순서</td>
             </tr>
             </tbody>
         </table>
