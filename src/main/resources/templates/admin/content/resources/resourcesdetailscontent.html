@@ -43,13 +43,8 @@
                 <div class="col-sm-offset-1 col-sm-10">
                     <button type="Submit" class="btn btn-dark btn-lg">등록</button>
                     <a class="btn btn-dark btn-lg" style="margin:10px;" th:href="@{/admin/resources}">목록</a>
-<!--                    <a class="btn btn-dark btn-lg" style="margin:10px;" th:href="@{'/admin/resources/' + *{id}}">삭제</a>-->
+                    <a class="btn btn-dark btn-lg" style="margin:10px;" th:href="@{'/admin/resources/delete/' + *{id}}">삭제</a>
                 </div>
-                <form id="deleteForm" th:action="@{'/admin/resources/' + *{id}}" method="post">
-                    <input type="hidden" name="_method" value="delete" />
-                </form>
-
-                <a href="#" class="btn btn-dark btn-lg" style="margin:10px;" onclick="document.getElementById('deleteForm').submit();">삭제</a>
             </div>
         </form>
     </div>

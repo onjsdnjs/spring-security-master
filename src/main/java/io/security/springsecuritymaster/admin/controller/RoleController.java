@@ -32,7 +32,7 @@ public class RoleController {
 	public String rolesRegister(Model model) {
 
 		RoleDto role = new RoleDto();
-		model.addAttribute("role", role);
+		model.addAttribute("roles", role);
 
 		return "admin/rolesdetails";
 	}

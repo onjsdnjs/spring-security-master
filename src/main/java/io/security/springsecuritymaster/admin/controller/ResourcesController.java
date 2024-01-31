@@ -78,7 +78,7 @@ public class ResourcesController {
 		return "admin/resourcedetails";
 	}
 
-	@DeleteMapping(value="/admin/resources/{id}")
+	@GetMapping(value="/admin/resources/delete/{id}")
 	public String removeResources(@PathVariable String id) throws Exception {
 
 		resourcesService.deleteResources(Long.parseLong(id));
