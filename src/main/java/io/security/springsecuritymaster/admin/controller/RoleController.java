@@ -3,6 +3,7 @@ package io.security.springsecuritymaster.admin.controller;
 import io.security.springsecuritymaster.admin.service.RoleService;
 import io.security.springsecuritymaster.domain.dto.RoleDto;
 import io.security.springsecuritymaster.domain.entity.Role;
+import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,13 +15,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import java.util.List;
 
 @Controller
+@RequiredArgsConstructor
 public class RoleController {
-	private RoleService roleService;
 
-	@Autowired
-	private void setRoleController(RoleService roleService) {
-		this.roleService = roleService;
-	}
+	private final RoleService roleService;
 
 	@GetMapping(value="/admin/roles")
 	public String getRoles(Model model) {

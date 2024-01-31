@@ -1,6 +1,6 @@
 package io.security.springsecuritymaster.admin.service;
 
-import org.springframework.context.annotation.Role;
+import io.security.springsecuritymaster.domain.entity.Role;
 
 import java.util.List;
 

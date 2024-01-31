@@ -1,5 +1,6 @@
 package io.security.springsecuritymaster.domain.dto;
 
+import io.security.springsecuritymaster.domain.entity.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,5 +19,5 @@ public class ResourcesDto{
     private int orderNum;
     private String resourceType;
     private String roleName;
-    private Set<RoleDto> roleSet;
+    private Set<Role> roleSet;
 }

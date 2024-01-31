@@ -1,12 +1,12 @@
 package io.security.springsecuritymaster.admin.service.impl;
 
-import com.example.springsecuritylearn.domain.dto.AccountDto;
-import com.example.springsecuritylearn.domain.entity.Account;
-import com.example.springsecuritylearn.domain.entity.Role;
-import com.example.springsecuritylearn.repository.RoleRepository;
-import com.example.springsecuritylearn.repository.UserRepository;
-import com.example.springsecuritylearn.service.UserService;
+import io.security.springsecuritymaster.admin.repository.RoleRepository;
+import io.security.springsecuritymaster.admin.repository.UserRepository;
 import io.security.springsecuritymaster.admin.service.UserManagementService;
+import io.security.springsecuritymaster.domain.dto.AccountDto;
+import io.security.springsecuritymaster.domain.entity.Account;
+import io.security.springsecuritymaster.domain.entity.Role;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,17 +22,12 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @Service("userService")
+@RequiredArgsConstructor
 public class UserManagementServiceImpl implements UserManagementService {
-    private UserRepository userRepository;
-    private RoleRepository roleRepository;
-    private PasswordEncoder passwordEncoder;
 
-    @Autowired
-    private void setUserServiceImpl(UserRepository userRepository, RoleRepository roleRepository, PasswordEncoder passwordEncoder) {
-        this.userRepository = userRepository;
-        this.roleRepository = roleRepository;
-        this.passwordEncoder = passwordEncoder;
-    }
+    private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Transactional
     @Override

@@ -1,12 +1,12 @@
 package io.security.springsecuritymaster.admin.controller;
 
 import io.security.springsecuritymaster.admin.service.RoleService;
+import io.security.springsecuritymaster.admin.service.UserManagementService;
 import io.security.springsecuritymaster.domain.dto.AccountDto;
 import io.security.springsecuritymaster.domain.entity.Account;
 import io.security.springsecuritymaster.domain.entity.Role;
 import io.security.springsecuritymaster.users.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +18,7 @@ import java.util.List;
 @Controller
 @RequiredArgsConstructor
 public class UserManagementController {
-	private final UserService userService;
+	private final UserManagementService userService;
 	private final RoleService roleService;
 	@GetMapping(value="/admin/accounts")
 	public String getUsers(Model model) {

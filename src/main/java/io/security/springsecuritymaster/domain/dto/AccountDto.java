@@ -14,7 +14,7 @@ import java.util.List;
 public class AccountDto {
     private String id;
     private String username;
-    private String password;
     private int age;
-    private String roles;
+    private String password;
+    private List<String> roles;
 }

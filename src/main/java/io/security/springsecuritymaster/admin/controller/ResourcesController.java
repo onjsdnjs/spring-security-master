@@ -51,6 +51,7 @@ public class ResourcesController {
 
 	@GetMapping(value="/admin/resources/register")
 	public String viewRoles(Model model) {
+
 		List<Role> roleList = roleService.getRoles();
 		model.addAttribute("roleList", roleList);
 

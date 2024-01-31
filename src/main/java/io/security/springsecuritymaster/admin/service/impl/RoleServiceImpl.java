@@ -1,10 +1,10 @@
 package io.security.springsecuritymaster.admin.service.impl;
 
-import com.example.springsecuritylearn.domain.entity.Role;
-import com.example.springsecuritylearn.repository.RoleRepository;
-import com.example.springsecuritylearn.service.RoleService;
+import io.security.springsecuritymaster.admin.repository.RoleRepository;
+import io.security.springsecuritymaster.admin.service.RoleService;
+import io.security.springsecuritymaster.domain.entity.Role;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,13 +12,9 @@ import java.util.List;
 
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class RoleServiceImpl implements RoleService {
-    private RoleRepository roleRepository;
-
-    @Autowired
-    private void setRoleServiceImpl(RoleRepository roleRepository) {
-        this.roleRepository = roleRepository;
-    }
+    private final RoleRepository roleRepository;
 
     @Transactional
     public Role getRole(long id) {
