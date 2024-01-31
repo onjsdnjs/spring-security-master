@@ -31,16 +31,6 @@ public class UserManagementServiceImpl implements UserManagementService {
 
     @Transactional
     @Override
-    public void createUser(Account account){
-        Role role = roleRepository.findByRoleName("ROLE_USER");
-        Set<Role> roles = new HashSet<>();
-        roles.add(role);
-        account.setUserRoles(roles);
-        userRepository.save(account);
-    }
-
-    @Transactional
-    @Override
     public void modifyUser(AccountDto accountDto){
         ModelMapper modelMapper = new ModelMapper();
         Account account = modelMapper.map(accountDto, Account.class);
@@ -82,9 +72,4 @@ public class UserManagementServiceImpl implements UserManagementService {
         userRepository.deleteById(id);
     }
 
-    @Override
-    @Secured("ROLE_USER")
-    public void order() {
-        System.out.println("order");
-    }
 }

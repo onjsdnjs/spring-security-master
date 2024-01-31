@@ -5,7 +5,6 @@ import io.security.springsecuritymaster.admin.service.UserManagementService;
 import io.security.springsecuritymaster.domain.dto.AccountDto;
 import io.security.springsecuritymaster.domain.entity.Account;
 import io.security.springsecuritymaster.domain.entity.Role;
-import io.security.springsecuritymaster.users.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -50,7 +49,7 @@ public class UserManagementController {
 	}
 
 	@GetMapping(value = "/admin/accounts/delete/{id}")
-	public String removeUser(@PathVariable(value = "id") Long id, Model model) {
+	public String removeUser(@PathVariable(value = "id") Long id) {
 
 		userService.deleteUser(id);
 

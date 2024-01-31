@@ -5,7 +5,6 @@ import io.security.springsecuritymaster.domain.dto.RoleDto;
 import io.security.springsecuritymaster.domain.entity.Role;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,6 +30,7 @@ public class RoleController {
 
 	@GetMapping(value="/admin/roles/register")
 	public String viewRoles(Model model) {
+
 		RoleDto role = new RoleDto();
 		model.addAttribute("role", role);
 
@@ -58,9 +58,8 @@ public class RoleController {
 	}
 
 	@GetMapping(value="/admin/roles/delete/{id}")
-	public String removeResources(@PathVariable String id, Model model) {
+	public String removeResources(@PathVariable String id) {
 
-		Role role = roleService.getRole(Long.parseLong(id));
 		roleService.deleteRole(Long.parseLong(id));
 
 		return "redirect:/admin/resources";

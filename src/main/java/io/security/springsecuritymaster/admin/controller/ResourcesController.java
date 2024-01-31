@@ -8,7 +8,6 @@ import io.security.springsecuritymaster.domain.entity.Resources;
 import io.security.springsecuritymaster.domain.entity.Role;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,7 +35,7 @@ public class ResourcesController {
 	}
 
 	@PostMapping(value="/admin/resources")
-	public String createResources(ResourcesDto resourcesDto) throws Exception {
+	public String createResources(ResourcesDto resourcesDto) {
 		ModelMapper modelMapper = new ModelMapper();
 		Role role = roleRepository.findByRoleName(resourcesDto.getRoleName());
 		Set<Role> roles = new HashSet<>();
@@ -66,6 +65,7 @@ public class ResourcesController {
 
 	@GetMapping(value="/admin/resources/{id}")
 	public String getResources(@PathVariable String id, Model model) {
+
 		List<Role> roleList = roleService.getRoles();
 		model.addAttribute("roleList", roleList);
 		Resources resources = resourcesService.getResources(Long.parseLong(id));
@@ -78,7 +78,7 @@ public class ResourcesController {
 	}
 
 	@GetMapping(value="/admin/resources/delete/{id}")
-	public String removeResources(@PathVariable String id, Model model) throws Exception {
+	public String removeResources(@PathVariable String id) throws Exception {
 
 		Resources resources = resourcesService.getResources(Long.parseLong(id));
 		resourcesService.deleteResources(Long.parseLong(id));
