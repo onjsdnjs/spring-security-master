@@ -1,7 +1,6 @@
 package io.security.springsecuritymaster.security.handler;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.security.springsecuritymaster.security.exception.SecretException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.HttpStatus;
@@ -26,8 +25,6 @@ public class RestAuthenticationFailureHandler implements AuthenticationFailureHa
         if (exception instanceof BadCredentialsException) {
             mapper.writeValue(response.getWriter(), "Invalid username or password");
 
-        } else{
-            mapper.writeValue(response.getWriter(), exception.getMessage());
         }
         mapper.writeValue(response.getWriter(), "Authentication failed");
     }
