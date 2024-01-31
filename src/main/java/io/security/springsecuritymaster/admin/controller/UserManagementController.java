@@ -19,16 +19,16 @@ import java.util.List;
 public class UserManagementController {
 	private final UserManagementService userManagementService;
 	private final RoleService roleService;
-	@GetMapping(value="/admin/accounts")
+	@GetMapping(value="/admin/users")
 	public String getUsers(Model model) {
 
-		List<Account> accounts = userManagementService.getUsers();
-		model.addAttribute("accounts", accounts);
+		List<Account> users = userManagementService.getUsers();
+		model.addAttribute("users", users);
 
-		return "admin/user/list";
+		return "admin/users";
 	}
 
-	@PostMapping(value="/admin/accounts")
+	@PostMapping(value="/admin/users")
 	public String modifyUser(AccountDto accountDto) {
 
 		userManagementService.modifyUser(accountDto);
@@ -36,19 +36,19 @@ public class UserManagementController {
 		return "redirect:/admin/accounts";
 	}
 
-	@GetMapping(value = "/admin/accounts/{id}")
+	@GetMapping(value = "/admin/users/{id}")
 	public String getUser(@PathVariable(value = "id") Long id, Model model) {
 
 		AccountDto accountDto = userManagementService.getUser(id);
 		List<Role> roleList = roleService.getRoles();
 
-		model.addAttribute("account", accountDto);
+		model.addAttribute("user", accountDto);
 		model.addAttribute("roleList", roleList);
 
 		return "admin/user/detail";
 	}
 
-	@GetMapping(value = "/admin/accounts/delete/{id}")
+	@GetMapping(value = "/admin/users/delete/{id}")
 	public String removeUser(@PathVariable(value = "id") Long id) {
 
 		userManagementService.deleteUser(id);

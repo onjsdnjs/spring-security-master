@@ -1,3 +1,52 @@
-<div th:fragment="usercontent">
-    <h2>회원 전용공간 입니다.</h2>
+<style>
+    .rounded-table {
+        border-collapse: separate;
+        border-spacing: 0;
+        border-radius: 10px; /* 전체 테이블의 모서리 */
+        overflow: hidden; /* 둥근 모서리를 위해 필요 */
+    }
+
+    .rounded-table thead tr:first-child th:first-child {
+        border-top-left-radius: 10px; /* 첫 번째 셀의 왼쪽 상단 모서리 */
+    }
+
+    .rounded-table thead tr:first-child th:last-child {
+        border-top-right-radius: 10px; /* 마지막 셀의 오른쪽 상단 모서리 */
+    }
+
+    .rounded-table tbody tr:last-child td:first-child {
+        border-bottom-left-radius: 10px; /* 첫 번째 셀의 왼쪽 하단 모서리 */
+    }
+
+    .rounded-table tbody tr:last-child td:last-child {
+        border-bottom-right-radius: 10px; /* 마지막 셀의 오른쪽 하단 모서리 */
+    }
+</style>
+<div th:fragment="usercontent" class="usercontent">
+    <div class="tbl_wrp">
+        <table class="table rounded-table">
+            <thead>
+            <tr class="table-info">
+                <th scope="col">이름</th>
+                <th scope="col">나이</th>
+                <th scope="col">권한</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="link_btn hover" th:each="user:${users}">
+                <td style="text-align: left;">
+                    <a th:href="@{'/admin/users/' + ${user.id}}" class="text-white">
+                        <span th:text="${user.username}">회원</span>
+                    </a>
+                </td>
+                <td style="text-align: left;" th:text="${user.age}"></td>
+                <td style="text-align: left;">
+                        <span th:each="role,iter:${user.userRoles}">
+                            <h6 th:text="${role.roleName}"></h6>
+                        </span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
