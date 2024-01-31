@@ -1,4 +1,4 @@
-package io.security.springsecuritymaster.users;
+package io.security.springsecuritymaster.users.controller;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
