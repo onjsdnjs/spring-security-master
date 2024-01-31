@@ -10,19 +10,19 @@
             </div>
 
             <div class="form-group">
-                <label for="roledesc" class="col-sm-2 control-label">권한설명</label>
+                <label for="roleDesc" class="col-sm-2 control-label">권한설명</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control input-large" th:field="*{roledesc}" placeholder="권한설명">
+                    <input type="text" class="form-control input-large" th:field="*{roleDesc}" placeholder="권한설명">
                 </div>
             </div>
 
             <div class="form-group">
                 <div class="col-sm-offset-1 col-sm-10">
                     <button type="Submit" class="btn btn-dark btn-lg">등록</button>
-                    <a class="btn btn-dark btn-lg" style="margin:10px;" th:href="@{/admin/resources}">목록</a>
+                    <a class="btn btn-dark btn-lg" style="margin:10px;" th:href="@{/admin/roles}">목록</a>
 <!--                    <a class="btn btn-dark btn-lg" style="margin:10px;" th:href="@{'/admin/resources/' + *{id}}">삭제</a>-->
                 </div>
-                <form id="deleteForm" th:action="@{'/admin/resources/' + *{id}}" method="post">
+                <form id="deleteForm" th:action="@{'/admin/roles/' + *{id}}" method="post">
                     <input type="hidden" name="_method" value="delete" />
                 </form>
 
