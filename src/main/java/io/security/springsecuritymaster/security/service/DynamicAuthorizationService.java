@@ -11,6 +11,7 @@ public class DynamicAuthorizationService {
     public Map<String, String> getUrlRoleMappingsInMemory() {
             urlRoleMappings.put("/user", "ROLE_USER");
             urlRoleMappings.put("/admin", "ROLE_ADMIN");
+            urlRoleMappings.put("/manager", "ROLE_MANAGER");
             urlRoleMappings.put("/db", "hasRole('ADMIN') or hasRole('MANAGER')");
             urlRoleMappings.put("/**", "AUTHENTICATED");
             return new HashMap<>(urlRoleMappings);
