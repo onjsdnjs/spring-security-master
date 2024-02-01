@@ -64,10 +64,8 @@ public class CustomDynamicAuthorizationManager implements AuthorizationManager<R
     private AuthorizationManager<RequestAuthorizationContext> customAuthorizationManager(String role) {
         if (role.startsWith("ROLE")) {
             return AuthorityAuthorizationManager.hasAuthority(role);
-        }else if(role.startsWith("has")){
-            return new WebExpressionAuthorizationManager(role);
         }else{
-            return AuthenticatedAuthorizationManager.authenticated();
+            return new WebExpressionAuthorizationManager(role);
         }
     }
 }
