@@ -26,15 +26,14 @@ import java.util.stream.Collectors;
 @Component
 @RequiredArgsConstructor
 public class CustomDynamicAuthorizationManager implements AuthorizationManager<RequestAuthorizationContext> {
-
-    private final DynamicAuthorizationService dynamicAuthorizationService;
     List<RequestMatcherEntry<AuthorizationManager<RequestAuthorizationContext>>> mappings;
     private static final AuthorizationDecision DENY = new AuthorizationDecision(false);
     private final HandlerMappingIntrospector handlerMappingIntrospector;
 
     @PostConstruct
     public void mapping() {
-        mappings = dynamicAuthorizationService.getUrlRoleMappings(new MapBasedUrlRoleMapper())
+        DynamicAuthorizationService dynamicAuthorizationService = new DynamicAuthorizationService(new MapBasedUrlRoleMapper());
+        mappings = dynamicAuthorizationService.getUrlRoleMappings()
                 .entrySet().stream()
                 .map(entry -> new RequestMatcherEntry<>(
                         new MvcRequestMatcher(handlerMappingIntrospector, entry.getKey()),

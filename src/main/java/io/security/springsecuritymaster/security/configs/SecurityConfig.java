@@ -38,11 +38,6 @@ public class SecurityConfig {
 
         http
                 .authorizeHttpRequests(auth -> auth
-//                        .requestMatchers("/","/css/**", "/images/**", "/js/**", "/favicon.*", "/*/icon-*").permitAll()
-                        /*.requestMatchers("/","/signup", "/login").permitAll()
-                        .requestMatchers("/user").hasAuthority("ROLE_USER")
-                        .requestMatchers("/manager").hasAuthority("ROLE_MANAGER")
-                        .requestMatchers("/admin/**").hasAuthority("ROLE_ADMIN")*/
                         .anyRequest().access(authorizationManager))
 
                 .formLogin(form -> form
