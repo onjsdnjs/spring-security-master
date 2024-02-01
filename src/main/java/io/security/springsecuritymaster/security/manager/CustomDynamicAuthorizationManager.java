@@ -1,5 +1,6 @@
 package io.security.springsecuritymaster.security.manager;
 
+import io.security.springsecuritymaster.security.mapper.MapBasedUrlRoleMapper;
 import io.security.springsecuritymaster.security.service.DynamicAuthorizationService;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
@@ -33,7 +34,8 @@ public class CustomDynamicAuthorizationManager implements AuthorizationManager<R
 
     @PostConstruct
     public void mapping() {
-        mappings = dynamicAuthorizationService.getUrlRoleMappings().entrySet().stream()
+        mappings = dynamicAuthorizationService.getUrlRoleMappings(new MapBasedUrlRoleMapper())
+                .entrySet().stream()
                 .map(entry -> new RequestMatcherEntry<>(
                         new MvcRequestMatcher(handlerMappingIntrospector, entry.getKey()),
                         customAuthorizationManager(entry.getValue())))

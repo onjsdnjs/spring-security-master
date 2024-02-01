@@ -3,5 +3,5 @@ package io.security.springsecuritymaster.security.mapper;
 import java.util.Map;
 
 public interface UrlRoleMapper {
-    public Map<String, String> getUrlRoleMappings();
+    Map<String, String> getUrlRoleMappings();
 }
