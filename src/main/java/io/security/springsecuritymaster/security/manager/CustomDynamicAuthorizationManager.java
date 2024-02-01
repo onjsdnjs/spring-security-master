@@ -11,10 +11,12 @@ import org.springframework.security.authorization.AuthorizationManager;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.access.expression.WebExpressionAuthorizationManager;
 import org.springframework.security.web.access.intercept.RequestAuthorizationContext;
+import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.security.web.util.matcher.RequestMatcher;
 import org.springframework.security.web.util.matcher.RequestMatcherEntry;
 import org.springframework.stereotype.Component;
+import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
 
 import java.util.List;
 import java.util.function.Supplier;
@@ -27,21 +29,24 @@ public class CustomDynamicAuthorizationManager implements AuthorizationManager<R
     private final DynamicAuthorizationService dynamicAuthorizationService;
     List<RequestMatcherEntry<AuthorizationManager<RequestAuthorizationContext>>> mappings;
     private static final AuthorizationDecision DENY = new AuthorizationDecision(false);
+    private final HandlerMappingIntrospector handlerMappingIntrospector;
 
     @PostConstruct
     public void mapping() {
         mappings = dynamicAuthorizationService.getUrlRoleMappingsInMemory().entrySet().stream()
                 .map(entry -> new RequestMatcherEntry<>(
-                        new AntPathRequestMatcher(entry.getKey()),
+                        new MvcRequestMatcher(handlerMappingIntrospector, entry.getKey()),
                         customAuthorizationManager(entry.getValue())))
                 .collect(Collectors.toList());
     }
     @Override
     public AuthorizationDecision check(Supplier<Authentication> authentication, RequestAuthorizationContext request) {
+
         for (RequestMatcherEntry<AuthorizationManager<RequestAuthorizationContext>> mapping : this.mappings) {
 
             RequestMatcher matcher = mapping.getRequestMatcher();
             RequestMatcher.MatchResult matchResult = matcher.matcher(request.getRequest());
+
             if (matchResult.isMatch()) {
                 AuthorizationManager<RequestAuthorizationContext> manager = mapping.getEntry();
                 return manager.check(authentication,
