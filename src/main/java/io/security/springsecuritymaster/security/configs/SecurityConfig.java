@@ -55,7 +55,6 @@ public class SecurityConfig {
         return http.build();
     }
 
-
     @Bean
     @Order(1)
     public SecurityFilterChain restSecurityFilterChain(HttpSecurity http) throws Exception {

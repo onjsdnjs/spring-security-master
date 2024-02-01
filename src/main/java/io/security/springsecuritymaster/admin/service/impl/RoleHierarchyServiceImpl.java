@@ -22,20 +22,21 @@ public class RoleHierarchyServiceImpl implements RoleHierarchyService {
     @Transactional
     @Override
     public String findAllHierarchy() {
+
         List<RoleHierarchy> rolesHierarchy = roleHierarchyRepository.findAll();
 
         Iterator<RoleHierarchy> itr = rolesHierarchy.iterator();
-        StringBuilder concatedRoles = new StringBuilder();
+        StringBuilder hierarchyRole = new StringBuilder();
 
         while (itr.hasNext()) {
             RoleHierarchy roleHierarchy = itr.next();
             if (roleHierarchy.getParentName() != null) {
-                concatedRoles.append(roleHierarchy.getParentName().getChildName());
-                concatedRoles.append(" > ");
-                concatedRoles.append(roleHierarchy.getChildName());
-                concatedRoles.append("\n");
+                hierarchyRole.append(roleHierarchy.getParentName().getChildName());
+                hierarchyRole.append(" > ");
+                hierarchyRole.append(roleHierarchy.getChildName());
+                hierarchyRole.append("\n");
             }
         }
-        return concatedRoles.toString();
+        return hierarchyRole.toString();
     }
 }
