@@ -34,10 +34,12 @@ public class CustomDynamicAuthorizationManager implements AuthorizationManager<R
     private final HandlerMappingIntrospector handlerMappingIntrospector;
     private final ResourcesRepository resourcesRepository;
 
+    private DynamicAuthorizationService dynamicAuthorizationService;
+
     @PostConstruct
     public void mapping() {
 
-        DynamicAuthorizationService dynamicAuthorizationService =
+        dynamicAuthorizationService =
                 new DynamicAuthorizationService(new PersistentUrlRoleMapper(resourcesRepository));
 
         mappings = dynamicAuthorizationService.getUrlRoleMappings()
@@ -75,5 +77,14 @@ public class CustomDynamicAuthorizationManager implements AuthorizationManager<R
         }else{
             return new WebExpressionAuthorizationManager(role);
         }
+    }
+
+    public synchronized void updateMappings() {
+
+        this.mappings = dynamicAuthorizationService.getUrlRoleMappings().entrySet().stream()
+                .map(entry -> new RequestMatcherEntry<>(
+                        new AntPathRequestMatcher(entry.getKey()),
+                        customAuthorizationManager(entry.getValue())))
+                .collect(Collectors.toList());
     }
 }
