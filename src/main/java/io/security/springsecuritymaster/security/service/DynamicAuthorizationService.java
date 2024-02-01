@@ -9,7 +9,7 @@ import java.util.Map;
 @Component
 public class DynamicAuthorizationService {
     private final LinkedHashMap<String, String> urlRoleMappings = new LinkedHashMap<>();
-    public Map<String, String> getUrlRoleMappingsInMemory() {
+    public Map<String, String> getUrlRoleMappings() {
             urlRoleMappings.put("/", "permitAll");
             urlRoleMappings.put("/signup", "permitAll");
             urlRoleMappings.put("/login", "permitAll");

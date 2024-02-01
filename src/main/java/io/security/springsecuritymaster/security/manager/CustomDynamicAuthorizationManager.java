@@ -33,7 +33,7 @@ public class CustomDynamicAuthorizationManager implements AuthorizationManager<R
 
     @PostConstruct
     public void mapping() {
-        mappings = dynamicAuthorizationService.getUrlRoleMappingsInMemory().entrySet().stream()
+        mappings = dynamicAuthorizationService.getUrlRoleMappings().entrySet().stream()
                 .map(entry -> new RequestMatcherEntry<>(
                         new MvcRequestMatcher(handlerMappingIntrospector, entry.getKey()),
                         customAuthorizationManager(entry.getValue())))
