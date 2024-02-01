@@ -6,8 +6,11 @@ import io.security.springsecuritymaster.admin.service.RoleService;
 import io.security.springsecuritymaster.domain.dto.ResourcesDto;
 import io.security.springsecuritymaster.domain.entity.Resources;
 import io.security.springsecuritymaster.domain.entity.Role;
+import io.security.springsecuritymaster.security.manager.CustomDynamicAuthorizationManager;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.authorization.AuthorizationManager;
+import org.springframework.security.web.access.intercept.RequestAuthorizationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -26,6 +29,7 @@ public class ResourcesController {
 	private final ResourcesService resourcesService;
 	private final RoleRepository roleRepository;
 	private final RoleService roleService;
+	private final CustomDynamicAuthorizationManager authorizationManager;
 
 	@GetMapping(value="/admin/resources")
 	public String getResources(Model model) {
@@ -45,6 +49,7 @@ public class ResourcesController {
 		resources.setRoleSet(roles);
 
 		resourcesService.createResources(resources);
+		authorizationManager.reload();
 
 		return "redirect:/admin/resources";
 	}
@@ -82,6 +87,7 @@ public class ResourcesController {
 	public String removeResources(@PathVariable String id) throws Exception {
 
 		resourcesService.deleteResources(Long.parseLong(id));
+		authorizationManager.reload();
 
 		return "redirect:/admin/resources";
 	}

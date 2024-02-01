@@ -79,9 +79,9 @@ public class CustomDynamicAuthorizationManager implements AuthorizationManager<R
         }
     }
 
-    public synchronized void updateMappings() {
-
-        this.mappings = dynamicAuthorizationService.getUrlRoleMappings().entrySet().stream()
+    public synchronized void reload() {
+        this.mappings = dynamicAuthorizationService.getUrlRoleMappings()
+                .entrySet().stream()
                 .map(entry -> new RequestMatcherEntry<>(
                         new AntPathRequestMatcher(entry.getKey()),
                         customAuthorizationManager(entry.getValue())))
