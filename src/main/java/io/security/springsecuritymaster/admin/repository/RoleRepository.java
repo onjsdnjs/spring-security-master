@@ -8,4 +8,7 @@ public interface RoleRepository extends JpaRepository<Role, Long> {
 
     @Override
     void delete(Role role);
+
+   /* @Query("select r from Role r where r.isExpression = 'N'")
+    List<Resources> findAllRoles();*/
 }

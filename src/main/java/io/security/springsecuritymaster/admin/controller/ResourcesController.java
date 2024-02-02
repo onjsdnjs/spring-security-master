@@ -75,7 +75,8 @@ public class ResourcesController {
 		List<Role> roleList = roleService.getRoles();
 		model.addAttribute("roleList", roleList);
 		Resources resources = resourcesService.getResources(Long.parseLong(id));
-
+		List<String> myRoles = resources.getRoleSet().stream().map(role -> role.getRoleName()).toList();
+		model.addAttribute("myRoles", myRoles);
 		ModelMapper modelMapper = new ModelMapper();
 		ResourcesDto resourcesDto = modelMapper.map(resources, ResourcesDto.class);
 		model.addAttribute("resources", resourcesDto);

@@ -33,8 +33,12 @@
             <div class="form-group">
                 <label for="roleName" class="col-sm-2 control-label">권한</label>
                 <div class="col-sm-10">
-                    <select class="custom-select" th:field="*{roleName}">
-                        <option th:each="role:${roleList}" th:value="${role.roleName}" th:text="${role.roleName}"></option>
+                    <select class="custom-select">
+                        <option th:each="role:${roleList}"
+                                th:value="${role.roleName}"
+                                th:text="${role.roleName}"
+                                th:selected="${myRoles.contains(role.roleName)}">
+                        </option>
                     </select>
                 </div>
             </div>
