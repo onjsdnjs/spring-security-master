@@ -33,7 +33,7 @@ public class RoleHierarchyServiceImpl implements RoleHierarchyService {
             if (roleHierarchy.getParent() != null) {
                 hierarchyRole.append(roleHierarchy.getParent().getRoleName());
                 hierarchyRole.append(" > ");
-                hierarchyRole.append(roleHierarchy.getChildren());
+                hierarchyRole.append(roleHierarchy.getRoleName());
                 hierarchyRole.append("\n");
             }
         }
