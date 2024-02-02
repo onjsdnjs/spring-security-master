@@ -1,3 +1,3 @@
-insert into role_hierarchy (id, child_name, parent_name) values (1,'ROLE_ADMIN',null);
-insert into role_hierarchy (id, child_name, parent_name) values (2,'ROLE_MANAGER','ROLE_ADMIN');
-insert into role_hierarchy (id, child_name, parent_name) values (3,'ROLE_USER','ROLE_MANAGER');
+insert into role_hierarchy (id, role_name, parent_id) values (1,'ROLE_ADMIN',null);
+insert into role_hierarchy (id, role_name, parent_id) values (2,'ROLE_MANAGER','1');
+insert into role_hierarchy (id, role_name, parent_id) values (3,'ROLE_USER','2');

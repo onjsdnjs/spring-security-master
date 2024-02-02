@@ -4,7 +4,9 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -19,13 +21,13 @@ public class RoleHierarchy implements Serializable {
     @GeneratedValue
     private Long id;
 
-    @Column(name = "child_name")
-    private String childName;
+    @Column(name = "role_name")
+    private String roleName;
 
-    @ManyToOne(cascade = {CascadeType.ALL},fetch = FetchType.LAZY)
-    @JoinColumn(name = "parent_name", referencedColumnName = "child_name")
-    private RoleHierarchy parentName;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "parent_id", referencedColumnName = "id", insertable = false, updatable = false)
+    private RoleHierarchy parent;
 
-    @OneToMany(mappedBy = "parentName", cascade={CascadeType.ALL})
-    private Set<RoleHierarchy> roleHierarchy = new HashSet<>();
+    @OneToMany(mappedBy = "parent", fetch = FetchType.LAZY)
+    private Set<RoleHierarchy> children = new HashSet<>();
 }

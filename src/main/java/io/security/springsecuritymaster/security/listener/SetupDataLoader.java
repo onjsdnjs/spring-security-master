@@ -33,9 +33,9 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
 
     private void setupData() {
         HashSet<Role> roles = new HashSet<>();
-        Role adminRole = createRoleIfNotFound("ROLE_ADMIN", "관리자");
+        Role adminRole = createRoleIfNotFound("ROLE_ADMINN", "관리자2");
         roles.add(adminRole);
-        createUserIfNotFound("admin", "admin@admin.com", "pass", roles);
+        createUserIfNotFound("admin2", "admin@admin.com", "pass", roles);
     }
 
     public Role createRoleIfNotFound(String roleName, String roleDesc) {

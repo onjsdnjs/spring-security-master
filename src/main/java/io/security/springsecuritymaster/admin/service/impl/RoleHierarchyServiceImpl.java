@@ -30,10 +30,10 @@ public class RoleHierarchyServiceImpl implements RoleHierarchyService {
 
         while (itr.hasNext()) {
             RoleHierarchy roleHierarchy = itr.next();
-            if (roleHierarchy.getParentName() != null) {
-                hierarchyRole.append(roleHierarchy.getParentName().getChildName());
+            if (roleHierarchy.getParent() != null) {
+                hierarchyRole.append(roleHierarchy.getParent().getRoleName());
                 hierarchyRole.append(" > ");
-                hierarchyRole.append(roleHierarchy.getChildName());
+                hierarchyRole.append(roleHierarchy.getChildren());
                 hierarchyRole.append("\n");
             }
         }
