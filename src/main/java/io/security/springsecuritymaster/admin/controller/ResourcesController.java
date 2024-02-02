@@ -18,9 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Controller
 @RequiredArgsConstructor
@@ -59,7 +57,8 @@ public class ResourcesController {
 
 		List<Role> roleList = roleService.getRoles();
 		model.addAttribute("roleList", roleList);
-
+		List<String> myRoles = new ArrayList<>();
+		model.addAttribute("myRoles", myRoles);
 		ResourcesDto resources = new ResourcesDto();
 		Set<Role> roleSet = new HashSet<>();
 		roleSet.add(new Role());

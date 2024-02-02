@@ -40,7 +40,7 @@ public class UserManagementController {
 	public String getUser(@PathVariable(value = "id") Long id, Model model) {
 
 		AccountDto accountDto = userManagementService.getUser(id);
-		List<Role> roleList = roleService.getRoles();
+		List<Role> roleList = roleService.getRolesWithoutExpression();
 
 		model.addAttribute("user", accountDto);
 		model.addAttribute("roleList", roleList);
