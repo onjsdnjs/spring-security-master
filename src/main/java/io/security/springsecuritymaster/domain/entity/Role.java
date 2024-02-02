@@ -27,6 +27,9 @@ public class Role implements Serializable {
     @Column(name = "role_desc")
     private String roleDesc;
 
+    @Column(name = "is_expression")
+    private String isExpression;
+
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "roleSet", cascade = CascadeType.ALL)
     @OrderBy("orderNum desc")
     private Set<Resources> resourcesSet = new LinkedHashSet<>();
