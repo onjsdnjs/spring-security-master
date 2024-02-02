@@ -14,6 +14,7 @@ import org.springframework.security.authorization.AuthorityAuthorizationManager;
 import org.springframework.security.authorization.AuthorizationDecision;
 import org.springframework.security.authorization.AuthorizationManager;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.web.access.expression.DefaultHttpSecurityExpressionHandler;
 import org.springframework.security.web.access.expression.WebExpressionAuthorizationManager;
 import org.springframework.security.web.access.intercept.RequestAuthorizationContext;
 import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
@@ -80,7 +81,11 @@ public class CustomDynamicAuthorizationManager implements AuthorizationManager<R
             authorizationManager.setRoleHierarchy(roleHierarchy);
             return authorizationManager;
         }else{
-            return new WebExpressionAuthorizationManager(role);
+            DefaultHttpSecurityExpressionHandler handler = new DefaultHttpSecurityExpressionHandler();
+            handler.setRoleHierarchy(roleHierarchy);
+            WebExpressionAuthorizationManager authorizationManager = new WebExpressionAuthorizationManager(role);
+            authorizationManager.setExpressionHandler(handler);
+            return authorizationManager;
         }
     }
 
