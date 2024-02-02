@@ -1,12 +1,14 @@
 package io.security.springsecuritymaster.security.manager;
 
 import io.security.springsecuritymaster.admin.repository.ResourcesRepository;
+import io.security.springsecuritymaster.domain.entity.RoleHierarchy;
 import io.security.springsecuritymaster.security.mapper.MapBasedUrlRoleMapper;
 import io.security.springsecuritymaster.security.mapper.PersistentUrlRoleMapper;
 import io.security.springsecuritymaster.security.service.DynamicAuthorizationService;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl;
 import org.springframework.security.authorization.AuthenticatedAuthorizationManager;
 import org.springframework.security.authorization.AuthorityAuthorizationManager;
 import org.springframework.security.authorization.AuthorizationDecision;
@@ -33,6 +35,7 @@ public class CustomDynamicAuthorizationManager implements AuthorizationManager<R
     private static final AuthorizationDecision ACCESS = new AuthorizationDecision(true);
     private final HandlerMappingIntrospector handlerMappingIntrospector;
     private final ResourcesRepository resourcesRepository;
+    private final RoleHierarchyImpl roleHierarchy;
 
     private DynamicAuthorizationService dynamicAuthorizationService;
 
@@ -73,7 +76,9 @@ public class CustomDynamicAuthorizationManager implements AuthorizationManager<R
 
     private AuthorizationManager<RequestAuthorizationContext> customAuthorizationManager(String role) {
         if (role.startsWith("ROLE")) {
-            return AuthorityAuthorizationManager.hasAuthority(role);
+            AuthorityAuthorizationManager<RequestAuthorizationContext> authorizationManager = AuthorityAuthorizationManager.hasAuthority(role);
+            authorizationManager.setRoleHierarchy(roleHierarchy);
+            return authorizationManager;
         }else{
             return new WebExpressionAuthorizationManager(role);
         }
