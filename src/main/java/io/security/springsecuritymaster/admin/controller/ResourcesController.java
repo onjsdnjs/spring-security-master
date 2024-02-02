@@ -10,11 +10,11 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -54,7 +54,8 @@ public class ResourcesController {
 
 		List<Role> roleList = roleService.getRoles();
 		model.addAttribute("roleList", roleList);
-
+		List<String> myRoles = new ArrayList<>();
+		model.addAttribute("myRoles", myRoles);
 		ResourcesDto resources = new ResourcesDto();
 		Set<Role> roleSet = new HashSet<>();
 		roleSet.add(new Role());
@@ -70,7 +71,8 @@ public class ResourcesController {
 		List<Role> roleList = roleService.getRoles();
 		model.addAttribute("roleList", roleList);
 		Resources resources = resourcesService.getResources(Long.parseLong(id));
-
+		List<String> myRoles = resources.getRoleSet().stream().map(role -> role.getRoleName()).toList();
+		model.addAttribute("myRoles", myRoles);
 		ModelMapper modelMapper = new ModelMapper();
 		ResourcesDto resourcesDto = modelMapper.map(resources, ResourcesDto.class);
 		model.addAttribute("resources", resourcesDto);
