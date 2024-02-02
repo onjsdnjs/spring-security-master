@@ -28,6 +28,11 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Transactional
+    public List<Role> getRolesWithoutExpression() {
+        return roleRepository.findAllRolesWithoutExpression();
+    }
+
+    @Transactional
     public void createRole(Role role){
         roleRepository.save(role);
     }

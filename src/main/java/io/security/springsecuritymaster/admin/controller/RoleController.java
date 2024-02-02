@@ -58,7 +58,7 @@ public class RoleController {
 	}
 
 	@GetMapping(value="/admin/roles/delete/{id}")
-	public String removeResources(@PathVariable String id) {
+	public String removeRoles(@PathVariable String id) {
 
 		roleService.deleteRole(Long.parseLong(id));
 
