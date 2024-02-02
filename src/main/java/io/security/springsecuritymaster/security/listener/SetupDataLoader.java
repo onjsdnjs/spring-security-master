@@ -43,18 +43,16 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
         HashSet<Role> roles = new HashSet<>();
 
         Role adminRole = createRoleIfNotFound("ROLE_ADMIN", "관리자");
-        roles.add(adminRole);
+//        roles.add(adminRole);
 
-        createUserIfNotFound("admin", "admin@admin.com", "pass", roles);
+//        createUserIfNotFound("admin", "admin@admin.com", "pass", roles);
         Role managerRole = createRoleIfNotFound("ROLE_MANAGER", "매니저권한");
         Role userRole = createRoleIfNotFound("ROLE_USER", "사용자권한");
 
         createRoleHierarchyIfNotFound(managerRole, adminRole);
-
         createRoleHierarchyIfNotFound(userRole, managerRole);
     }
 
-    @Transactional
     public Role createRoleIfNotFound(String roleName, String roleDesc) {
         Role role = roleRepository.findByRoleName(roleName);
 
@@ -68,7 +66,6 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
         return roleRepository.save(role);
     }
 
-    @Transactional
     public Account createUserIfNotFound(final String userName, final String email, final String password, Set<Role> roleSet) {
         Account account = userRepository.findByUsername(userName);
 
@@ -83,7 +80,6 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
         return userRepository.save(account);
     }
 
-    @Transactional
     public Resources createResourceIfNotFound(String resourceName, String httpMethod, Set<Role> roleSet, String resourceType) {
         Resources resources = resourcesRepository.findByResourceNameAndHttpMethod(resourceName, httpMethod);
 
@@ -100,7 +96,6 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
         return resourcesRepository.save(resources);
     }
 
-    @Transactional
     public void createRoleHierarchyIfNotFound(Role childRole, Role parentRole) {
         RoleHierarchy roleHierarchy = roleHierarchyRepository.findByChildName(parentRole.getRoleName());
 
