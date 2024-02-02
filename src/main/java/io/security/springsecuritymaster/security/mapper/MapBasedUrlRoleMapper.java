@@ -21,7 +21,7 @@ public class MapBasedUrlRoleMapper implements UrlRoleMapper{
         urlRoleMappings.put("/logout", "permitAll");
         urlRoleMappings.put("/denied", "authenticated");
         urlRoleMappings.put("/user", "ROLE_USER");
-        urlRoleMappings.put("/admin", "ROLE_ADMIN");
+        urlRoleMappings.put("/admin/**", "ROLE_ADMIN");
         urlRoleMappings.put("/manager", "ROLE_MANAGER");
         urlRoleMappings.put("/db", "hasRole('DBA')");
 
