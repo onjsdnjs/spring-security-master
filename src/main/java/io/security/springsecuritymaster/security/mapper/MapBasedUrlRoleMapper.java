@@ -23,7 +23,7 @@ public class MapBasedUrlRoleMapper implements UrlRoleMapper{
         urlRoleMappings.put("/user", "ROLE_USER");
         urlRoleMappings.put("/admin", "ROLE_ADMIN");
         urlRoleMappings.put("/manager", "ROLE_MANAGER");
-        urlRoleMappings.put("/db", "hasRole('ADMIN') or hasRole('MANAGER')");
+        urlRoleMappings.put("/db", "hasRole('DBA')");
 
         return new HashMap<>(urlRoleMappings);
     }
