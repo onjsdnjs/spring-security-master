@@ -3,7 +3,6 @@ package io.security.springsecuritymaster.security.configs;
 import io.security.springsecuritymaster.security.dsl.RestApiDsl;
 import io.security.springsecuritymaster.security.entrypoint.RestAuthenticationEntryPoint;
 import io.security.springsecuritymaster.security.handler.*;
-import io.security.springsecuritymaster.security.manager.CustomDynamicAuthorizationManager;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
