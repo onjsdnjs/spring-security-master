@@ -48,6 +48,7 @@ public class SecurityConfig {
 //                .csrf(AbstractHttpConfigurer::disable)
                 .authenticationProvider(authenticationProvider)
                 .exceptionHandling(exception -> exception
+                        .authenticationEntryPoint(new RestAuthenticationEntryPoint())
                         .accessDeniedHandler(new FormAccessDeniedHandler("/denied"))
                 )
         ;
