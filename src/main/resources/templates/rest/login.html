@@ -97,9 +97,10 @@
                 body: JSON.stringify({ username, password }),
             })
                 .then(response => {
-                    response.json().then(function (data) {
+                    if(response.ok){
+                        window.location.replace("/");
                         console.log(data);
-                    })
+                    }
                 })
                 .catch(error => {
                     console.error('Error during login:', error);
