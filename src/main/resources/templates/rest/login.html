@@ -92,19 +92,14 @@
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'X-Requested-With': 'XMLHttpRequest'
                 },
                 body: JSON.stringify({ username, password }),
             })
                 .then(response => {
-                    if (response.ok) {
-                        window.location.replace('/');
-                    } else {
-                        throw new Error('Login failed');
-                    }
-                })
-                .then(data => {
-                    console.log('Login successful:', data);
-                    // 로그인 성공 후 처리
+                    response.json().then(function (data) {
+                        console.log(data);
+                    })
                 })
                 .catch(error => {
                     console.error('Error during login:', error);
