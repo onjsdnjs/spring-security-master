@@ -29,12 +29,12 @@ public class SecurityConfig {
                         .anyRequest().authenticated())
 //                .formLogin(Customizer.withDefaults())
                 .authenticationManager(authenticationManager)
-                .addFilterBefore(customFilter(authenticationManager), UsernamePasswordAuthenticationFilter.class);
+                .addFilterBefore(customFilter(http, authenticationManager), UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
 
-    public CustomAuthenticationFilter customFilter(AuthenticationManager authenticationManager) {
-        CustomAuthenticationFilter customAuthenticationFilter = new CustomAuthenticationFilter();
+    public CustomAuthenticationFilter customFilter(HttpSecurity http, AuthenticationManager authenticationManager) {
+        CustomAuthenticationFilter customAuthenticationFilter = new CustomAuthenticationFilter(http);
         customAuthenticationFilter.setAuthenticationManager(authenticationManager);
         return customAuthenticationFilter;
     }
