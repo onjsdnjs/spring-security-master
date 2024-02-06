@@ -2,6 +2,7 @@ package io.security.springsecuritymaster;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.User;
@@ -19,6 +20,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http
+                .formLogin(Customizer.withDefaults())
                 .logout(logout -> logout
                     .logoutUrl("/logoutProc") // 로그아웃이 발생하는 URL 지정
                     .logoutRequestMatcher(new AntPathRequestMatcher("/logoutProc")) // 로그아웃 RequestMatcher 지정, logoutUrl 보다 우선적
@@ -41,5 +43,4 @@ public class SecurityConfig {
         UserDetails user = User.withUsername("user").password("{noop}1111").roles("USER").build();
         return  new InMemoryUserDetailsManager(user);
     }
-
 }
