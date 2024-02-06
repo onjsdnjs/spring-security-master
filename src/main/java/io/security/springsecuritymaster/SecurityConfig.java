@@ -25,7 +25,6 @@ public class SecurityConfig {
 
         http
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/login").permitAll()
                         .anyRequest().authenticated())
                 .formLogin(Customizer.withDefaults())
 //                .authenticationProvider(new CustomAuthenticationProvider())
