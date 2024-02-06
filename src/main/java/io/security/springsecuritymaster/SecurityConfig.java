@@ -23,7 +23,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .anyRequest().authenticated())
                 .formLogin(Customizer.withDefaults())
-                .userDetailsService(customUserDetailsService())
+//                .userDetailsService(customUserDetailsService())
         ;
         return http.build();
     }
