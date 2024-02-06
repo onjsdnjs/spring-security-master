@@ -23,6 +23,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .anyRequest().authenticated())
                 .formLogin(Customizer.withDefaults())
+                .securityContext(securityContext -> securityContext
+                        .requireExplicitSave(true));
         ;
         return http.build();
     }
