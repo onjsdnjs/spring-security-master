@@ -20,6 +20,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http
+                .authorizeHttpRequests(auth -> auth.anyRequest().authenticated())
                 .formLogin(Customizer.withDefaults())
                 .logout(logout -> logout
                     .logoutUrl("/logoutProc") // 로그아웃이 발생하는 URL 지정
