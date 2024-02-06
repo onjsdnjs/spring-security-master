@@ -1,14 +1,11 @@
 package io.security.springsecuritymaster;
 
-import org.springframework.context.MessageSourceAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AnonymousAuthenticationProvider;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.User;
@@ -35,13 +32,15 @@ public class SecurityConfig2 {
     }
 
     public CustomAuthenticationFilter customFilter(HttpSecurity http) {
+
         List<AuthenticationProvider> list1 = List.of(new DaoAuthenticationProvider());
         ProviderManager parent = new ProviderManager(list1);
-        List<MessageSourceAware> list2 = List.of(new AnonymousAuthenticationProvider("key"), new CustomAuthenticationProvider());
-        ProviderManager authenticationManager = new ProviderManager(list2,parent);
+        List<AuthenticationProvider> list2 = List.of(new AnonymousAuthenticationProvider("key"), new CustomAuthenticationProvider());
+        ProviderManager authenticationManager = new ProviderManager(list2, parent);
 
-        CustomAuthenticationFilter customAuthenticationFilter = new CustomAuthenticationFilter();
+        CustomAuthenticationFilter customAuthenticationFilter = new CustomAuthenticationFilter(http);
         customAuthenticationFilter.setAuthenticationManager(authenticationManager);
+
         return customAuthenticationFilter;
 
     }
