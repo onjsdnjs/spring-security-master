@@ -27,7 +27,10 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/login").permitAll()
                         .anyRequest().authenticated())
-                .formLogin(Customizer.withDefaults());
+                .formLogin(Customizer.withDefaults())
+//                .authenticationProvider(new CustomAuthenticationProvider())
+//                .authenticationProvider(new CustomAuthenticationProvider2())
+        ;
         return http.build();
     }
     @Bean
