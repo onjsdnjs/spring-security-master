@@ -22,8 +22,7 @@ public class SecurityConfig {
                 .requestMatchers("/login").permitAll()
                 .requestMatchers("/admin").hasRole("ADMIN")
                 .anyRequest().authenticated())
-                .formLogin(Customizer.withDefaults())
-        ;
+                .formLogin(Customizer.withDefaults());
 
         return http.build();
     }
