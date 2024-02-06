@@ -33,13 +33,7 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(auth -> auth
                         .anyRequest().authenticated())
-                .formLogin(form -> form
-                        .successHandler((request, response, authentication) -> {
-                            SavedRequest savedRequest = requestCache.getRequest(request, response);
-                            String redirectUrl = savedRequest.getRedirectUrl();
-                            response.sendRedirect(redirectUrl);
-
-                        }))
+                .formLogin(Customizer.withDefaults())
                 .requestCache(cache -> cache.requestCache(requestCache));
         return http.build();
     }
