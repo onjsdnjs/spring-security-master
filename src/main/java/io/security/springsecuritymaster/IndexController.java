@@ -66,4 +66,9 @@ public class IndexController {
     public String denied(){
         return "denied";
     }
+
+    @GetMapping("/login")
+    public String customLogin(){
+        return "loginPage 를 구현해야 한다";
+    }
 }
