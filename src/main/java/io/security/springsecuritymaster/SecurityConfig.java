@@ -9,6 +9,8 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.DefaultRedirectStrategy;
+import org.springframework.security.web.RedirectStrategy;
 import org.springframework.security.web.SecurityFilterChain;
 
 @EnableWebSecurity
@@ -33,7 +35,8 @@ public class SecurityConfig {
                             System.out.println(accessDeniedException.getMessage());
                             response.sendRedirect("/denied");
                         })
-                );
+                )
+        ;
 
         return http.build();
     }
