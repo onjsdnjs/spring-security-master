@@ -14,4 +14,9 @@ public class IndexController {
     public String login(){
         return "loginPage";
     }
+
+    @GetMapping("/anonymous")
+    public String anonymous(){
+        return "anonymous";
+    }
 }
