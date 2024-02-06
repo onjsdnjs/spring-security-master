@@ -22,8 +22,15 @@ public class SecurityConfig {
         http.authorizeHttpRequests(auth -> auth
                 .anyRequest().authenticated())
                 .formLogin(Customizer.withDefaults())
-                .sessionManagement(session -> session
-                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .exceptionHandling(exception -> exception
+                        .authenticationEntryPoint((request, response, authException) -> {
+                            // 커스텀하게 사용할 AuthenticationEntryPoint 를 설정한다
+                            System.out.println(authException.getMessage());
+                        })
+                        .accessDeniedHandler((request, response, accessDeniedException) -> {
+                                // 커스텀하게 사용할 AccessDeniedHandler 를 설정한다
+                            System.out.println(accessDeniedException.getMessage());
+                        })
                 );
 
         return http.build();
