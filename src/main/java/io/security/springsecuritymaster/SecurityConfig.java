@@ -19,16 +19,19 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http.authorizeHttpRequests(auth -> auth
+                .requestMatchers("/admin").hasRole("ADMIN")
                 .anyRequest().authenticated())
                 .formLogin(Customizer.withDefaults())
                 .exceptionHandling(exception -> exception
                         .authenticationEntryPoint((request, response, authException) -> {
                             // 커스텀하게 사용할 AuthenticationEntryPoint 를 설정한다
                             System.out.println(authException.getMessage());
+                            response.sendRedirect("/login");
                         })
                         .accessDeniedHandler((request, response, accessDeniedException) -> {
                                 // 커스텀하게 사용할 AccessDeniedHandler 를 설정한다
                             System.out.println(accessDeniedException.getMessage());
+                            response.sendRedirect("/denied");
                         })
                 );
 

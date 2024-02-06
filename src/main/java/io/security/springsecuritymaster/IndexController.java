@@ -56,4 +56,14 @@ public class IndexController {
     public String expired(){
         return "expired";
     }
+
+    @GetMapping("/admin")
+    public String admin(){
+        return "admin";
+    }
+
+    @GetMapping("/denied")
+    public String denied(){
+        return "denied";
+    }
 }
