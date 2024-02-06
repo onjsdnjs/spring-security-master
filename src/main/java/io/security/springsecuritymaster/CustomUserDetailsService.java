@@ -11,6 +11,7 @@ import java.util.List;
 public class CustomUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return new User("user", "{noop}1111", List.of(new SimpleGrantedAuthority("ROLE_USER")));
+        AccountDto accountDto = new AccountDto("user", "{noop}1111", List.of(new SimpleGrantedAuthority("ROLE_USER")));
+        return new CustomUserDetails(accountDto);
     }
 }
