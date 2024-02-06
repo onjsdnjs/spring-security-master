@@ -29,8 +29,9 @@ public class SecurityConfig {
 
         http
                 .authorizeHttpRequests( auth -> auth.anyRequest().authenticated())
-                .httpBasic(basic -> basic
-                        .authenticationEntryPoint(new CustomAuthenticationEntryPoint())
+                .anonymous(anonymous -> anonymous
+                        .principal("guest")
+                        .authorities("ROLE_GUEST")
                 );
 
         return http.build();
