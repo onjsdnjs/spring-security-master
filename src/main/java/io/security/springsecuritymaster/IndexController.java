@@ -46,4 +46,14 @@ public class IndexController {
     public String logoutSuccess(@CurrentSecurityContext SecurityContext context){
         return "logoutSuccess";
     }
+
+    @GetMapping("/invalidSessionUrl")
+    public String invalidSessionUrl(){
+        return "invalidSessionUrl";
+    }
+
+    @GetMapping("/expired")
+    public String expired(){
+        return "expired";
+    }
 }
