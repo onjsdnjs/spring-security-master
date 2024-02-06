@@ -19,14 +19,10 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http.authorizeHttpRequests(auth -> auth
-                .requestMatchers("/invalidSessionUrl","/expired").permitAll()
                 .anyRequest().authenticated())
                 .formLogin(Customizer.withDefaults())
                 .sessionManagement(session -> session
-                        .invalidSessionUrl("/invalidSessionUrl") // 만료된 세션으로 요청 시 리다이렉션 될 URL
-                        .maximumSessions(1) // 사용자당 허용되는 최대 세션 수
-                        .maxSessionsPreventsLogin(false) // 최대 세션 수에 도달 시 추가 로그인 방지
-                        .expiredUrl("/expired") // 세션이 만료된 후 리다이렉션 될 URL
+                        .sessionFixation(sessionFixation -> sessionFixation.newSession())
                 );
 
         return http.build();
