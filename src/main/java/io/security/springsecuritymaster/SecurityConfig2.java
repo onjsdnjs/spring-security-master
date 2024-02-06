@@ -1,3 +1,4 @@
+/*
 package io.security.springsecuritymaster;
 
 import org.springframework.context.annotation.Bean;
@@ -50,4 +51,4 @@ public class SecurityConfig2 {
         UserDetails user = User.withUsername("user").password("{noop}1111").roles("USER").build();
         return  new InMemoryUserDetailsManager(user);
     }
-}
+}*/
