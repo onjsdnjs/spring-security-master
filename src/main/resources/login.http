@@ -1,8 +1,11 @@
 ### Send POST request with json body
-POST http://localhost:8080/login
+POST http://localhost:8080/customLogin
 Content-Type: application/json
 
 {
-  "id": "user",
-  "value": "1111"
+  "username": "user",
+  "password": "1111"
 }
+
+### Send GET request
+GET http://localhost:8080
