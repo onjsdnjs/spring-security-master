@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -20,7 +21,9 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http
-                .authorizeHttpRequests(auth -> auth.anyRequest().authenticated())
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/logoutSuccess").permitAll()
+                        .anyRequest().authenticated())
                 .formLogin(Customizer.withDefaults())
                 .logout(logout -> logout
                     .logoutUrl("/logoutProc") // 로그아웃이 발생하는 URL 지정
@@ -33,7 +36,9 @@ public class SecurityConfig {
                     .invalidateHttpSession(true) // HttpSession 무효화
                     .clearAuthentication(true) // 로그아웃 시 인증 정보 삭제
                     .addLogoutHandler((request, response, authentication) -> {
-                        // 새로운 LogoutHandler 추가할 수 있음
+                        request.getSession().invalidate();
+                        SecurityContextHolder.getContextHolderStrategy().getContext().setAuthentication(null);
+                        SecurityContextHolder.getContextHolderStrategy().clearContext();
                     })
                     .permitAll()); // 로그아웃 URL에 대한 모든 사용자 접근 허용
         return http.build();
