@@ -15,7 +15,7 @@ import java.io.IOException;
 public class CustomAuthenticationFilter extends AbstractAuthenticationProcessingFilter {
     private final ObjectMapper objectMapper = new ObjectMapper();
     public CustomAuthenticationFilter() {
-        super(new AntPathRequestMatcher("/api/login", "POST"));
+        super(new AntPathRequestMatcher("/api/login", "GET"));
     }
 
     @Override
