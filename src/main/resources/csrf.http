@@ -1,0 +1,7 @@
+POST https://ijhttp-examples.jetbrains.com/post
+Content-Type: application/json
+
+{
+  "id": 999,
+  "value": "content"
+}
