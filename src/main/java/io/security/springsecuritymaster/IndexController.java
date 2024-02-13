@@ -78,9 +78,19 @@ public class IndexController {
         return "csrf 적용";
     }
 
-    @PostMapping("/notCsrf")
-    public String notCsrf(){
+    @PostMapping("/ignoreCsrf")
+    public String ignoreCsrf(){
         return "csrf 적용 안함";
+    }
+
+    @GetMapping("/csrf")
+    public String cookieCsrf(){
+        return "csrf";
+    }
+
+    @PostMapping("/cookieCsrf")
+    public String cookieCsrf(){
+        return "csrf";
     }
 
 }

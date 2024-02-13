@@ -1,3 +1,4 @@
+/*
 package io.security.springsecuritymaster;
 
 import org.springframework.context.annotation.Bean;
@@ -26,10 +27,12 @@ public class SecurityConfig {
         repository.setHeaderName("CX-CSRF-TOKEN");
         repository.setSessionAttributeName("c_csrfToken");
 
-        /*CookieCsrfTokenRepository repository = new CookieCsrfTokenRepository();
+        */
+/*CookieCsrfTokenRepository repository = new CookieCsrfTokenRepository();
         repository.setParameterName("c_csrf");
         repository.setHeaderName("CX-XSRF-TOKEN");
-        repository.setCookieName("CXSRF-TOKEN");*/
+        repository.setCookieName("CXSRF-TOKEN");*//*
+
 
         XorCsrfTokenRequestAttributeHandler csrfTokenHandler = new XorCsrfTokenRequestAttributeHandler();
         csrfTokenHandler.setCsrfRequestAttributeName("_csrfToken");
@@ -51,4 +54,4 @@ public class SecurityConfig {
         UserDetails user = User.withUsername("user").password("{noop}1111").roles("USER").build();
         return  new InMemoryUserDetailsManager(user);
     }
-}
+}*/
