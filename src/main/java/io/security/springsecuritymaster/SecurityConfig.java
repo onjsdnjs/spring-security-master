@@ -28,7 +28,9 @@ public class SecurityConfig {
                 .formLogin(Customizer.withDefaults())
                 .csrf(csrf -> csrf
                         .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-                        .csrfTokenRequestHandler(csrfTokenRequestHandler));
+                        .csrfTokenRequestHandler(csrfTokenRequestHandler)
+//                        .csrfTokenRequestHandler(null)
+                );
         http.addFilterBefore(new CsrfCookieFilter(), BasicAuthenticationFilter.class);
 
         return http.build();
