@@ -23,7 +23,7 @@ public class SecurityConfig {
         SpaCsrfTokenRequestHandler csrfTokenRequestHandler = new SpaCsrfTokenRequestHandler();
 
         http.authorizeHttpRequests(auth -> auth
-                .requestMatchers("/csrf","/ignoreCsrf", "/requestCsrf", "/cookieCsrf").permitAll()
+                .requestMatchers("/csrf","/ignoreCsrf","/cookieCsrf").permitAll()
                 .anyRequest().authenticated())
                 .formLogin(Customizer.withDefaults())
                 .csrf(csrf -> csrf
@@ -31,7 +31,6 @@ public class SecurityConfig {
                         .csrfTokenRequestHandler(csrfTokenRequestHandler)
 //                        .csrfTokenRequestHandler(null)
                 );
-        http.addFilterBefore(new CsrfCookieFilter(), BasicAuthenticationFilter.class);
 
         return http.build();
     }
