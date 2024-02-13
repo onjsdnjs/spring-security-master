@@ -19,7 +19,7 @@
                     if (!response.ok) {
                         throw new Error('Network response was not ok');
                     }
-                    return response.json(); // 여기에서 서버 응답을 처리합니다.
+                    return response.json(); // 여기에서 서버 응답을 처리
                 })
                 .then(data => {
                     console.log('Success:', data); // 성공 처리 로직
