@@ -4,6 +4,7 @@ import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.CurrentSecurityContext;
 import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -84,7 +85,7 @@ public class IndexController {
     }
 
     @PostMapping("/cookieCsrf")
-    public void cookieCsrf(){
-        System.out.println("cookieCsrf is successful");
+    public CsrfToken cookieCsrf(CsrfToken csrfToken){
+        return csrfToken;
     }
 }
