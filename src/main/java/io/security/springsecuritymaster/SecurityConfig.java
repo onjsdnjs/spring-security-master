@@ -22,8 +22,8 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
-//        HttpSessionCsrfTokenRepository csrfTokenRepository = new HttpSessionCsrfTokenRepository();
-        CookieCsrfTokenRepository csrfTokenRepository = new  CookieCsrfTokenRepository();
+        HttpSessionCsrfTokenRepository csrfTokenRepository = new HttpSessionCsrfTokenRepository();
+//        CookieCsrfTokenRepository csrfTokenRepository = new  CookieCsrfTokenRepository();
         XorCsrfTokenRequestAttributeHandler csrfTokenRequestHandler = new XorCsrfTokenRequestAttributeHandler();
 
         http.authorizeHttpRequests(auth -> auth
