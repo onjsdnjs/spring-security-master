@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository;
 
 @EnableWebSecurity
 @Configuration
@@ -18,11 +19,16 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
+        HttpSessionCsrfTokenRepository repository = new HttpSessionCsrfTokenRepository();
+        repository.setParameterName("c_csrf");
+        repository.setHeaderName("CX-CSRF-TOKEN");
+        repository.setSessionAttributeName("c_csrfToken");
+
         http.authorizeHttpRequests(auth -> auth
                 .requestMatchers("/csrf","/notCsrf").permitAll()
                 .anyRequest().authenticated())
                 .formLogin(Customizer.withDefaults())
-                .csrf(csrf->csrf.ignoringRequestMatchers("/ignoreCsrf"));
+                .csrf(csrf -> csrf.csrfTokenRepository(repository));
 
         return http.build();
     }
