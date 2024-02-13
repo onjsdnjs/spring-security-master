@@ -83,11 +83,6 @@ public class IndexController {
         return "csrf 적용 안함";
     }
 
-    @GetMapping("/requestCsrf")
-    public String requestCsrf(){
-        return "csrf";
-    }
-
     @PostMapping("/cookieCsrf")
     public void cookieCsrf(){
         System.out.println("cookieCsrf is successful");
