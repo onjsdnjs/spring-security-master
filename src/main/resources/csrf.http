@@ -1,7 +1,7 @@
-POST https://ijhttp-examples.jetbrains.com/post
-Content-Type: application/json
+### GET request with a header
+POST http://localhost:8080/csrf
+Accept: application/json
 
-{
-  "id": 999,
-  "value": "content"
-}
+### Send POST request with json body
+POST http://localhost:8080/ignoreCsrf
+Content-Type: application/json
