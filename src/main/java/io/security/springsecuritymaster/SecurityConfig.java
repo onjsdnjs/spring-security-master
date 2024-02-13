@@ -25,7 +25,7 @@ public class SecurityConfig {
         SpaCsrfTokenRequestHandler csrfTokenRequestHandler = new SpaCsrfTokenRequestHandler();
 
         http.authorizeHttpRequests(auth -> auth
-                .requestMatchers("/csrf","/ignoreCsrf", "/requestCsrf", "/cookieCsrf").permitAll()
+                .requestMatchers("/csrf","/ignoreCsrf", "/cookie", "/cookieCsrf").permitAll()
                 .anyRequest().authenticated())
                 .formLogin(Customizer.withDefaults())
                 .csrf(csrf -> csrf
@@ -41,7 +41,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http.authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/csrf","/ignoreCsrf", "/requestCsrf", "/cookieCsrf").permitAll()
+                        .requestMatchers("/csrf","/ignoreCsrf", "/cookie", "/cookieCsrf", "/form","/formCsrf").permitAll()
                         .anyRequest().authenticated())
                 .formLogin(Customizer.withDefaults())
                 .csrf(Customizer.withDefaults());

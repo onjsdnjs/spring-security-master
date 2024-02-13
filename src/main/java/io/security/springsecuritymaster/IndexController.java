@@ -84,6 +84,11 @@ public class IndexController {
         return "csrf 적용 안함";
     }
 
+    @PostMapping("/formCsrf")
+    public CsrfToken formCsrf(CsrfToken csrfToken, String username, String password){
+        return csrfToken;
+    }
+
     @PostMapping("/cookieCsrf")
     public CsrfToken cookieCsrf(CsrfToken csrfToken){
         return csrfToken;

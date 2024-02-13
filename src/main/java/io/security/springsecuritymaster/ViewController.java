@@ -6,9 +6,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class ViewController {
 
-    @GetMapping("/requestCsrf")
+    @GetMapping("/cookie")
     public String requestCsrf(){
         return "csrf";
+    }
+
+    @GetMapping("/form")
+    public String form(){
+        return "form";
     }
 
 }
