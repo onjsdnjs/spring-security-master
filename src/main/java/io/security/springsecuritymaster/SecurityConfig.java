@@ -9,8 +9,6 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
-import org.springframework.security.web.DefaultRedirectStrategy;
-import org.springframework.security.web.RedirectStrategy;
 import org.springframework.security.web.SecurityFilterChain;
 
 @EnableWebSecurity
@@ -24,7 +22,7 @@ public class SecurityConfig {
                 .requestMatchers("/csrf","/notCsrf").permitAll()
                 .anyRequest().authenticated())
                 .formLogin(Customizer.withDefaults())
-                .csrf(csrf->csrf.ignoringRequestMatchers("/notCsrf"));
+                .csrf(csrf->csrf.ignoringRequestMatchers("/ignoreCsrf"));
 
         return http.build();
     }
