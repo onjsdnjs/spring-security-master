@@ -1,4 +1,4 @@
-package io.security.springsecuritymaster;
+package io.security.springsecuritymaster.cookie;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -9,7 +9,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 
-final class CsrfCookieFilter extends OncePerRequestFilter {
+public class CsrfCookieFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)

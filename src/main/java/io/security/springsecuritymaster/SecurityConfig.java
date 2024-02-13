@@ -1,5 +1,7 @@
 package io.security.springsecuritymaster;
 
+import io.security.springsecuritymaster.cookie.CsrfCookieFilter;
+import io.security.springsecuritymaster.cookie.SpaCsrfTokenRequestHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
@@ -29,7 +31,6 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf
                         .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
                         .csrfTokenRequestHandler(csrfTokenRequestHandler)
-//                        .csrfTokenRequestHandler(null)
                 );
         http.addFilterBefore(new CsrfCookieFilter(), BasicAuthenticationFilter.class);
 

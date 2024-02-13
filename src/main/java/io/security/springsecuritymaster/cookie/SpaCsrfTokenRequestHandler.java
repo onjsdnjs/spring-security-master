@@ -1,4 +1,4 @@
-package io.security.springsecuritymaster;
+package io.security.springsecuritymaster.cookie;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -10,7 +10,7 @@ import org.springframework.util.StringUtils;
 
 import java.util.function.Supplier;
 
-final class SpaCsrfTokenRequestHandler extends CsrfTokenRequestAttributeHandler {
+public class SpaCsrfTokenRequestHandler extends CsrfTokenRequestAttributeHandler {
     private final CsrfTokenRequestHandler delegate = new XorCsrfTokenRequestAttributeHandler();
 
     @Override
