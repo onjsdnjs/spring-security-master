@@ -1,7 +1,0 @@
-### GET request with a header
-POST http://localhost:8080/csrf
-Accept: application/json
-
-### Send POST request with json body
-POST http://localhost:8080/ignoreCsrf
-Content-Type: application/json
