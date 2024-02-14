@@ -1,13 +1,17 @@
 package io.security.springsecuritymaster;
 
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.CurrentSecurityContext;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.web.csrf.CsrfToken;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.CookieGenerator;
 
 @RestController
 public class IndexController {
@@ -92,5 +96,18 @@ public class IndexController {
     @PostMapping("/cookieCsrf")
     public CsrfToken cookieCsrf(CsrfToken csrfToken){
         return csrfToken;
+    }
+
+    @GetMapping("/createCookie")
+    public String createCookie(HttpServletResponse response) {
+        Cookie cookie = new Cookie("testCookie", "testValue");
+        cookie.setPath("/");
+        response.addCookie(cookie);
+        return "Cookie set";
+    }
+
+    @GetMapping("/readCookie")
+    public String readCookie(@CookieValue(value = "testCookie", defaultValue = "No Cookie") String cookieValue) {
+        return "Cookie Value: " + cookieValue;
     }
 }
