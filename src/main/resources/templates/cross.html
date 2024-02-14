@@ -10,7 +10,6 @@
     function sendRequest() {
         fetch('http://localhost:8080/readCookie', {
             method: 'POST',
-            mode: 'cors',
             credentials: 'include',
             headers: {
                 'Content-Type': 'application/json',
