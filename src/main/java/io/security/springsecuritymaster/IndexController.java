@@ -15,52 +15,19 @@ import org.springframework.web.util.CookieGenerator;
 
 @RestController
 public class IndexController {
+
     @GetMapping("/")
-    public String index(String customParam){
-        if(customParam == null){
-            return "index";
-        }else{
-            return "customPage";
-        }
+    public String index(){
+        return "index";
+    }
+    @GetMapping("/user")
+    public String user(){
+        return "user";
     }
 
-    @GetMapping("/loginPage")
-    public String login(){
-        return "loginPage";
-    }
-
-    @GetMapping("/anonymous")
-    public String anonymous(){
-        return "anonymous";
-    }
-
-    @GetMapping("/authentication")
-    public String authentication(Authentication authentication){
-
-        if (authentication instanceof AnonymousAuthenticationToken) {
-            return "anonymous";
-        } else {
-            return "null";
-        }
-    }
-    @GetMapping("/anonymousContext")
-    public String anonymousContext(@CurrentSecurityContext SecurityContext context){
-        return context.getAuthentication().getName();
-    }
-
-    @GetMapping("/logoutSuccess")
-    public String logoutSuccess(@CurrentSecurityContext SecurityContext context){
-        return "logoutSuccess";
-    }
-
-    @GetMapping("/invalidSessionUrl")
-    public String invalidSessionUrl(){
-        return "invalidSessionUrl";
-    }
-
-    @GetMapping("/expired")
-    public String expired(){
-        return "expired";
+    @GetMapping("/manager")
+    public String manager(){
+        return "manager";
     }
 
     @GetMapping("/admin")
@@ -68,43 +35,9 @@ public class IndexController {
         return "admin";
     }
 
-    @GetMapping("/denied")
-    public String denied(){
-        return "denied";
+    @PostMapping("/users")
+    public String users(){
+        return "admin";
     }
 
-    @GetMapping("/login")
-    public String customLogin(){
-        return "loginPage 를 구현해야 한다";
-    }
-
-    @PostMapping("/csrf")
-    public String csrf(){
-        return "csrf 적용";
-    }
-
-    @PostMapping("/ignoreCsrf")
-    public String ignoreCsrf(){
-        return "csrf 적용 안함";
-    }
-
-    @PostMapping("/formCsrf")
-    public CsrfToken formCsrf(CsrfToken csrfToken, String username, String password){
-        return csrfToken;
-    }
-
-    @PostMapping("/cookieCsrf")
-    public CsrfToken cookieCsrf(CsrfToken csrfToken){
-        return csrfToken;
-    }
-
-    @GetMapping("/readCookie")
-    public String readCookie(@CookieValue(value = "SESSION", defaultValue = "No Cookie") String cookieValue) {
-        return "Cookie Value: " + cookieValue;
-    }
-
-    @PostMapping("/insertCookie")
-    public String insertCookie(@CookieValue(value = "SESSION", defaultValue = "No Cookie") String cookieValue) {
-        return "Cookie Value: " + cookieValue;
-    }
 }
