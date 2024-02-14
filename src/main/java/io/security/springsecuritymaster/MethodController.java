@@ -1,6 +1,8 @@
 package io.security.springsecuritymaster;
 
+import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,5 +36,11 @@ public class MethodController {
     @PreAuthorize("#id == authentication.name")
     public String authentication(@PathVariable(name = "id") String id){
         return id;
+    }
+
+    @GetMapping("/owner")
+    @PostAuthorize("returnObject.owner == authentication.name")
+    public Account owner(){
+        return new Account("user");
     }
 }
