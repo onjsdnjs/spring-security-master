@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Cross-Site Request Test</title>
+</head>
+<body>
+<h2>Cross-Site Request</h2>
+<button id="makeRequest">Make Cross-Site POST Request</button>
+<script>
+    document.getElementById('makeRequest').addEventListener('click', function() {
+        fetch('http://localhost:8080/read-cookie', {
+            method: 'POST', // 또는 'GET'을 사용하는 다른 종류의 요청
+            mode: 'cors', // 필요에 따라 'no-cors', 'cors', 'same-origin'
+            credentials: 'include', // 쿠키를 포함시키기 위해 'include'를 사용
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({test: 'data'}),
+        })
+            .then(response => response.text())
+            .then(data => alert(data))
+            .catch(error => console.error('Error:', error));
+    });
+</script>
+</body>
+</html>

@@ -1,20 +1,20 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Cookie Test</title>
 </head>
 <body>
 <h2>Set and Read Cookie</h2>
-<button onclick="setCookie()">Set Cookie</button>
+<button onclick="createCookie()">Create Cookie</button>
 <button onclick="readCookie()">Read Cookie</button>
 
 <script>
-    function setCookie() {
-        fetch('/set-cookie').then(response => response.text()).then(data => alert(data));
+    function createCookie() {
+        fetch('/createCookie').then(response => response.text()).then(data => alert(data));
     }
 
     function readCookie() {
-        fetch('/read-cookie').then(response => response.text()).then(data => alert(data));
+        fetch('/readCookie').then(response => response.text()).then(data => alert(data));
     }
 </script>
 </body>
