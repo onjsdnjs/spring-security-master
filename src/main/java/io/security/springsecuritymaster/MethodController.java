@@ -1,22 +1,26 @@
 package io.security.springsecuritymaster;
 
-import org.springframework.security.access.prepost.PostAuthorize;
-import org.springframework.security.access.prepost.PreAuthorize;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
+@RequiredArgsConstructor
 public class MethodController {
+
+    private final DataService dataService;
 
     @GetMapping("/")
     public String index(){
         return "index";
     }
 
-    @GetMapping("/admin")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    public String admin(){
-        return "admin";
+    @PostMapping("/data")
+    public List<Account> processData(@RequestBody List<Account> data) {
+        return dataService.processData(data);
     }
 }
