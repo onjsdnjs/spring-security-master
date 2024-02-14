@@ -5,14 +5,9 @@
 </head>
 <body>
 <h2>Set and Read Cookie</h2>
-<button onclick="createCookie()">Create Cookie</button>
 <button onclick="readCookie()">Read Cookie</button>
 
 <script>
-    function createCookie() {
-        fetch('/createCookie').then(response => response.text()).then(data => alert(data));
-    }
-
     function readCookie() {
         fetch('/readCookie').then(response => response.text()).then(data => alert(data));
     }
