@@ -11,8 +11,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.access.expression.DefaultHttpSecurityExpressionHandler;
-import org.springframework.security.web.access.expression.WebExpressionAuthorizationManager;
 
 @EnableWebSecurity
 @Configuration
@@ -34,7 +32,7 @@ public class SecurityConfig {
         return http.build();
     }*/
 
-    @Bean
+    /*@Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http, ApplicationContext context) throws Exception {
 
         DefaultHttpSecurityExpressionHandler expressionHandler = new DefaultHttpSecurityExpressionHandler();
@@ -43,6 +41,17 @@ public class SecurityConfig {
         expressManager.setExpressionHandler(expressionHandler);
         http.authorizeHttpRequests(authorize -> authorize
                 .requestMatchers("/user/**").access(expressManager)
+                .anyRequest().authenticated())
+                .formLogin(Customizer.withDefaults());
+
+        return http.build();
+    }*/
+
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http, ApplicationContext context) throws Exception {
+
+        http.authorizeHttpRequests(authorize -> authorize
+                .requestMatchers(new CustomRequestMatcher("/api/**")).hasAuthority("ROLE_MANAGER")
                 .anyRequest().authenticated())
                 .formLogin(Customizer.withDefaults());
 
