@@ -6,10 +6,24 @@
 <body>
 <h2>Set and Read Cookie</h2>
 <button onclick="readCookie()">Read Cookie</button>
+<button onclick="crossReadCookie()">Cross-Site Read Cookie</button>
 
 <script>
     function readCookie() {
-        fetch('/readCookie').then(response => response.text()).then(data => alert(data));
+        fetch('http://localhost:8080/readCookie').then(response => response.text()).then(data => alert(data));
+    }
+    function crossReadCookie() {
+        fetch('http://localhost:8080/insertCookie', {
+            method: 'POST',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({test: 'data'}),
+        })
+            .then(response => response.text())
+            .then(data => alert(data))
+            .catch(error => console.error('Error:', error));
     }
 </script>
 </body>

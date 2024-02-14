@@ -18,8 +18,8 @@ public class HttpSessionConfig {
     public CookieSerializer cookieSerializer() {
         DefaultCookieSerializer serializer = new DefaultCookieSerializer();
         serializer.setUseSecureCookie(true);
-        serializer.setUseHttpOnlyCookie(true);
-        serializer.setSameSite("Lax");
+        serializer.setUseHttpOnlyCookie(false);
+        serializer.setSameSite("Strict");
         return serializer;
     }
     @Bean
