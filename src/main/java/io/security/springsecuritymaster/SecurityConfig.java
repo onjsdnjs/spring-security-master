@@ -26,6 +26,7 @@ public class SecurityConfig {
 
         http
                 .authorizeHttpRequests(authorize -> authorize
+                .requestMatchers("/").permitAll()
                 .requestMatchers("/user").hasAuthority("USER") // "/user" 엔드포인트에 대해 "USER" 권한을 요구합니다.
                 .requestMatchers("/mypage/**").hasAuthority("USER") // "/mypage" 및 하위 디렉터리에 대해 "USER" 권한을 요구합니다. Ant 패턴 사용.
                 .requestMatchers(new RegexRequestMatcher("/resource/[A-Za-z0-9]+", null)).hasAuthority("USER") // 정규 표현식을 사용하여 "/resource/[A-Za-z0-9]+" 패턴에 "USER" 권한을 요구합니다.
