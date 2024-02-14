@@ -11,12 +11,13 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.access.expression.WebExpressionAuthorizationManager;
 
 @EnableWebSecurity
 @Configuration
 public class SecurityConfig {
 
-    /*@Bean
+    @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http, ApplicationContext context) throws Exception {
 
         http.authorizeHttpRequests(authorize -> authorize
@@ -30,7 +31,7 @@ public class SecurityConfig {
                 .formLogin(Customizer.withDefaults());
 
         return http.build();
-    }*/
+    }
 
     /*@Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http, ApplicationContext context) throws Exception {
@@ -57,17 +58,6 @@ public class SecurityConfig {
 
         return http.build();
     }*/
-
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http, ApplicationContext context) throws Exception {
-
-        http.authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/secure").access(new CustomAuthorizationManager())
-                        .anyRequest().authenticated())
-                .formLogin(Customizer.withDefaults());
-
-        return http.build();
-    }
 
     @Bean
     public UserDetailsService userDetailsService(){
