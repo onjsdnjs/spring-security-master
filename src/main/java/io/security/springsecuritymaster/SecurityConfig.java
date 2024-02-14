@@ -3,6 +3,7 @@ package io.security.springsecuritymaster;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.User;
@@ -21,11 +22,13 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http, ApplicationContext context) throws Exception {
 
         http.authorizeHttpRequests(authorize -> authorize
+                .requestMatchers("/login").permitAll()
                 .requestMatchers("/user/{name}")
                 .access(new WebExpressionAuthorizationManager("#name == authentication.name"))
 
                 .requestMatchers("/admin/db")
-                .access(new WebExpressionAuthorizationManager("hasAuthority('ROLE_DB') or hasRole('ADMIN')")));
+                .access(new WebExpressionAuthorizationManager("hasAuthority('ROLE_DB') or hasRole('ADMIN')")))
+                .formLogin(Customizer.withDefaults());
 
         return http.build();
     }
