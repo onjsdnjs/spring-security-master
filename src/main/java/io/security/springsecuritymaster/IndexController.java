@@ -33,7 +33,7 @@ public class IndexController {
     }
 
     @GetMapping("/oauth/login")
-    public String photos(){
-        return "photos";
+    public String oauth(){
+        return "oauthLogin";
     }
 }
