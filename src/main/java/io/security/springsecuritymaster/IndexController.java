@@ -98,16 +98,13 @@ public class IndexController {
         return csrfToken;
     }
 
-    @GetMapping("/createCookie")
-    public String createCookie(HttpServletResponse response) {
-        Cookie cookie = new Cookie("testCookie", "testValue");
-        cookie.setPath("/");
-        response.addCookie(cookie);
-        return "Cookie created";
+    @GetMapping("/readCookie")
+    public String readCookie(@CookieValue(value = "SESSION", defaultValue = "No Cookie") String cookieValue) {
+        return "Cookie Value: " + cookieValue;
     }
 
-    @GetMapping("/readCookie")
-    public String readCookie(@CookieValue(value = "testCookie", defaultValue = "No Cookie") String cookieValue) {
+    @PostMapping("/readCookie")
+    public String readCookie2(@CookieValue(value = "SESSION", defaultValue = "No Cookie") String cookieValue) {
         return "Cookie Value: " + cookieValue;
     }
 }
