@@ -26,4 +26,14 @@ public class IndexController {
     public String admin(){
         return "admin";
     }
+
+    @GetMapping("/api/photos")
+    public String photos(){
+        return "photos";
+    }
+
+    @GetMapping("/oauth/login")
+    public String photos(){
+        return "photos";
+    }
 }
