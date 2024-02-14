@@ -7,4 +7,5 @@ import lombok.Getter;
 @AllArgsConstructor
 public class Account {
     private String owner;
+    private boolean isSecure;
 }

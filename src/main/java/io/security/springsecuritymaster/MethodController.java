@@ -41,6 +41,12 @@ public class MethodController {
     @GetMapping("/owner")
     @PostAuthorize("returnObject.owner == authentication.name")
     public Account owner(String name){
-        return new Account(name);
+        return new Account(name, false);
+    }
+
+    @GetMapping("/isSecure")
+    @PostAuthorize("hasAuthority('ROLE_ADMIN') and returnObject.isSecure")
+    public Account isSecure(String name, String isSecure){
+        return new Account(name, isSecure.equals("Y"));
     }
 }
