@@ -12,15 +12,17 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.security.web.util.matcher.RegexRequestMatcher;
+import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
 
 @EnableWebSecurity
 @Configuration
 public class SecurityConfig {
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http, HandlerMappingIntrospector introspector) throws Exception {
 
         http
                 .authorizeHttpRequests(authorize -> authorize
@@ -30,6 +32,7 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.GET, "/**").hasAuthority("read") // GET 메소드를 사용하는 모든 요청에 대해 "read" 권한을 요구합니다.
                 .requestMatchers(HttpMethod.POST).hasAuthority("write") // POST 메소드를 사용하는 모든 요청에 대해 "write" 권한을 요구합니다.
                 .requestMatchers(new AntPathRequestMatcher("/manager/**")).hasAuthority("MANAGER") // "/manager" 및 하위 디렉터리에 대해 "MANAGER" 권한을 요구합니다. AntPathRequestMatcher 사용.
+                .requestMatchers(new MvcRequestMatcher(introspector, "/admin/payment")).hasAuthority("ADMIN") // "/manager" 및 하위 디렉터리에 대해 "MANAGER" 권한을 요구합니다. AntPathRequestMatcher 사용.
                 .requestMatchers("/admin/**").hasAnyAuthority("ADMIN", "MANAGER") // "/admin" 및 하위 디렉터리에 대해 "ADMIN" 또는 "MANAGER" 권한 중 하나를 요구합니다.
                 .anyRequest().authenticated())// 위에서 정의한 규칙 외의 모든 요청은 인증을 필요로 합니다.
                 .formLogin(Customizer.withDefaults())
