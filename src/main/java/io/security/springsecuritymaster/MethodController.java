@@ -37,12 +37,14 @@ public class MethodController {
     @GetMapping("/read")
     @PostFilter("filterObject.owner == authentication.name")
     public List<Account> readAccounts() {
-        return dataService.readAccount();
+        List<Account> accounts = dataService.readAccount();
+        return accounts;
     }
 
     @GetMapping("/read2")
     @PostFilter("filterObject.value.owner == authentication.name")
     public Map<String, Account> readAccounts2() {
-        return dataService.readAccount2();
+        Map<String, Account> accounts = dataService.readAccount2();
+        return accounts;
     }
 }
