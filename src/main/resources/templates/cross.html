@@ -5,9 +5,9 @@
 </head>
 <body>
 <h2>Cross-Site Request</h2>
-<button id="makeRequest">Make Cross-Site POST Request</button>
+<button onclick="sendRequest()">Make Cross-Site POST Request</button>
 <script>
-    document.getElementById('makeRequest').addEventListener('click', function() {
+    function sendRequest() {
         fetch('http://localhost:8080/readCookie', {
             method: 'POST',
             mode: 'cors',
@@ -20,7 +20,7 @@
             .then(response => response.text())
             .then(data => alert(data))
             .catch(error => console.error('Error:', error));
-    });
+    }
 </script>
 </body>
 </html>
