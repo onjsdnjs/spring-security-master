@@ -35,11 +35,13 @@ public class MethodController {
     }
 
     @GetMapping("/read")
+    @PostFilter("filterObject.owner == authentication.name")
     public List<Account> readAccounts() {
         return dataService.readAccount();
     }
 
     @GetMapping("/read2")
+    @PostFilter("filterObject.value.owner == authentication.name")
     public Map<String, Account> readAccounts2() {
         return dataService.readAccount2();
     }
