@@ -27,7 +27,8 @@ public class SecurityConfig {
                 .access(new WebExpressionAuthorizationManager("#name == authentication.name"))
 
                 .requestMatchers("/admin/db")
-                .access(new WebExpressionAuthorizationManager("hasAuthority('ROLE_DB') or hasRole('ADMIN')")))
+                .access(new WebExpressionAuthorizationManager("hasAuthority('ROLE_DB') or hasRole('ADMIN')"))
+                .anyRequest().authenticated())
                 .formLogin(Customizer.withDefaults());
 
         return http.build();
