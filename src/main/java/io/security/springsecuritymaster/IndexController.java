@@ -103,7 +103,7 @@ public class IndexController {
         Cookie cookie = new Cookie("testCookie", "testValue");
         cookie.setPath("/");
         response.addCookie(cookie);
-        return "Cookie set";
+        return "Cookie created";
     }
 
     @GetMapping("/readCookie")

@@ -16,4 +16,19 @@ public class ViewController {
         return "form";
     }
 
+    @GetMapping("/index")
+    public String index(){
+        return "index";
+    }
+
+    @GetMapping("/link")
+    public String link(){
+        return "link";
+    }
+
+    @GetMapping("/cross")
+    public String cross(){
+        return "cross";
+    }
+
 }
