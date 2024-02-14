@@ -51,9 +51,9 @@ public class IndexController {
         return "address01";
     }
 
-    @PostMapping("/postEndpoint")
-    public String postEndpoint(){
-        return "postEndpoint";
+    @PostMapping("/post")
+    public String post(){
+        return "post";
     }
 
 }
