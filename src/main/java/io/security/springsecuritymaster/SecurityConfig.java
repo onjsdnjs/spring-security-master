@@ -31,7 +31,7 @@ public class SecurityConfig {
 
     @Bean
     @Order(1)
-    public SecurityFilterChain securityFilterChain2(HttpSecurity http, ApplicationContext context) throws Exception {
+    public SecurityFilterChain securityFilterChain2(HttpSecurity http) throws Exception {
 
         http
                 .securityMatchers((matchers) -> matchers.requestMatchers("/api/**", "/oauth/**"))
