@@ -26,7 +26,7 @@ public class SecurityConfig {
 
         http
                 .authorizeHttpRequests(authorize -> authorize
-                .requestMatchers("/").permitAll()
+                .requestMatchers("/","/login").permitAll()
                 .requestMatchers("/user").hasAuthority("USER") // "/user" 엔드포인트에 대해 "USER" 권한을 요구합니다.
                 .requestMatchers("/myPage/**").hasAuthority("USER") // "/mypage" 및 하위 디렉터리에 대해 "USER" 권한을 요구합니다. Ant 패턴 사용.
                 .requestMatchers(HttpMethod.POST).hasAuthority("write") // POST 메소드를 사용하는 모든 요청에 대해 "write" 권한을 요구합니다.
