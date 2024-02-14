@@ -40,7 +40,7 @@ public class MethodController {
 
     @GetMapping("/owner")
     @PostAuthorize("returnObject.owner == authentication.name")
-    public Account owner(){
-        return new Account("user");
+    public Account owner(String name){
+        return new Account(name);
     }
 }
