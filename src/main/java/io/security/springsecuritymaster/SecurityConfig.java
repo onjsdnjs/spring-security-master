@@ -51,7 +51,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http, ApplicationContext context) throws Exception {
 
         http.authorizeHttpRequests(authorize -> authorize
-                .requestMatchers(new CustomRequestMatcher("/api/**")).hasAuthority("ROLE_MANAGER")
+                .requestMatchers(new CustomRequestMatcher("/admin")).hasAuthority("ROLE_ADMIN")
                 .anyRequest().authenticated())
                 .formLogin(Customizer.withDefaults());
 
