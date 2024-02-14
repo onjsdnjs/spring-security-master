@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Button Click Example</title>
     <script>
-        function sendRequest() {
+        function sendRequest(url) {
 
             const dataItems = [
                 { "owner": "user", "isSecure": "N" },
@@ -13,7 +13,7 @@
                 { "owner": "db", "isSecure": "N" }
             ];
 
-            fetch('/data', {
+            fetch(url, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -33,7 +33,8 @@
 </head>
 <body>
 
-<button onclick="sendRequest()">호출</button>
+<button onclick="sendRequest()">Account List</button>
+<button onclick="sendRequest()">Account Map</button>
 
 </body>
 </html>
