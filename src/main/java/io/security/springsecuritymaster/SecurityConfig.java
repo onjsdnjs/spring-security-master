@@ -18,7 +18,7 @@ import org.springframework.security.web.access.expression.WebExpressionAuthoriza
 @Configuration
 public class SecurityConfig {
 
-    @Bean
+    /*@Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http, ApplicationContext context) throws Exception {
 
         http.authorizeHttpRequests(authorize -> authorize
@@ -32,9 +32,9 @@ public class SecurityConfig {
                 .formLogin(Customizer.withDefaults());
 
         return http.build();
-    }
+    }*/
 
-    /*@Bean
+    @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http, ApplicationContext context) throws Exception {
 
         DefaultHttpSecurityExpressionHandler expressionHandler = new DefaultHttpSecurityExpressionHandler();
@@ -42,10 +42,12 @@ public class SecurityConfig {
         WebExpressionAuthorizationManager expressManager = new WebExpressionAuthorizationManager("@customWebSecurity.check(authentication, request)");
         expressManager.setExpressionHandler(expressionHandler);
         http.authorizeHttpRequests(authorize -> authorize
-                .requestMatchers("/user/**").access(expressManager));
+                .requestMatchers("/user/**").access(expressManager)
+                .anyRequest().authenticated())
+                .formLogin(Customizer.withDefaults());
 
         return http.build();
-    }*/
+    }
 
     @Bean
     public UserDetailsService userDetailsService(){
