@@ -22,7 +22,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http.authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/index","/link","/cross","/createCookie","/readCookie").permitAll()
+                        .requestMatchers("/index","/link","/cross","/readCookie","/insertCookie").permitAll()
                         .anyRequest().authenticated())
                 .formLogin(Customizer.withDefaults())
                 .csrf(Customizer.withDefaults())
@@ -39,7 +39,6 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.addAllowedOrigin("http://localhost:8080");
         configuration.addAllowedOrigin("http://localhost:8081");
         configuration.addAllowedMethod("*");
         configuration.addAllowedHeader("*");

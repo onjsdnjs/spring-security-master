@@ -103,8 +103,8 @@ public class IndexController {
         return "Cookie Value: " + cookieValue;
     }
 
-    @PostMapping("/readCookie")
-    public String readCookie2(@CookieValue(value = "SESSION", defaultValue = "No Cookie") String cookieValue) {
+    @PostMapping("/insertCookie")
+    public String insertCookie(@CookieValue(value = "SESSION", defaultValue = "No Cookie") String cookieValue) {
         return "Cookie Value: " + cookieValue;
     }
 }
