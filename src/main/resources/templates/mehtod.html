@@ -6,7 +6,7 @@
     <title>Button Click Example</title>
     <script>
         function sendRequest() {
-            // 예제 데이터
+
             const dataItems = [
                 { owner: "user", isSecure: "N" },
                 { owner: "admin", isSecure: "Y" },
@@ -17,7 +17,6 @@
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
-
                 },
                 body: JSON.stringify(dataItems),
             })
@@ -27,7 +26,7 @@
                     }
                     throw new Error('Network response was not ok.');
                 })
-                .then(text => console.log(text)) // 성공 메시지 로깅
+                .then(text => console.log(text))
                 .catch(error => console.error('There was a problem with your fetch operation:', error));
         }
     </script>
