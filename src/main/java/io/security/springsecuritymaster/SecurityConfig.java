@@ -22,11 +22,6 @@ public class SecurityConfig {
 
         http.authorizeHttpRequests(authorize -> authorize
                 .requestMatchers("/login").permitAll()
-                .requestMatchers("/user/{name}")
-                .access(new WebExpressionAuthorizationManager("#name == authentication.name"))
-
-                .requestMatchers("/admin/db")
-                .access(new WebExpressionAuthorizationManager("hasAuthority('ROLE_DB') or hasRole('ADMIN')"))
                 .anyRequest().authenticated())
                 .formLogin(Customizer.withDefaults());
 
