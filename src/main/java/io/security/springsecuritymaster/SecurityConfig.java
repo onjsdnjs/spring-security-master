@@ -20,6 +20,19 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http, ApplicationContext context) throws Exception {
 
+        http.authorizeHttpRequests(authorize -> authorize
+                .requestMatchers("/user/{name}")
+                .access(new WebExpressionAuthorizationManager("#name == authentication.name"))
+
+                .requestMatchers("/admin/db")
+                .access(new WebExpressionAuthorizationManager("hasAuthority('ROLE_DB') or hasRole('ADMIN')")));
+
+        return http.build();
+    }
+
+    /*@Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http, ApplicationContext context) throws Exception {
+
         DefaultHttpSecurityExpressionHandler expressionHandler = new DefaultHttpSecurityExpressionHandler();
         expressionHandler.setApplicationContext(context);
         WebExpressionAuthorizationManager expressManager = new WebExpressionAuthorizationManager("@customWebSecurity.check(authentication, request)");
@@ -28,11 +41,13 @@ public class SecurityConfig {
                 .requestMatchers("/user/**").access(expressManager));
 
         return http.build();
-    }
+    }*/
 
     @Bean
     public UserDetailsService userDetailsService(){
         UserDetails user = User.withUsername("user").password("{noop}1111").roles("USER").build();
-        return  new InMemoryUserDetailsManager(user);
+        UserDetails db = User.withUsername("db").password("{noop}1111").roles("DB").build();
+        UserDetails admin = User.withUsername("admin").password("{noop}1111").roles("ADMIN").build();
+        return  new InMemoryUserDetailsManager(user, db, admin);
     }
 }
