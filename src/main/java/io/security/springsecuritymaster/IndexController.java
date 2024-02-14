@@ -25,6 +25,11 @@ public class IndexController {
         return "user";
     }
 
+    @GetMapping("/myPage/points")
+    public String myPage(){
+        return "myPage";
+    }
+
     @GetMapping("/manager")
     public String manager(){
         return "manager";
@@ -35,9 +40,19 @@ public class IndexController {
         return "admin";
     }
 
-    @PostMapping("/users")
-    public String users(){
-        return "admin";
+    @GetMapping("/admin/payment")
+    public String adminPayment(){
+        return "adminPayment";
+    }
+
+    @GetMapping("/resource/address_01")
+    public String address_01(){
+        return "address_01";
+    }
+
+    @GetMapping("/resource/address01")
+    public String address01(){
+        return "address01";
     }
 
 }
