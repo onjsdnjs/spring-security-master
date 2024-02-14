@@ -21,4 +21,9 @@ public class IndexController {
     public String userName(@PathVariable(value = "name") String name){
         return name;
     }
+
+    @GetMapping("/admin/db")
+    public String admin(){
+        return "admin";
+    }
 }
