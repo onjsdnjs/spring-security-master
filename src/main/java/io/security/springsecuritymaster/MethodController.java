@@ -1,6 +1,7 @@
 package io.security.springsecuritymaster;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PostFilter;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,5 +32,15 @@ public class MethodController {
         Map<String, Account> dataMap = data.stream()
                 .collect(Collectors.toMap(Account::getOwner, account -> account));
         return dataService.processData2(dataMap);
+    }
+
+    @GetMapping("/read")
+    public List<Account> readAccounts() {
+        return dataService.readAccount();
+    }
+
+    @GetMapping("/read2")
+    public Map<String, Account> readAccounts2() {
+        return dataService.readAccount2();
     }
 }
