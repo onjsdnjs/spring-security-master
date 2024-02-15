@@ -45,30 +45,15 @@ public class SecurityConfig {
 
         http
                 .authorizeHttpRequests(authorize -> authorize
-                .anyRequest().access(authorizationManager(null)))
+                        .requestMatchers("/login", "/images/**").permitAll()
+                        .requestMatchers("/user").hasRole("USER")
+                        .requestMatchers("/db").hasRole("DB")
+                        .requestMatchers("/admin").hasAuthority("ROLE_ADMIN")
+                        .anyRequest().authenticated())
                 .formLogin(Customizer.withDefaults())
                 .csrf(AbstractHttpConfigurer::disable);
 
         return http.build();
-    }
-
-    @Bean
-    public AuthorizationManager<RequestAuthorizationContext> authorizationManager(HandlerMappingIntrospector introspector){
-        List<RequestMatcherEntry<AuthorizationManager<RequestAuthorizationContext>>> mappings = new ArrayList<>();
-
-        RequestMatcherEntry<AuthorizationManager<RequestAuthorizationContext>> requestMatcherEntry1 =
-                new RequestMatcherEntry<>(new MvcRequestMatcher(introspector, "/user"), AuthorityAuthorizationManager.hasAuthority("ROLE_USER"));
-
-        RequestMatcherEntry<AuthorizationManager<RequestAuthorizationContext>> requestMatcherEntry2 =
-                new RequestMatcherEntry<>(new MvcRequestMatcher(introspector, "/admin"), AuthorityAuthorizationManager.hasRole("ADMIN"));
-
-        RequestMatcherEntry<AuthorizationManager<RequestAuthorizationContext>> requestMatcherEntry3 =
-                new RequestMatcherEntry<>(AnyRequestMatcher.INSTANCE, new AuthenticatedAuthorizationManager<>());
-
-        mappings.add(requestMatcherEntry1);
-        mappings.add(requestMatcherEntry2);
-        mappings.add(requestMatcherEntry3);
-        return new CustomRequestMatcherDelegatingAuthorizationManager(mappings);
     }
     @Bean
     public UserDetailsService userDetailsService(){
