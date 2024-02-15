@@ -5,6 +5,7 @@ import jakarta.annotation.security.PermitAll;
 import jakarta.annotation.security.RolesAllowed;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -49,5 +50,11 @@ public class MethodController {
     @OwnerShip
     public Account ownerShip(String name){
         return new Account(name, false);
+    }
+
+    @GetMapping("/delete")
+    @PreAuthorize("@authorizer.isUser(#root)")
+    public String delete(){
+        return "delete";
     }
 }
