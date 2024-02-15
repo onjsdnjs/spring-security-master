@@ -13,6 +13,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationEventPublisher;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.DefaultAuthenticationEventPublisher;
+import org.springframework.security.authentication.event.AbstractAuthenticationFailureEvent;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -20,6 +21,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -28,6 +30,8 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 import java.io.IOException;
+import java.util.Collections;
+import java.util.Map;
 
 @EnableWebSecurity
 @RequiredArgsConstructor
@@ -59,19 +63,22 @@ public class SecurityConfig {
                             response.sendRedirect("/");
                         }))
                 .csrf(AbstractHttpConfigurer::disable)
-//                .authenticationProvider(authenticationProvider);
-                .authenticationProvider(customAuthenticationProvider2());
 
         return http.build();
     }
 
     @Bean
-    public AuthenticationProvider customAuthenticationProvider2(){
-        return new CustomAuthenticationProvider2(authenticationEventPublisher(null));
+    public AuthenticationEventPublisher customAuthenticationEventPublisher(ApplicationEventPublisher applicationEventPublisher) {
+        Map<Class<? extends AuthenticationException>, Class<? extends AbstractAuthenticationFailureEvent>> mapping =
+                Collections.singletonMap(CustomException.class, CustomAuthenticationFailureEvent.class);
+
+        DefaultAuthenticationEventPublisher authenticationEventPublisher = new DefaultAuthenticationEventPublisher(applicationEventPublisher);
+        authenticationEventPublisher.setAdditionalExceptionMappings(mapping); // CustomException 을 던지면 CustomAuthenticationFailureEvent 를 발행하도록 추가 함
+        return authenticationEventPublisher;
     }
+
     @Bean
-    @ConditionalOnMissingBean(AuthenticationEventPublisher.class)
-    public DefaultAuthenticationEventPublisher authenticationEventPublisher(ApplicationEventPublisher applicationEventPublisher) {
+    public AuthenticationEventPublisher defaulAuthenticationEventPublisher(ApplicationEventPublisher applicationEventPublisher) {
         DefaultAuthenticationEventPublisher authenticationEventPublisher = new DefaultAuthenticationEventPublisher(applicationEventPublisher);
         authenticationEventPublisher.setDefaultAuthenticationFailureEvent(CustomAuthenticationFailureEvent.class);
         return authenticationEventPublisher;
