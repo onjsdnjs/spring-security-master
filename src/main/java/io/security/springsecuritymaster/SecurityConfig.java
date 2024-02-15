@@ -59,7 +59,8 @@ public class SecurityConfig {
                             response.sendRedirect("/");
                         }))
                 .csrf(AbstractHttpConfigurer::disable)
-                .authenticationProvider(authenticationProvider);
+//                .authenticationProvider(authenticationProvider);
+                .authenticationProvider(customAuthenticationProvider());
 
         return http.build();
     }
