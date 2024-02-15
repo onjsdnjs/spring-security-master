@@ -26,6 +26,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 
             applicationEventPublisher.publishEvent
                     (new AuthenticationFailureBadCredentialsEvent(authentication, new BadCredentialsException("BadCredentialException")));
+            throw new BadCredentialsException("BadCredentialsException");
         }
         UserDetails user = User.withUsername("user").password("{noop}1111").roles("USER").build();
         return new UsernamePasswordAuthenticationToken(user, user.getPassword(), user.getAuthorities());
