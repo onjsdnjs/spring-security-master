@@ -10,12 +10,10 @@ import java.util.*;
 public class DataService {
     @PreFilter("filterObject.owner == authentication.name")
     public List<Account> processData(List<Account> data) {
-
         return data;
     }
     @PreFilter("filterObject.value.owner == authentication.name")
     public Map<String, Account> processData2(Map<String, Account> data) {
-
         return data;
     }
 
