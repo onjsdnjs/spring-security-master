@@ -13,7 +13,7 @@ public class MyPreAuthorizationManager implements AuthorizationManager<MethodInv
     @Override
     public AuthorizationDecision check(Supplier<Authentication> authentication, MethodInvocation invocation) {
         Authentication auth = authentication.get();
-        if(auth instanceof AnonymousAuthenticationToken) new AuthorizationDecision(false);
+        if(auth instanceof AnonymousAuthenticationToken) return new AuthorizationDecision(false);
         return new AuthorizationDecision(auth.isAuthenticated());
     }
 }
