@@ -38,4 +38,16 @@ public class MethodController {
     public String denyAll(){
         return "denyAll";
     }
+
+    @GetMapping("/isAdmin")
+    @isAdmin
+    public String isAdmin(){
+        return "isAdmin";
+    }
+
+    @GetMapping("/OwnerShip")
+    @OwnerShip
+    public Account OwnerShip(){
+        return "OwnerShip";
+    }
 }
