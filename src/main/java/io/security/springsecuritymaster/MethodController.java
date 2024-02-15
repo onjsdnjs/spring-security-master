@@ -45,7 +45,7 @@ public class MethodController {
         return "isAdmin";
     }
 
-    @GetMapping("/ownerShip")
+    @GetMapping("/ownership")
     @OwnerShip
     public Account ownerShip(String name){
         return new Account(name, false);
