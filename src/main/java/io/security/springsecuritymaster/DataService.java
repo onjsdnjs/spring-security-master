@@ -21,4 +21,7 @@ public class DataService {
     public Account getOwner(String name) {
         return new Account(name, false);
     }
+    public String display() {
+        return "display";
+    }
 }

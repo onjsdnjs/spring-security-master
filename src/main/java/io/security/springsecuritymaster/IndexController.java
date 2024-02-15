@@ -22,5 +22,9 @@ public class IndexController {
     public Account owner(String name){
         return dataService.getOwner(name);
     }
+    @GetMapping("/display")
+    public String display(){
+        return dataService.display();
+    }
 
 }
