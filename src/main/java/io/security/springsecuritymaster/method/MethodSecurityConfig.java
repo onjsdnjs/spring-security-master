@@ -10,7 +10,6 @@ import org.springframework.context.annotation.Role;
 import org.springframework.security.authorization.AuthorityAuthorizationManager;
 import org.springframework.security.authorization.method.AuthorizationManagerBeforeMethodInterceptor;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
-import org.springframework.security.web.access.intercept.RequestAuthorizationContext;
 
 import static org.springframework.security.authorization.AuthorityAuthorizationManager.hasRole;
 
