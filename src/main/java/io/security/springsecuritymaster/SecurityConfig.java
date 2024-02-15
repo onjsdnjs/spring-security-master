@@ -3,6 +3,8 @@ package io.security.springsecuritymaster;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.access.hierarchicalroles.RoleHierarchy;
+import org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -39,6 +41,16 @@ public class SecurityConfig {
 
         return http.build();
     }
+
+    @Bean
+    static RoleHierarchy roleHierarchy() {
+        RoleHierarchyImpl hierarchy = new RoleHierarchyImpl();
+        hierarchy.setHierarchy("ROLE_ADMIN > ROLE_DB\n" +
+                "ROLE_DB > ROLE_USER\n" +
+                "ROLE_USER > ROLE_GUEST");
+        return hierarchy;
+    }
+
 
     @Bean
     public UserDetailsService userDetailsService(){
