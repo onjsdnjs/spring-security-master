@@ -1,47 +1,42 @@
 package io.security.springsecuritymaster;
 
+import jakarta.annotation.security.DenyAll;
+import jakarta.annotation.security.PermitAll;
+import jakarta.annotation.security.RolesAllowed;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.access.prepost.PostFilter;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
 public class MethodController {
-
-    private final DataService dataService;
 
     @GetMapping("/")
     public String index(){
         return "index";
     }
 
-    @PostMapping("/data")
-    public List<Account> processData(@RequestBody List<Account> data) {
-        return dataService.processData(data);
+    @GetMapping("/user")
+    @Secured("ROLE_USER")
+    public String user(){
+        return "user";
     }
 
-    @PostMapping("/data2")
-    public Map<String, Account> processData2(@RequestBody List<Account> data) {
-        Map<String, Account> dataMap = data.stream()
-                .collect(Collectors.toMap(Account::getOwner, account -> account));
-        return dataService.processData2(dataMap);
+    @GetMapping("/admin")
+    @RolesAllowed("ROLE_ADMIN")
+    public String admin(){
+        return "admin";
+    }
+    @GetMapping("/permitAll")
+    @PermitAll
+    public String permitAll(){
+        return "permitAll";
     }
 
-    @GetMapping("/read")
-    public List<Account> readAccounts() {
-        return dataService.readAccount();
-    }
-
-    @GetMapping("/read2")
-    @PostFilter("filterObject.value.owner == authentication.name")
-    public Map<String, Account> readAccounts2() {
-        return dataService.readAccount2();
+    @GetMapping("/denyAll")
+    @DenyAll
+    public String denyAll(){
+        return "denyAll";
     }
 }
