@@ -35,16 +35,13 @@ public class MethodController {
     }
 
     @GetMapping("/read")
-    @PostFilter("filterObject.owner == authentication.name")
     public List<Account> readAccounts() {
-        List<Account> accounts = dataService.readAccount();
-        return accounts;
+        return dataService.readAccount();
     }
 
     @GetMapping("/read2")
     @PostFilter("filterObject.value.owner == authentication.name")
     public Map<String, Account> readAccounts2() {
-        Map<String, Account> accounts = dataService.readAccount2();
-        return accounts;
+        return dataService.readAccount2();
     }
 }
