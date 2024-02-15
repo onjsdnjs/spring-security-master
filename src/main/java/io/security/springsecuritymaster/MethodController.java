@@ -24,7 +24,7 @@ public class MethodController {
     }
 
     @GetMapping("/admin")
-    @RolesAllowed("ROLE_ADMIN")
+    @RolesAllowed("ADMIN")
     public String admin(){
         return "admin";
     }
@@ -33,7 +33,6 @@ public class MethodController {
     public String permitAll(){
         return "permitAll";
     }
-
     @GetMapping("/denyAll")
     @DenyAll
     public String denyAll(){
