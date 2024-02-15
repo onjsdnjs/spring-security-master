@@ -1,29 +1,24 @@
 package io.security.springsecuritymaster;
 
+import org.springframework.security.access.prepost.PostAuthorize;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class IndexController {
 
-    @GetMapping("/user")
-    public String user(){
-        return "user";
-    }
-
-    @GetMapping("/db")
-    public String db(){
-        return "db";
-    }
-
     @GetMapping("/admin")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public String admin(){
         return "admin";
     }
 
-    @GetMapping("/secure")
-    public String secure(){
-        return "secure";
+    @GetMapping("/owner")
+    @PostAuthorize("returnObject.owner == authentication.name")
+    public Account owner(String name){
+        return new Account(name, false);
     }
 
 }
