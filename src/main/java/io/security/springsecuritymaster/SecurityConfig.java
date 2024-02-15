@@ -46,10 +46,12 @@ public class SecurityConfig {
                         .requestMatchers("/user").hasAuthority("ROLE_USER")
                         .requestMatchers("/db").hasAuthority("ROLE_DB")
                         .requestMatchers("/admin").hasAuthority("ROLE_ADMIN")
-                        .anyRequest().authenticated())
+                        .anyRequest().permitAll())
                 .formLogin(form -> form
-                        .successHandler((request, response, authentication) ->
-                                applicationContext.publishEvent(new CustomAuthenticationSuccessEvent(authentication))))
+                        .successHandler((request, response, authentication) -> {
+                            applicationContext.publishEvent(new CustomAuthenticationSuccessEvent(authentication));
+                            response.sendRedirect("/");
+                        }))
                 .csrf(AbstractHttpConfigurer::disable);
 
         return http.build();
