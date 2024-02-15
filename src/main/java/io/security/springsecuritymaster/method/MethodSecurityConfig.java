@@ -1,5 +1,6 @@
 package io.security.springsecuritymaster.method;
 
+import org.aopalliance.intercept.MethodInvocation;
 import org.springframework.aop.Advisor;
 import org.springframework.aop.Pointcut;
 import org.springframework.aop.aspectj.AspectJExpressionPointcut;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Role;
+import org.springframework.security.authorization.AuthorityAuthorizationManager;
 import org.springframework.security.authorization.method.AuthorizationManagerBeforeMethodInterceptor;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 
@@ -17,16 +19,16 @@ import static org.springframework.security.authorization.AuthorityAuthorizationM
 @Configuration
 public class MethodSecurityConfig {
 
-    /*@Bean
+    @Bean
     @Role(BeanDefinition.ROLE_INFRASTRUCTURE)
     public Advisor protectServicePointcut() {
         AspectJExpressionPointcut pointcut = new AspectJExpressionPointcut();
         pointcut.setExpression("execution(* io.security.springsecuritymaster.DataService.getUser(..))");
         AuthorityAuthorizationManager<MethodInvocation> manager = hasRole("USER");
         return new AuthorizationManagerBeforeMethodInterceptor(pointcut, manager);
-    }*/
+    }
 
-    @Bean
+    /*@Bean
     @Role(BeanDefinition.ROLE_INFRASTRUCTURE)
     public Advisor protectServicePointcut() {
         return new AuthorizationManagerBeforeMethodInterceptor(createCompositePointcut(), hasRole("USER"));
@@ -44,5 +46,5 @@ public class MethodSecurityConfig {
         compositePointcut.union((Pointcut) pointcut2);
 
         return compositePointcut;
-    }
+    }*/
 }
