@@ -25,7 +25,7 @@ public class MethodSecurityConfig {
     @Bean
     public Pointcut servicePointcut() {
         AspectJExpressionPointcut pointcut = new AspectJExpressionPointcut();
-        pointcut.setExpression("execution(* io.security.Myservice.*(..))");
+        pointcut.setExpression("execution(* io.security.springsecuritymaster.DataService.*(..))");
         return pointcut;
     }
 
