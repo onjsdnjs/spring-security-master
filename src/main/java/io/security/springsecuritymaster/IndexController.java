@@ -1,5 +1,6 @@
 package io.security.springsecuritymaster;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,18 +8,19 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequiredArgsConstructor
 public class IndexController {
 
+    private final DataService dataService;
+
     @GetMapping("/user")
-    @PreAuthorize("hasAuthority('ROLE_USER')")
     public String user(){
-        return "user";
+        return dataService.getUser();
     }
 
     @GetMapping("/owner")
-    @PostAuthorize("returnObject.owner == authentication.name")
     public Account owner(String name){
-        return new Account(name, false);
+        return dataService.getOwner(name);
     }
 
 }
