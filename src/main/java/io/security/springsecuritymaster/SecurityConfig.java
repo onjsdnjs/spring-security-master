@@ -60,13 +60,13 @@ public class SecurityConfig {
                         }))
                 .csrf(AbstractHttpConfigurer::disable)
 //                .authenticationProvider(authenticationProvider);
-                .authenticationProvider(customAuthenticationProvider());
+                .authenticationProvider(customAuthenticationProvider2());
 
         return http.build();
     }
 
     @Bean
-    public AuthenticationProvider customAuthenticationProvider(){
+    public AuthenticationProvider customAuthenticationProvider2(){
         return new CustomAuthenticationProvider2(authenticationEventPublisher(null));
     }
     @Bean
