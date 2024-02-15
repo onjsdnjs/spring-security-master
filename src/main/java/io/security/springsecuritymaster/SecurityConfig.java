@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -30,6 +31,7 @@ import java.io.IOException;
 public class SecurityConfig {
 
     private final ApplicationContext applicationContext;
+    private final AuthenticationProvider authenticationProvider;
 
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
@@ -52,7 +54,8 @@ public class SecurityConfig {
                             applicationContext.publishEvent(new CustomAuthenticationSuccessEvent(authentication));
                             response.sendRedirect("/");
                         }))
-                .csrf(AbstractHttpConfigurer::disable);
+                .csrf(AbstractHttpConfigurer::disable)
+                .authenticationProvider(authenticationProvider);
 
         return http.build();
     }
