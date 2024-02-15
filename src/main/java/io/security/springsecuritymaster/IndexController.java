@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class IndexController {
 
-    @GetMapping("/admin")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    public String admin(){
-        return "admin";
+    @GetMapping("/user")
+    @PreAuthorize("hasAuthority('ROLE_USER')")
+    public String user(){
+        return "user";
     }
 
     @GetMapping("/owner")
