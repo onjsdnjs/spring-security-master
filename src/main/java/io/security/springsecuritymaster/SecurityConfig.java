@@ -1,8 +1,10 @@
 package io.security.springsecuritymaster;
 
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -29,18 +31,25 @@ public class SecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http, HandlerMappingIntrospector introspector) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http, ApplicationContext context) throws Exception {
 
         http
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/user").hasAuthority("ROLE_USER")
-                        .requestMatchers("/db").hasAuthority("ROLE_DB")
-                        .requestMatchers("/admin").hasAuthority("ROLE_ADMIN")
-                        .anyRequest().permitAll())
-                .formLogin(Customizer.withDefaults())
-                .csrf(AbstractHttpConfigurer::disable);
+                        .requestMatchers("/login").permitAll()
+                        .anyRequest().authenticated())
+                .formLogin(Customizer.withDefaults());
 
-        SecurityContextHolder.setStrategyName(SecurityContextHolder.MODE_INHERITABLETHREADLOCAL);
+        return http.build();
+    }
+
+    @Bean
+    @Order(1)
+    public SecurityFilterChain securityFilterChain2(HttpSecurity http) throws Exception {
+
+        http
+                .securityMatchers((matchers) -> matchers.requestMatchers("/api/**", "/oauth/**"))
+                .authorizeHttpRequests(authorize -> authorize
+                        .anyRequest().permitAll());
 
         return http.build();
     }
