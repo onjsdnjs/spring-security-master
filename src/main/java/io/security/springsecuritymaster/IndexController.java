@@ -10,10 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.concurrent.Callable;
 
 @RestController
-@RequiredArgsConstructor
 public class IndexController {
-
-    private final AsyncService asyncService;
 
     @GetMapping("/user")
     public String user(){
@@ -26,32 +23,5 @@ public class IndexController {
     @GetMapping("/admin")
     public String admin(){
         return "admin";
-    }
-
-    @GetMapping("/callable")
-    public Callable<Authentication> callable() {
-        SecurityContext securityContext = SecurityContextHolder.getContextHolderStrategy().getContext();
-        System.out.println("securityContext = " + securityContext);
-        System.out.println("Parent Thread: " + Thread.currentThread().getName());
-
-        return new Callable<Authentication>() {
-            public Authentication call() throws Exception {
-                SecurityContext securityContext = SecurityContextHolder.getContextHolderStrategy().getContext();
-                System.out.println("securityContext = " + securityContext);
-                System.out.println("Child Thread: " + Thread.currentThread().getName());
-                Authentication authentication = securityContext.getAuthentication();
-
-                return authentication;
-            }
-        };
-    }
-    @GetMapping("/async")
-    public Authentication async() {
-        SecurityContext securityContext = SecurityContextHolder.getContextHolderStrategy().getContext();
-        System.out.println("securityContext = " + securityContext);
-        System.out.println("Parent Thread: " + Thread.currentThread().getName());
-        Authentication authentication = securityContext.getAuthentication();
-        asyncService.asyncMethod();
-        return authentication;
     }
 }
