@@ -17,8 +17,8 @@ public class IndexController {
     @GetMapping("/login")
     public String login(HttpServletRequest request, MemberDto memberDto) throws ServletException, IOException {
         request.login(memberDto.getUsername(), memberDto.getPassword());
-        System.out.println("PreAuthorize");
-        return "/index";
+        System.out.println("login is successful");
+        return "index";
     }
 
     @GetMapping("/users")
