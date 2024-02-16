@@ -27,11 +27,13 @@ public class IndexController {
     public Callable<Authentication> processUpload() {
         SecurityContext securityContext = SecurityContextHolder.getContextHolderStrategy().getContext();
         System.out.println("securityContext = " + securityContext);
+        System.out.println("Parent Thread: " + Thread.currentThread().getName());
 
         return new Callable<Authentication>() {
             public Authentication call() throws Exception {
                 SecurityContext securityContext = SecurityContextHolder.getContextHolderStrategy().getContext();
                 System.out.println("securityContext = " + securityContext);
+                System.out.println("Child Thread: " + Thread.currentThread().getName());
                 Authentication authentication = securityContext.getAuthentication();
 
                 return authentication;
