@@ -37,19 +37,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/login").permitAll()
                         .anyRequest().authenticated())
-                .formLogin(Customizer.withDefaults());
-
-        return http.build();
-    }
-
-    @Bean
-    @Order(1)
-    public SecurityFilterChain securityFilterChain2(HttpSecurity http) throws Exception {
-
-        http
-                .securityMatchers((matchers) -> matchers.requestMatchers("/api/**"))
-                .authorizeHttpRequests(authorize -> authorize
-                        .anyRequest().permitAll());
+                .formLogin(Customizer.withDefaults())
+                .with(new MyCustomDsl(), dsl -> dsl.flag(true));
 
         return http.build();
     }
