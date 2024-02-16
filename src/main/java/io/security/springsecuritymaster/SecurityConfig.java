@@ -74,7 +74,7 @@ public class SecurityConfig {
     @Bean
     public AuthenticationEventPublisher defaulAuthenticationEventPublisher(ApplicationEventPublisher applicationEventPublisher) {
         DefaultAuthenticationEventPublisher authenticationEventPublisher = new DefaultAuthenticationEventPublisher(applicationEventPublisher);
-        authenticationEventPublisher.setDefaultAuthenticationFailureEvent(CustomAuthenticationFailureEvent.class);
+        authenticationEventPublisher.setDefaultAuthenticationFailureEvent(DefaultAuthenticationFailureEvent.class);
         return authenticationEventPublisher;
     }
     @Bean

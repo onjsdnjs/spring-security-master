@@ -20,8 +20,12 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 
-        if(!authentication.getName().equals("user")) {
-            authenticationEventPublisher.publishAuthenticationFailure(new BadCredentialsException("DisabledException"), authentication);
+        if(authentication.getName().equals("admin")) {
+            authenticationEventPublisher.publishAuthenticationFailure(new CustomException("CustomException"), authentication);
+
+            throw new CustomException("CustomException");
+        }else if(authentication.getName().equals("db")){
+            authenticationEventPublisher.publishAuthenticationFailure(new CustomAuthenticationException("CustomAuthenticationException"), authentication);
 
             throw new BadCredentialsException("BadCredentialsException");
         }
