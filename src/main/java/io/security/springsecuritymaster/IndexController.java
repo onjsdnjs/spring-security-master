@@ -18,13 +18,17 @@ public class IndexController {
     public User user2(@AuthenticationPrincipal User user){
         return user;
     }
+    @GetMapping("/user3")
+    public User user3(@CurrentUser User user){
+        return user;
+    }
     @GetMapping("/username")
     public String username(@AuthenticationPrincipal(expression = "username") String username){
         return username;
     }
-    @GetMapping("/user3")
-    public User user3(@CurrentUser User user){
-        return user;
+    @GetMapping("/username2")
+    public String username2(@CurrentUserName String username){
+        return username;
     }
     @GetMapping("/db")
     public String db(){
