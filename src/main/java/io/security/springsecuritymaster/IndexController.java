@@ -41,5 +41,4 @@ public class IndexController {
         }
         return Collections.emptyList();
     }
-
 }
