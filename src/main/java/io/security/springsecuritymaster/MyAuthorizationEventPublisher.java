@@ -1,5 +1,6 @@
 package io.security.springsecuritymaster;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.security.authorization.AuthorityAuthorizationDecision;
 import org.springframework.security.authorization.AuthorizationDecision;
@@ -12,7 +13,6 @@ import org.springframework.stereotype.Component;
 import java.util.Collection;
 import java.util.function.Supplier;
 
-@Component
 public class MyAuthorizationEventPublisher implements AuthorizationEventPublisher {
     private final AuthorizationEventPublisher delegate;
     private final ApplicationEventPublisher eventPublisher;
@@ -22,10 +22,6 @@ public class MyAuthorizationEventPublisher implements AuthorizationEventPublishe
         this.eventPublisher = eventPublisher;
     }
 
-    /*    public MyAuthorizationEventPublisher(AuthorizationEventPublisher authorizationEventPublisher, ApplicationEventPublisher eventPublisher) {
-            delegate = authorizationEventPublisher;
-            this.eventPublisher = eventPublisher;
-        }*/
     @Override
     public <T> void publishAuthorizationEvent(Supplier<Authentication> authentication,
                                               T object, AuthorizationDecision decision) {
