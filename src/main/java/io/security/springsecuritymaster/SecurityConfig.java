@@ -50,9 +50,15 @@ public class SecurityConfig {
                         .requestMatchers("/admin").hasAuthority("ROLE_ADMIN")
                         .anyRequest().permitAll())
                 .formLogin(Customizer.withDefaults())
-                .csrf(AbstractHttpConfigurer::disable);
+                .csrf(AbstractHttpConfigurer::disable)
+                .authenticationProvider(customAuthenticationProvider());
 
         return http.build();
+    }
+
+    @Bean
+    public AuthenticationProvider customAuthenticationProvider(){
+        return new CustomAuthenticationProvider(customAuthenticationEventPublisher(null));
     }
 
     @Bean
