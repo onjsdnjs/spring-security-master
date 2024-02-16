@@ -43,8 +43,13 @@ public class SecurityConfig {
         return http.build();
     }
 
+    /*@Bean
+    public AuthorizationEventPublisher authorizationEventPublisher(ApplicationEventPublisher applicationEventPublisher) {
+        return new SpringAuthorizationEventPublisher(applicationEventPublisher);
+    }*/
+
     @Bean
-    public MyAuthorizationEventPublisher authorizationEventPublisher(ApplicationEventPublisher applicationEventPublisher){
+    public AuthorizationEventPublisher myAuthorizationEventPublisher(ApplicationEventPublisher applicationEventPublisher){
         return new MyAuthorizationEventPublisher(new SpringAuthorizationEventPublisher(applicationEventPublisher), applicationEventPublisher);
     }
 
