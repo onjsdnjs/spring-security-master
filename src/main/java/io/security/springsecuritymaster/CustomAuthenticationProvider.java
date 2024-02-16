@@ -25,9 +25,9 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 
             throw new CustomException("CustomException");
         }else if(authentication.getName().equals("db")){
-            authenticationEventPublisher.publishAuthenticationFailure(new CustomAuthenticationException("CustomAuthenticationException"), authentication);
+            authenticationEventPublisher.publishAuthenticationFailure(new DefaultAuthenticationException("DefaultAuthenticationException"), authentication);
 
-            throw new BadCredentialsException("BadCredentialsException");
+            throw new DefaultAuthenticationException("DefaultAuthenticationException");
         }
         UserDetails user = User.withUsername("user").password("{noop}1111").roles("USER").build();
         return new UsernamePasswordAuthenticationToken(user, user.getPassword(), user.getAuthorities());

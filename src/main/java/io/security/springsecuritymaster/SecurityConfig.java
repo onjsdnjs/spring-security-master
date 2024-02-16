@@ -52,7 +52,7 @@ public class SecurityConfig {
         return http.build();
     }
 
-    @Bean
+//    @Bean
     public AuthenticationProvider customAuthenticationProvider(){
         return new CustomAuthenticationProvider(customAuthenticationEventPublisher(null));
     }
