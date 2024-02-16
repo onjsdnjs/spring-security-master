@@ -47,7 +47,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain2(HttpSecurity http) throws Exception {
 
         http
-                .securityMatchers((matchers) -> matchers.requestMatchers("/api/**", "/oauth/**"))
+                .securityMatchers((matchers) -> matchers.requestMatchers("/api/**"))
                 .authorizeHttpRequests(authorize -> authorize
                         .anyRequest().permitAll());
 
