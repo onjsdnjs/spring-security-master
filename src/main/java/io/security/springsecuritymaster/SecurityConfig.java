@@ -56,7 +56,6 @@ public class SecurityConfig {
     public AuthenticationProvider customAuthenticationProvider(){
         return new CustomAuthenticationProvider(customAuthenticationEventPublisher(null));
     }
-
     @Bean
     public AuthenticationEventPublisher customAuthenticationEventPublisher(ApplicationEventPublisher applicationEventPublisher) {
         Map<Class<? extends AuthenticationException>, Class<? extends AbstractAuthenticationFailureEvent>> mapping =
