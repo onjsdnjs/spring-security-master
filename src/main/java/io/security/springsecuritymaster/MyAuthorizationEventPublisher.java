@@ -17,10 +17,15 @@ public class MyAuthorizationEventPublisher implements AuthorizationEventPublishe
     private final AuthorizationEventPublisher delegate;
     private final ApplicationEventPublisher eventPublisher;
 
-    public MyAuthorizationEventPublisher(AuthorizationEventPublisher authorizationEventPublisher, ApplicationEventPublisher eventPublisher) {
-        delegate = authorizationEventPublisher;
+    public MyAuthorizationEventPublisher(AuthorizationEventPublisher delegate, ApplicationEventPublisher eventPublisher) {
+        this.delegate = delegate;
         this.eventPublisher = eventPublisher;
     }
+
+    /*    public MyAuthorizationEventPublisher(AuthorizationEventPublisher authorizationEventPublisher, ApplicationEventPublisher eventPublisher) {
+            delegate = authorizationEventPublisher;
+            this.eventPublisher = eventPublisher;
+        }*/
     @Override
     public <T> void publishAuthorizationEvent(Supplier<Authentication> authentication,
                                               T object, AuthorizationDecision decision) {
