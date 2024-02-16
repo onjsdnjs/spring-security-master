@@ -13,6 +13,18 @@ import java.util.List;
 
 @RestController
 public class IndexController {
+    @GetMapping("/user")
+    public String user(){
+        return "user";
+    }
+    @GetMapping("/db")
+    public String db(){
+        return "db";
+    }
+    @GetMapping("/admin")
+    public String admin(){
+        return "admin";
+    }
 
     @GetMapping("/login")
     public String login(HttpServletRequest request, MemberDto memberDto) throws ServletException, IOException {
