@@ -1,7 +1,12 @@
 package io.security.springsecuritymaster;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.concurrent.Callable;
 
 @RestController
 public class IndexController {
@@ -16,6 +21,22 @@ public class IndexController {
     @GetMapping("/admin")
     public String admin(){
         return "admin";
+    }
+
+    @GetMapping("/callable")
+    public Callable<Authentication> processUpload() {
+        SecurityContext securityContext = SecurityContextHolder.getContextHolderStrategy().getContext();
+        System.out.println("securityContext = " + securityContext);
+
+        return new Callable<Authentication>() {
+            public Authentication call() throws Exception {
+                SecurityContext securityContext = SecurityContextHolder.getContextHolderStrategy().getContext();
+                System.out.println("securityContext = " + securityContext);
+                Authentication authentication = securityContext.getAuthentication();
+
+                return authentication;
+            }
+        };
     }
 
 }
