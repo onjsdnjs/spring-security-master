@@ -1,5 +1,6 @@
 package io.security.springsecuritymaster;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -9,7 +10,10 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.concurrent.Callable;
 
 @RestController
+@RequiredArgsConstructor
 public class IndexController {
+
+    private AsyncService asyncService;
     @GetMapping("/user")
     public String user(){
         return "user";
@@ -24,7 +28,7 @@ public class IndexController {
     }
 
     @GetMapping("/callable")
-    public Callable<Authentication> processUpload() {
+    public Callable<Authentication> callable() {
         SecurityContext securityContext = SecurityContextHolder.getContextHolderStrategy().getContext();
         System.out.println("securityContext = " + securityContext);
         System.out.println("Parent Thread: " + Thread.currentThread().getName());
@@ -40,5 +44,12 @@ public class IndexController {
             }
         };
     }
-
+    @GetMapping("/async")
+    public void async() {
+        SecurityContext securityContext = SecurityContextHolder.getContextHolderStrategy().getContext();
+        System.out.println("securityContext = " + securityContext);
+        System.out.println("Parent Thread: " + Thread.currentThread().getName());
+        Authentication authentication = securityContext.getAuthentication();
+        asyncService.asyncMethod();
+    }
 }
