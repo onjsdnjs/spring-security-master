@@ -13,7 +13,8 @@ import java.util.concurrent.Callable;
 @RequiredArgsConstructor
 public class IndexController {
 
-    private AsyncService asyncService;
+    private final AsyncService asyncService;
+
     @GetMapping("/user")
     public String user(){
         return "user";
