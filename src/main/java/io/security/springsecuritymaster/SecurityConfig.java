@@ -26,12 +26,8 @@ import java.util.Collections;
 import java.util.Map;
 
 @EnableWebSecurity
-@RequiredArgsConstructor
 @Configuration
 public class SecurityConfig {
-
-    private final ApplicationContext applicationContext;
-    private final AuthenticationProvider authenticationProvider;
 
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
