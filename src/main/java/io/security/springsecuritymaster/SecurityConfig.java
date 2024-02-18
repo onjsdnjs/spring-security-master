@@ -2,6 +2,7 @@ package io.security.springsecuritymaster;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.User;
@@ -19,23 +20,7 @@ public class SecurityConfig {
 
         http
                 .authorizeHttpRequests( auth -> auth.anyRequest().authenticated())
-                .formLogin( form -> form
-//                        .loginPage("/loginPage")
-                        .loginProcessingUrl("/loginProc")
-                        .defaultSuccessUrl("/")
-                        .failureUrl("/login")
-                        .usernameParameter("userId")
-                        .passwordParameter("passwd")
-                        .successHandler((request, response, authentication) -> {
-                            System.out.println("authentication: " + authentication.getName());
-                            response.sendRedirect("/");
-                        })
-                        .failureHandler((request, response, exception) -> {
-                            System.out.println("exception: " + exception.getMessage());
-                            response.sendRedirect("/login");
-                        })
-                        .permitAll()
-                );
+                .formLogin( Customizer.withDefaults());
 
         return http.build();
     }
@@ -45,5 +30,4 @@ public class SecurityConfig {
         UserDetails user = User.withUsername("user").password("{noop}1111").roles("USER").build();
         return  new InMemoryUserDetailsManager(user);
     }
-
 }
