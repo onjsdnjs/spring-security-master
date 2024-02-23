@@ -20,7 +20,7 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests( auth -> auth.anyRequest().authenticated())
                 .formLogin( form -> form
-//                        .loginPage("/loginPage")
+                        .loginPage("/loginPage")
                         .loginProcessingUrl("/loginProc")
                         .defaultSuccessUrl("/",true)
                         .failureUrl("/login")
@@ -28,7 +28,7 @@ public class SecurityConfig {
                         .passwordParameter("passwd")
                         .successHandler((request, response, authentication) -> {
                             System.out.println("authentication: " + authentication.getName());
-                            response.sendRedirect("/");
+                            response.sendRedirect("/home");
                         })
                         .failureHandler((request, response, exception) -> {
                             System.out.println("exception: " + exception.getMessage());
