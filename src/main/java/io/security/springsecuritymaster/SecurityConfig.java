@@ -24,7 +24,7 @@ public class SecurityConfig {
                 .formLogin(Customizer.withDefaults())
 
                 .rememberMe(rememberMe -> rememberMe
-//                .alwaysRemember(true)  // "기억하기" 매개변수가 설정되지 않았을 때에도 쿠키가 항상 생성되어야 함
+                .alwaysRemember(true)  // "기억하기" 매개변수가 설정되지 않았을 때에도 쿠키가 항상 생성되어야 함
                 .tokenValiditySeconds(3600)  // 토큰이 유효한 시간(초 단위)
                 .userDetailsService(userDetailsService())  // UserDetails를 조회하기 위해 사용되는 UserDetailsService 지정
                 .rememberMeParameter("remember")  // 로그인 시 사용자를 기억하기 위해 사용되는 HTTP 매개변수
