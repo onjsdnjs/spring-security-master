@@ -2,6 +2,7 @@ package io.security.springsecuritymaster;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -27,7 +28,7 @@ public class SecurityConfig {
                 .formLogin(Customizer.withDefaults())
                 .logout(logout -> logout
                     .logoutUrl("/logoutProc") // 로그아웃이 발생하는 URL 지정
-                    .logoutRequestMatcher(new AntPathRequestMatcher("/logoutProc")) // 로그아웃 RequestMatcher 지정, logoutUrl 보다 우선적
+                    .logoutRequestMatcher(new AntPathRequestMatcher("/logoutProc","POST")) // 로그아웃 RequestMatcher 지정, logoutUrl 보다 우선적
                     .logoutSuccessUrl("/logoutSuccess") // 로그아웃 성공 후 리다이렉션 될 URL
                     .logoutSuccessHandler((request, response, authentication) -> {
                         response.sendRedirect("/logoutSuccess"); // 로그아웃 성공 핸들러
