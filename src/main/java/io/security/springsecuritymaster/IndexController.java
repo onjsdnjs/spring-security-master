@@ -39,7 +39,7 @@ public class IndexController {
     }
 
     @GetMapping("/logoutSuccess")
-    public String logoutSuccess(@CurrentSecurityContext SecurityContext context){
+    public String logoutSuccess(){
         return "logoutSuccess";
     }
 }
