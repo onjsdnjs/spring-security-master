@@ -31,7 +31,7 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests( auth -> auth
                         .requestMatchers("/anonymous").hasRole("GUEST")
-                        .requestMatchers("/anonymousContext").permitAll()
+                        .requestMatchers("/anonymousContext","/authentication").permitAll()
                         .anyRequest().authenticated())
                 .formLogin(Customizer.withDefaults())
                 .anonymous(anonymous -> anonymous
