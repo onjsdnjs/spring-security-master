@@ -51,4 +51,5 @@ public class SecurityConfig3 {
         UserDetails user = User.withUsername("user").password("{noop}1111").roles("USER").build();
         return  new InMemoryUserDetailsManager(user);
     }
-}*/
+}
+*/
