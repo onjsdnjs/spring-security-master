@@ -1,3 +1,4 @@
+/*
 package io.security.springsecuritymaster;
 
 import org.springframework.context.annotation.Bean;
@@ -51,3 +52,4 @@ public class SecurityConfig2 {
         return  new InMemoryUserDetailsManager(user);
     }
 }
+*/
