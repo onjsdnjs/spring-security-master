@@ -25,7 +25,7 @@ public class SecurityConfig2 {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/login").permitAll()
+                        .requestMatchers("/","/api/login").permitAll()
                         .anyRequest().authenticated())
                 .addFilterBefore(customFilter(http), UsernamePasswordAuthenticationFilter.class);
         return http.build();
