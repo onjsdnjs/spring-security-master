@@ -1,3 +1,4 @@
+/*
 package io.security.springsecuritymaster;
 
 import lombok.RequiredArgsConstructor;
@@ -38,3 +39,4 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         return authentication.isAssignableFrom(UsernamePasswordAuthenticationToken.class);
     }
 }
+*/
