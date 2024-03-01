@@ -13,26 +13,28 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @EnableWebSecurity
 @Configuration
-public class SecurityConfig {
+@RequiredArgsConstructor
+public class SecurityConfig2 {
+
+    private final AuthenticationProvider authenticationProvider;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
-  /*      AuthenticationManagerBuilder authenticationManagerBuilder = http.getSharedObject(AuthenticationManagerBuilder.class);
-        authenticationManagerBuilder.userDetailsService(new CustomUserDetailsService());*/
+        AuthenticationManagerBuilder authenticationManagerBuilder = http.getSharedObject(AuthenticationManagerBuilder.class);
+        authenticationManagerBuilder.authenticationProvider(authenticationProvider);
 
         http
                 .authorizeHttpRequests(auth -> auth
                         .anyRequest().authenticated())
                 .formLogin(Customizer.withDefaults())
-//                .userDetailsService(new CustomUserDetailsService())
         ;
         return http.build();
     }
 
     @Bean
     public UserDetailsService customUserDetailsService(){
-        return new CustomUserDetailsService();
+        return  new CustomUserDetailsService();
     }
 
     /*@Bean
