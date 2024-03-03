@@ -28,7 +28,7 @@ public class CustomAuthenticationFilter extends AbstractAuthenticationProcessing
         SecurityContextRepository securityContextRepository = http.getSharedObject(SecurityContextRepository.class);
         if (securityContextRepository == null) {
             securityContextRepository = new DelegatingSecurityContextRepository(
-                    new RequestAttributeSecurityContextRepository(), new HttpSessionSecurityContextRepository());
+                    new HttpSessionSecurityContextRepository(), new RequestAttributeSecurityContextRepository());
         }
         return securityContextRepository;
     }
