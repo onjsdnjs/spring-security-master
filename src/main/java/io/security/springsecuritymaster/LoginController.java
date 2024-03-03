@@ -29,7 +29,7 @@ public class LoginController {
 
         SecurityContext securityContext = SecurityContextHolder.createEmptyContext();
         securityContext.setAuthentication(authentication);
-        SecurityContextHolder.setContext(securityContext);
+        SecurityContextHolder.getContextHolderStrategy().setContext(securityContext);
 
         securityContextRepository.saveContext(securityContext, request, response);
 
