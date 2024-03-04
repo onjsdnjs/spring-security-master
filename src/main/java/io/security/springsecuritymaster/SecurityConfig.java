@@ -22,8 +22,9 @@ public class SecurityConfig {
                 .anyRequest().authenticated())
                 .formLogin(Customizer.withDefaults())
                 .sessionManagement(session -> session
-                        .sessionFixation(sessionFixation -> sessionFixation.newSession())
-                );
+                        .sessionFixation(sessionFixation -> sessionFixation.changeSessionId())
+                )
+                ;
 
         return http.build();
     }
