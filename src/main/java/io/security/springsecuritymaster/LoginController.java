@@ -21,7 +21,7 @@ public class LoginController {
     private final AuthenticationManager authenticationManager;
     private final HttpSessionSecurityContextRepository securityContextRepository = new HttpSessionSecurityContextRepository();
 
-    @PostMapping("/customLogin")
+    @PostMapping("/login")
     public Authentication customLogin(@RequestBody LoginRequest login, HttpServletRequest request, HttpServletResponse response) {
 
         UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(login.getUsername(), login.getPassword());
