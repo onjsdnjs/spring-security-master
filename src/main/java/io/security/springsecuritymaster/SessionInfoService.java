@@ -13,7 +13,7 @@ public class SessionInfoService {
 
     private final SessionRegistry sessionRegistry;
 
-    public void printActiveSessions() {
+    public void sessionInfo() {
         for (Object principal : sessionRegistry.getAllPrincipals()) {
             List<SessionInformation> activeSessions = sessionRegistry.getAllSessions(principal, false);
             for (SessionInformation sessionInformation : activeSessions) {
