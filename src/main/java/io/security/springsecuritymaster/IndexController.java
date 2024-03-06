@@ -78,9 +78,4 @@ public class IndexController {
         return "csrf 적용";
     }
 
-    @PostMapping("/ignoreCsrf")
-    public String ignoreCsrf(){
-        return "csrf 적용 안함";
-    }
-
 }

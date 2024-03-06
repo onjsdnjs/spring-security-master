@@ -19,10 +19,10 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http.authorizeHttpRequests(auth -> auth
-                .requestMatchers("/csrf","/ignoreCsrf").permitAll()
+                .requestMatchers("/csrf").permitAll()
                 .anyRequest().authenticated())
                 .formLogin(Customizer.withDefaults())
-                .csrf(csrf->csrf.ignoringRequestMatchers("/ignoreCsrf"));
+                .csrf(csrf->csrf.ignoringRequestMatchers("/csrf"));
 
         return http.build();
     }
