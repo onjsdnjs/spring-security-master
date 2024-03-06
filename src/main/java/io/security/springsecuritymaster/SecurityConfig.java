@@ -27,7 +27,7 @@ public class SecurityConfig {
         XorCsrfTokenRequestAttributeHandler csrfTokenRequestHandler = new XorCsrfTokenRequestAttributeHandler();
 
         http.authorizeHttpRequests(auth -> auth
-                .requestMatchers("/csrf","/ignoreCsrf").permitAll()
+                .requestMatchers("/csrf").permitAll()
                 .anyRequest().authenticated())
                 .formLogin(Customizer.withDefaults())
                 .csrf(csrf -> csrf
