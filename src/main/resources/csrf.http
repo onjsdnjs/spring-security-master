@@ -7,8 +7,3 @@ POST http://localhost:8080/csrf
 Content-Type: application/x-www-form-urlencoded
 
 _csrf = BJwnG_GQ-wCZaev0qgTCLfcgLngMYT50Xb4vn__WkJT_v3ekNagfesXxnWW0Ud3Bzyn2SZRGAxk4VQ9ZZY5J_sblqfWe2kaW
-
-### Send POST request with json body
-POST http://localhost:8080/ignoreCsrf
-Content-Type: application/json
-
