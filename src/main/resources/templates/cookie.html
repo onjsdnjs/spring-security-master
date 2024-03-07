@@ -10,7 +10,7 @@
                 method: 'POST', // 요청 메소드
                 headers: {
                     'Content-Type': 'application/json', // 컨텐츠 타입 지정
-                    'X-CSRF-TOKEN': getCookie('XSRF-TOKEN') // CSRF 토큰 헤더에 추가
+                    'X-XSRF-TOKEN': getCookie('XSRF-TOKEN') // CSRF 토큰 헤더에 추가
                 },
                 body: JSON.stringify({/* 데이터 객체 */}), // 서버로 보낼 데이터
                 credentials: 'include' // 쿠키를 포함시키기 위해 필요

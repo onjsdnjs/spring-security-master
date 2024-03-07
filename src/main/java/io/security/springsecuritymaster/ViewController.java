@@ -8,7 +8,7 @@ public class ViewController {
 
     @GetMapping("/cookie")
     public String requestCsrf(){
-        return "csrf";
+        return "cookie";
     }
 
     @GetMapping("/form")

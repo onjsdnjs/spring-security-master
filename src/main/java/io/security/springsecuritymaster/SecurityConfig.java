@@ -19,13 +19,13 @@ import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 @Configuration
 public class SecurityConfig {
 
-    /*@Bean
+    @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         SpaCsrfTokenRequestHandler csrfTokenRequestHandler = new SpaCsrfTokenRequestHandler();
 
         http.authorizeHttpRequests(auth -> auth
-                .requestMatchers("/csrf","/ignoreCsrf", "/cookie", "/cookieCsrf").permitAll()
+                .requestMatchers("/csrf","/cookie", "/cookieCsrf").permitAll()
                 .anyRequest().authenticated())
                 .formLogin(Customizer.withDefaults())
                 .csrf(csrf -> csrf
@@ -35,13 +35,13 @@ public class SecurityConfig {
         http.addFilterBefore(new CsrfCookieFilter(), BasicAuthenticationFilter.class);
 
         return http.build();
-    }*/
+    }
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain securityFilterChain2(HttpSecurity http) throws Exception {
 
         http.authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/csrf","/ignoreCsrf","/form","/formCsrf").permitAll()
+                        .requestMatchers("/csrf","/form","/formCsrf").permitAll()
                         .anyRequest().authenticated())
                 .formLogin(Customizer.withDefaults())
                 .csrf(Customizer.withDefaults());
