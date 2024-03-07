@@ -6,7 +6,7 @@ Content-Type: application/json
 POST http://localhost:8080/csrf
 Content-Type: application/x-www-form-urlencoded
 
-_csrf = V6besSp81gmYICKq-aEsFZZjvUU3msZiVmaYBAs0vcvVrOvaYJ7m0xxFszq1FRKfwYwYJ6JWkH1UoqNPMwevMmoMhP6zntru
+_csrf = Ky0RsOiYCHaXhxUYH7qj06gKX-o9vYHRSn6lKXHe3lmeMRJcH0wi1tqpbk-6tycrfZeXsJ0ycoheiLP8fkidGUPtv2yoAyQ5
 
 ### Send POST request with json body
 GET http://localhost:8080/csrfToken
