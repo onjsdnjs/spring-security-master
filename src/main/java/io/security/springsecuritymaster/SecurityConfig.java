@@ -22,22 +22,19 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
-        HttpSessionCsrfTokenRepository csrfTokenRepository = new HttpSessionCsrfTokenRepository();
-//        CookieCsrfTokenRepository csrfTokenRepository = new  CookieCsrfTokenRepository();
-        XorCsrfTokenRequestAttributeHandler csrfTokenRequestHandler = new XorCsrfTokenRequestAttributeHandler();
+        CookieCsrfTokenRepository csrfTokenRepository = new CookieCsrfTokenRepository();
+        XorCsrfTokenRequestAttributeHandler csrfTokenRequestAttributeHandler = new XorCsrfTokenRequestAttributeHandler();
+        csrfTokenRequestAttributeHandler.setCsrfRequestAttributeName(null);
 
-
-        http.authorizeHttpRequests(auth -> auth
-                .requestMatchers("/csrf","/csrfToken").permitAll()
-                .anyRequest().authenticated())
+        http
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/csrf","/csrfToken").permitAll()
+                        .anyRequest().authenticated())
                 .formLogin(Customizer.withDefaults())
                 .csrf(csrf -> csrf
-                        .csrfTokenRepository(csrfTokenRepository)
-                        .csrfTokenRequestHandler(csrfTokenRequestHandler)
-//                        .csrfTokenRequestHandler(null)
-                );
-
+                        .csrfTokenRequestHandler(csrfTokenRequestAttributeHandler));
         return http.build();
+
     }
 
     @Bean

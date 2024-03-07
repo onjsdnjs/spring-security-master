@@ -78,7 +78,9 @@ public class IndexController {
 
     @GetMapping("/csrfToken")
     public String csrfToken(HttpServletRequest request){
-        CsrfToken csrfToken = (CsrfToken)request.getAttribute(CsrfToken.class.getName());
-        return csrfToken.getToken();
+        CsrfToken csrfToken1 = (CsrfToken) request.getAttribute(CsrfToken.class.getName());
+        CsrfToken csrfToken2 = (CsrfToken) request.getAttribute("_csrf");
+        String token = csrfToken1.getToken();
+        return token;
     }
 }
