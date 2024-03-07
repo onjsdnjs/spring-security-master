@@ -98,13 +98,4 @@ public class IndexController {
         return csrfToken;
     }
 
-    @GetMapping("/readCookie")
-    public String readCookie(@CookieValue(value = "SESSION", defaultValue = "No Cookie") String cookieValue) {
-        return "Cookie Value: " + cookieValue;
-    }
-
-    @PostMapping("/insertCookie")
-    public String insertCookie(@CookieValue(value = "SESSION", defaultValue = "No Cookie") String cookieValue) {
-        return "Cookie Value: " + cookieValue;
-    }
 }
