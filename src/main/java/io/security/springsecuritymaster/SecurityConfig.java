@@ -26,6 +26,7 @@ public class SecurityConfig {
 //        CookieCsrfTokenRepository csrfTokenRepository = new  CookieCsrfTokenRepository();
         XorCsrfTokenRequestAttributeHandler csrfTokenRequestHandler = new XorCsrfTokenRequestAttributeHandler();
 
+
         http.authorizeHttpRequests(auth -> auth
                 .requestMatchers("/csrf").permitAll()
                 .anyRequest().authenticated())
