@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.access.expression.DefaultHttpSecurityExpressionHandler;
 import org.springframework.security.web.access.expression.WebExpressionAuthorizationManager;
 
 import static org.springframework.security.authorization.AuthorityAuthorizationManager.hasAuthority;
@@ -25,8 +26,6 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http, ApplicationContext context) throws Exception {
 
         http.authorizeHttpRequests(authorize -> authorize
-                .requestMatchers("/login").permitAll()
-
                 .requestMatchers("/user/{name}")
                 .access(new WebExpressionAuthorizationManager("#name == authentication.name"))
 
@@ -47,7 +46,7 @@ public class SecurityConfig {
         WebExpressionAuthorizationManager expressManager = new WebExpressionAuthorizationManager("@customWebSecurity.check(authentication, request)");
         expressManager.setExpressionHandler(expressionHandler);
         http.authorizeHttpRequests(authorize -> authorize
-                .requestMatchers("/user/**").access(expressManager)
+                .requestMatchers("/custom/**").access(expressManager)
                 .anyRequest().authenticated())
                 .formLogin(Customizer.withDefaults());
 
