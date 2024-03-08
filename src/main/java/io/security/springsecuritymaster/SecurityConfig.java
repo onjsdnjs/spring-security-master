@@ -13,6 +13,10 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.expression.WebExpressionAuthorizationManager;
 
+import static org.springframework.security.authorization.AuthorityAuthorizationManager.hasAuthority;
+import static org.springframework.security.authorization.AuthorityAuthorizationManager.hasRole;
+import static org.springframework.security.authorization.AuthorizationManagers.allOf;
+
 @EnableWebSecurity
 @Configuration
 public class SecurityConfig {
@@ -24,7 +28,6 @@ public class SecurityConfig {
                 .requestMatchers("/login").permitAll()
                 .requestMatchers("/user/{name}")
                 .access(new WebExpressionAuthorizationManager("#name == authentication.name"))
-
                 .requestMatchers("/admin/db")
                 .access(new WebExpressionAuthorizationManager("hasAuthority('ROLE_DB') or hasRole('ADMIN')"))
                 .anyRequest().authenticated())
