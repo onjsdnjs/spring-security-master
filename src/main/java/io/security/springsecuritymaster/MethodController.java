@@ -22,26 +22,26 @@ public class MethodController {
         return "index";
     }
 
-    @PostMapping("/data")
-    public List<Account> processData(@RequestBody List<Account> data) {
-        return dataService.processData(data);
+    @PostMapping("/writeList")
+    public List<Account> writeList(@RequestBody List<Account> data) {
+
+        return dataService.writeList(data);
     }
 
-    @PostMapping("/data2")
-    public Map<String, Account> processData2(@RequestBody List<Account> data) {
+    @PostMapping("/writeMap")
+    public Map<String, Account> writeMap(@RequestBody List<Account> data) {
         Map<String, Account> dataMap = data.stream()
                 .collect(Collectors.toMap(Account::getOwner, account -> account));
-        return dataService.processData2(dataMap);
+        return dataService.writeMap(dataMap);
     }
 
-    @GetMapping("/read")
-    public List<Account> readAccounts() {
-        return dataService.readAccount();
+    @GetMapping("/readList")
+    public List<Account> readList() {
+        return dataService.readList();
     }
 
-    @GetMapping("/read2")
-    @PostFilter("filterObject.value.owner == authentication.name")
-    public Map<String, Account> readAccounts2() {
-        return dataService.readAccount2();
+    @GetMapping("/readMap")
+    public Map<String, Account> readMap() {
+        return dataService.readMap();
     }
 }
