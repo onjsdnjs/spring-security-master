@@ -33,11 +33,10 @@ public class SecurityConfig {
 
         http
                 .authorizeHttpRequests(authorize -> authorize
-                .requestMatchers("/login", "/images/**").permitAll()
-                .requestMatchers("/user").hasRole("USER")
-                .requestMatchers("/db").hasAuthority("ROLE_DB")
-                .requestMatchers("/admin").hasAuthority("ROLE_ADMIN")
-                .anyRequest().authenticated())
+                        .requestMatchers("user").hasRole("USER")
+                        .requestMatchers("db").hasRole("DB")
+                        .requestMatchers("admin").hasRole("ADMIN")
+                        .anyRequest().authenticated())
                 .formLogin(Customizer.withDefaults())
                 .csrf(AbstractHttpConfigurer::disable);
 
