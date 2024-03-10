@@ -50,7 +50,7 @@ public class SecurityConfig {
         RoleHierarchyImpl hierarchy = new RoleHierarchyImpl();
         hierarchy.setHierarchy("ROLE_ADMIN > ROLE_DB\n" +
                 "ROLE_DB > ROLE_USER\n" +
-                "ROLE_USER > ROLE_GUEST");
+                "ROLE_USER > ROLE_ANONYMOUS");
         return hierarchy;
     }
 
