@@ -15,7 +15,6 @@ public class CustomRequestMatcherDelegatingAuthorizationManager implements Autho
     private final RequestMatcherDelegatingAuthorizationManager manager;
 
     public CustomRequestMatcherDelegatingAuthorizationManager(List<RequestMatcherEntry<AuthorizationManager<RequestAuthorizationContext>>> mappings) {
-        Assert.notEmpty(mappings, "mappings cannot be empty");
         manager = RequestMatcherDelegatingAuthorizationManager.builder().mappings(maps -> maps.addAll(mappings)).build();
     }
     @Override
