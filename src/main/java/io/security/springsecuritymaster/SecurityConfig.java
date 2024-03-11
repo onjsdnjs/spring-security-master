@@ -34,7 +34,6 @@ public class SecurityConfig {
 
         http
                 .authorizeHttpRequests(authorize -> authorize
-                .requestMatchers("/login", "/images/**").permitAll()
                 .requestMatchers("/user").hasRole("USER")
                 .requestMatchers("/db").access(new WebExpressionAuthorizationManager("hasRole('DB')"))
                 .requestMatchers("/admin").hasAuthority("ROLE_ADMIN")
