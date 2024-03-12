@@ -28,9 +28,9 @@ public class MethodSecurityConfig {
         return new AuthorizationManagerBeforeMethodInterceptor(pointcut, manager);
     }
 
-    /*@Bean
+    @Bean
     @Role(BeanDefinition.ROLE_INFRASTRUCTURE)
-    public Advisor protectServicePointcut() {
+    public Advisor protectServicePointcut2() {
         return new AuthorizationManagerBeforeMethodInterceptor(createCompositePointcut(), hasRole("USER"));
     }
 
@@ -46,5 +46,5 @@ public class MethodSecurityConfig {
         compositePointcut.union((Pointcut) pointcut2);
 
         return compositePointcut;
-    }*/
+    }
 }
