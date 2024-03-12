@@ -16,7 +16,7 @@ public class MyPostAuthorizationManager implements AuthorizationManager<MethodIn
         Authentication auth = authentication.get();
         if(auth instanceof AnonymousAuthenticationToken) return new AuthorizationDecision(false);
         Account account = (Account) result.getResult();
-        boolean isGranted = account.getOwner().equals(authentication.get().getName());
+        boolean isGranted = account.getOwner().equals(auth.getName());
         return new AuthorizationDecision(isGranted);
     }
 }
