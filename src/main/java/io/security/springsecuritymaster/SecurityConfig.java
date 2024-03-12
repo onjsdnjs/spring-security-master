@@ -70,10 +70,8 @@ public class SecurityConfig {
         return new CustomAuthenticationProvider2(authenticationEventPublisher(null));
     }
     @Bean
-    @ConditionalOnMissingBean(AuthenticationEventPublisher.class)
     public DefaultAuthenticationEventPublisher authenticationEventPublisher(ApplicationEventPublisher applicationEventPublisher) {
         DefaultAuthenticationEventPublisher authenticationEventPublisher = new DefaultAuthenticationEventPublisher(applicationEventPublisher);
-        authenticationEventPublisher.setDefaultAuthenticationFailureEvent(CustomAuthenticationFailureEvent.class);
         return authenticationEventPublisher;
     }
     @Bean
