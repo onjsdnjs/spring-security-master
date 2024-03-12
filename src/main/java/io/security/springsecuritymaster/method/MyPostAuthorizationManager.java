@@ -1,5 +1,6 @@
 package io.security.springsecuritymaster.method;
 
+import io.security.springsecuritymaster.Account;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.authorization.AuthorizationDecision;
 import org.springframework.security.authorization.AuthorizationManager;
@@ -14,6 +15,8 @@ public class MyPostAuthorizationManager implements AuthorizationManager<MethodIn
     public AuthorizationDecision check(Supplier<Authentication> authentication, MethodInvocationResult result) {
         Authentication auth = authentication.get();
         if(auth instanceof AnonymousAuthenticationToken) return new AuthorizationDecision(false);
-        return new AuthorizationDecision(auth.isAuthenticated());
+        Account account = (Account) result.getResult();
+        boolean isGranted = account.getOwner().equals(authentication.get().getName());
+        return new AuthorizationDecision(isGranted);
     }
 }
