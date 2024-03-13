@@ -40,7 +40,7 @@ public class SecurityConfig {
                         .requestMatchers("/admin").hasAuthority("ROLE_ADMIN")
                         .anyRequest().authenticated())
                 .formLogin(Customizer.withDefaults())
-                .with(MyCustomDsl.customDsl(), dsl -> dsl.flag(true));
+                .with(MyCustomDsl.customDsl(), dsl -> dsl.flag(false));
 
         return http.build();
     }
