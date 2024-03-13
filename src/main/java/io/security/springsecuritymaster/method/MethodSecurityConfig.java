@@ -23,7 +23,7 @@ public class MethodSecurityConfig {
     }
 
     @Bean
-    public Pointcut servicePointcut() {
+    public Pointcut pointcut() {
         AspectJExpressionPointcut pointcut = new AspectJExpressionPointcut();
         pointcut.setExpression("execution(* io.security.springsecuritymaster.DataService.*(..))");
         return pointcut;
@@ -31,6 +31,6 @@ public class MethodSecurityConfig {
 
     @Bean
     public Advisor serviceAdvisor(MethodInterceptor customMethodInterceptor, Pointcut servicePointcut) {
-        return new DefaultPointcutAdvisor(servicePointcut, customMethodInterceptor);
+        return new DefaultPointcutAdvisor(pointcut(), customMethodInterceptor());
     }
 }
