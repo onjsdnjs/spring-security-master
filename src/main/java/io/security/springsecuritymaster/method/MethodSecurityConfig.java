@@ -30,7 +30,7 @@ public class MethodSecurityConfig {
     }
 
     @Bean
-    public Advisor serviceAdvisor(MethodInterceptor customMethodInterceptor, Pointcut servicePointcut) {
+    public Advisor serviceAdvisor() {
         return new DefaultPointcutAdvisor(pointcut(), customMethodInterceptor());
     }
 }
