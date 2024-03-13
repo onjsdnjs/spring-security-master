@@ -35,13 +35,12 @@ public class SecurityConfig {
 
         http
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/login").permitAll()
                         .requestMatchers("/user").hasAuthority("ROLE_USER")
                         .requestMatchers("/db").hasAuthority("ROLE_DB")
                         .requestMatchers("/admin").hasAuthority("ROLE_ADMIN")
                         .anyRequest().authenticated())
                 .formLogin(Customizer.withDefaults())
-                .with(new MyCustomDsl(), dsl -> dsl.flag(true));
+                .with(MyCustomDsl.customDsl(), dsl -> dsl.flag(true));
 
         return http.build();
     }
