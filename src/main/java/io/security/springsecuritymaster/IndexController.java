@@ -13,6 +13,11 @@ import java.util.List;
 
 @RestController
 public class IndexController {
+
+    @GetMapping("/")
+    public String index(HttpServletRequest request){
+        return "index";
+    }
     @GetMapping("/user")
     public String user(){
         return "user";
