@@ -31,7 +31,6 @@ public class SecurityConfig {
                         .loginPage("/login")
                         .authenticationDetailsSource(authenticationDetailsSource)
                         .permitAll())
-//                .csrf(AbstractHttpConfigurer::disable)
                 .authenticationProvider(authenticationProvider)
         ;
         return http.build();
