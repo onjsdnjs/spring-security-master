@@ -7,22 +7,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 public class AuthConfig {
-
     @Bean
     public PasswordEncoder passwordEncoder() {
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
-
-    /*@Bean
-    public PasswordEncoder passwordEncoder() {
-        String encodingId = "pbkdf2";
-        Map<String, PasswordEncoder> encoders = new HashMap<>();
-        encoders.put(encodingId, Pbkdf2PasswordEncoder.defaultsForSpringSecurity_v5_8());
-
-        DelegatingPasswordEncoder delegatingPasswordEncoder = new DelegatingPasswordEncoder(encodingId, encoders);
-        delegatingPasswordEncoder.setDefaultPasswordEncoderForMatches(encoders.get(encodingId));
-
-        return delegatingPasswordEncoder;
-    }*/
 
 }
