@@ -24,7 +24,6 @@ public class SecurityConfig {
                         .anyRequest().authenticated())
 
                 .formLogin(form -> form.loginPage("/login").permitAll())
-//                .csrf(AbstractHttpConfigurer::disable)
                 .authenticationProvider(authenticationProvider)
         ;
         return http.build();
