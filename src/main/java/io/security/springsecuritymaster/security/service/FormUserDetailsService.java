@@ -30,9 +30,7 @@ public class FormUserDetailsService implements UserDetailsService {
 
         Account account = userRepository.findByUsername(username);
         if (account == null) {
-            if (userRepository.countByUsername(username) == 0) {
-                throw new UsernameNotFoundException("No user found with username: " + username);
-            }
+           throw new UsernameNotFoundException("No user found with username: " + username);
         }
         List<GrantedAuthority> authorities = account.getUserRoles()
                 .stream()
