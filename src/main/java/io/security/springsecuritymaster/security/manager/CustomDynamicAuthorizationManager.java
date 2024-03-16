@@ -42,6 +42,10 @@ public class CustomDynamicAuthorizationManager implements AuthorizationManager<R
         dynamicAuthorizationService =
                 new DynamicAuthorizationService(new PersistentUrlRoleMapper(resourcesRepository));
 
+        setMapping();
+    }
+
+    public void setMapping() {
         mappings = dynamicAuthorizationService.getUrlRoleMappings()
                 .entrySet().stream()
                 .map(entry -> new RequestMatcherEntry<>(
@@ -49,6 +53,7 @@ public class CustomDynamicAuthorizationManager implements AuthorizationManager<R
                         customAuthorizationManager(entry.getValue())))
                 .collect(Collectors.toList());
     }
+
     @Override
     public AuthorizationDecision check(Supplier<Authentication> authentication, RequestAuthorizationContext request) {
 
@@ -80,11 +85,7 @@ public class CustomDynamicAuthorizationManager implements AuthorizationManager<R
     }
 
     public synchronized void reload() {
-        this.mappings = dynamicAuthorizationService.getUrlRoleMappings()
-                .entrySet().stream()
-                .map(entry -> new RequestMatcherEntry<>(
-                        new AntPathRequestMatcher(entry.getKey()),
-                        customAuthorizationManager(entry.getValue())))
-                .collect(Collectors.toList());
+       mappings.clear();
+       setMapping();
     }
 }
