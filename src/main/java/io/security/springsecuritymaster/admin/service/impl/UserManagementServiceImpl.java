@@ -35,8 +35,8 @@ public class UserManagementServiceImpl implements UserManagementService {
 
         if(account.getUserRoles() != null){
             Set<Role> roles = new HashSet<>();
-            accountDto.getRoles().forEach(role -> {
-                Role r = roleRepository.findByRoleName(role);
+            account.getUserRoles().forEach(role -> {
+                Role r = roleRepository.findByRoleName(role.getRoleName());
                 roles.add(r);
             });
             account.setUserRoles(roles);
