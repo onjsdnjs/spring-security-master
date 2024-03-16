@@ -33,7 +33,7 @@ public class UserManagementServiceImpl implements UserManagementService {
         ModelMapper modelMapper = new ModelMapper();
         Account account = modelMapper.map(accountDto, Account.class);
 
-        if(accountDto.getRoles() != null){
+        if(account.getUserRoles() != null){
             Set<Role> roles = new HashSet<>();
             accountDto.getRoles().forEach(role -> {
                 Role r = roleRepository.findByRoleName(role);
