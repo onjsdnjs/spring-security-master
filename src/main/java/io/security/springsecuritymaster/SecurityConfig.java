@@ -36,8 +36,8 @@ public class SecurityConfig {
                 .formLogin(Customizer.withDefaults())
 //                .csrf(csrf -> csrf.disable())
                 .logout(logout -> logout
-                        .logoutUrl("/logoutProc")
-                        .logoutRequestMatcher(new AntPathRequestMatcher("/logoutProc","POST"))
+                        .logoutUrl("/logout")
+                        .logoutRequestMatcher(new AntPathRequestMatcher("/logout","POST"))
                         .logoutSuccessUrl("/logoutSuccess")
                         .logoutSuccessHandler(new LogoutSuccessHandler() {
                             @Override
