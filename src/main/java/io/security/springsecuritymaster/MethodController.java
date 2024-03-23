@@ -53,7 +53,7 @@ public class MethodController {
     }
 
     @GetMapping("/delete")
-    @PreAuthorize("@authorizer.isUser(#root)")
+    @PreAuthorize("@myAuthorizer.isUser(#root)")
     public String delete(){
         return "delete";
     }
