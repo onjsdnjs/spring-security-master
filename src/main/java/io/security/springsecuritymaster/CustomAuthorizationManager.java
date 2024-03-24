@@ -1,5 +1,6 @@
 package io.security.springsecuritymaster;
 
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.authorization.AuthorizationDecision;
 import org.springframework.security.authorization.AuthorizationManager;
 import org.springframework.security.core.Authentication;
@@ -13,7 +14,7 @@ public class CustomAuthorizationManager implements AuthorizationManager<RequestA
     public AuthorizationDecision check(Supplier<Authentication> authentication, RequestAuthorizationContext object) {
         Authentication auth = authentication.get();
         // 인증 정보가 없거나 인증되지 않은 경우
-        if (auth == null || !auth.isAuthenticated()) {
+        if (auth == null || !auth.isAuthenticated() || auth instanceof AnonymousAuthenticationToken) {
             return new AuthorizationDecision(false);
         }
         // "ROLE_SECURE" 권한을 가진 사용자인지 확인
