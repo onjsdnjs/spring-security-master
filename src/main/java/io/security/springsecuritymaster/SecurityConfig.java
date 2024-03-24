@@ -74,6 +74,7 @@ public class SecurityConfig {
         mappings.add(requestMatcherEntry1);
         mappings.add(requestMatcherEntry2);
         mappings.add(requestMatcherEntry3);
+        mappings.add(requestMatcherEntry4);
         return new CustomRequestMatcherDelegatingAuthorizationManager(mappings);
     }
     @Bean
