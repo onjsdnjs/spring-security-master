@@ -35,7 +35,7 @@ public class IndexController {
     public String login(HttpServletRequest request, MemberDto memberDto) throws ServletException, IOException {
         request.login(memberDto.getUsername(), memberDto.getPassword());
         System.out.println("login is successful");
-        return "index";
+        return "login";
     }
 
     @GetMapping("/users")
