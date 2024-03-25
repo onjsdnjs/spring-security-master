@@ -55,8 +55,7 @@ public class IndexController {
         SecurityContext securityContext = SecurityContextHolder.getContextHolderStrategy().getContext();
         System.out.println("securityContext = " + securityContext);
         System.out.println("Parent Thread: " + Thread.currentThread().getName());
-        Authentication authentication = securityContext.getAuthentication();
         asyncService.asyncMethod();
-        return authentication;
+        return  securityContext.getAuthentication();
     }
 }
