@@ -19,7 +19,7 @@ public class AuthorizationEvents {
     }
 
     @EventListener
-    public void onAuthorization(AuthorizationGrantedEvent failure){
-        System.out.println("event = " + failure.getAuthentication().get().getAuthorities());
+    public void onAuthorization(AuthorizationGrantedEvent success){
+        System.out.println("event = " + success.getAuthentication().get().getAuthorities());
     }
 }
