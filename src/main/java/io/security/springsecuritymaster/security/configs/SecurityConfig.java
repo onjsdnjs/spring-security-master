@@ -17,6 +17,9 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.WebAuthenticationDetails;
+import org.springframework.security.web.context.DelegatingSecurityContextRepository;
+import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
+import org.springframework.security.web.context.RequestAttributeSecurityContextRepository;
 
 @EnableWebSecurity
 @Configuration
@@ -84,6 +87,8 @@ public class SecurityConfig {
         restAuthenticationFilter.setAuthenticationManager(authenticationManager);
         restAuthenticationFilter.setAuthenticationSuccessHandler(restSuccessHandler);
         restAuthenticationFilter.setAuthenticationFailureHandler(restFailureHandler);
+//        restAuthenticationFilter.setSecurityContextRepository(new DelegatingSecurityContextRepository(
+//                new RequestAttributeSecurityContextRepository(), new HttpSessionSecurityContextRepository()));
 
         return restAuthenticationFilter;
     }
