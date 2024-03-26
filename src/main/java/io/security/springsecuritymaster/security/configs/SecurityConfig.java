@@ -16,6 +16,9 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.WebAuthenticationDetails;
+import org.springframework.security.web.context.DelegatingSecurityContextRepository;
+import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
+import org.springframework.security.web.context.RequestAttributeSecurityContextRepository;
 
 @EnableWebSecurity
 @Configuration
@@ -81,6 +84,8 @@ public class SecurityConfig {
                 .with(new RestApiDsl<>(), restDsl -> restDsl
                                             .restSuccessHandler(restSuccessHandler)
                                             .restFailureHandler(restFailureHandler)
+//                                            .setSecurityContextRepository(new DelegatingSecurityContextRepository(
+//                                                    new RequestAttributeSecurityContextRepository(), new HttpSessionSecurityContextRepository()))
                                             .loginPage("/api/login")
                                             .loginProcessingUrl("/api/login"))
         ;

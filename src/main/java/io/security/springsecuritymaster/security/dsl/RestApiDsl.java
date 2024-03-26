@@ -10,6 +10,7 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 import org.springframework.security.web.authentication.RememberMeServices;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.session.SessionAuthenticationStrategy;
+import org.springframework.security.web.context.SecurityContextRepository;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.security.web.util.matcher.RequestMatcher;
 
@@ -59,6 +60,10 @@ public class RestApiDsl <H extends HttpSecurityBuilder<H>> extends
 
     public RestApiDsl<H> loginPage(String loginPage) {
         return super.loginPage(loginPage);
+    }
+
+    public RestApiDsl<H> setSecurityContextRepository(SecurityContextRepository securityContextRepository) {
+        return super.securityContextRepository(securityContextRepository);
     }
 
     @Override
