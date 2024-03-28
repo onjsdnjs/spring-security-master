@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
-public class DynamicAuthorizationManager implements AuthorizationManager<HttpServletRequest> {
+public class RequestMatcherDynamicAuthorizationManager implements AuthorizationManager<HttpServletRequest> {
     List<RequestMatcherEntry<AuthorizationManager<RequestAuthorizationContext>>> mappings;
 //    private static final AuthorizationDecision DENY = new AuthorizationDecision(false);
     private static final AuthorizationDecision ACCESS = new AuthorizationDecision(true);
