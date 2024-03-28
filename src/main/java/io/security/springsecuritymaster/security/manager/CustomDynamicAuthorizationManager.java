@@ -1,4 +1,3 @@
-/*
 package io.security.springsecuritymaster.security.manager;
 
 import io.security.springsecuritymaster.admin.repository.ResourcesRepository;
@@ -78,4 +77,3 @@ public class CustomDynamicAuthorizationManager implements AuthorizationManager<R
         }
     }
 }
-*/
