@@ -118,5 +118,4 @@ public class CustomAuthorizationFilter extends GenericFilterBean implements Init
                                       AuthorizationDecision decision) {
 
     }
-
 }
